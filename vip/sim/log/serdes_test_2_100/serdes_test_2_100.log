@@ -1,0 +1,1088 @@
+# vsim -c -assertdebug -msgmode both work.tb_opt "+UVM_TESTNAME=serdes_test" "+SPEED=2" "+SERIAL_TRANSACTION_COUNT=5" "+PARALLEL_TRANSACTION_COUNT=5" "+NO_OF_AGENTS=4" -sv_seed 100 -l ../sim/log/serdes_test_2_100/serdes_test_2_100.log -do "add wave -r /*; run -all" 
+# Start time: 18:30:07 on Aug 04,2025
+# Loading /tmp/vandan-parekh@vandan-parekh-Victus-Gaming-Laptop-15-fa0165TX_dpi_33554/linux_gcc-7.4.0/export_tramp.so
+# //  Questa Sim
+# //  Version 2021.2_1 linux May 15 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.serdes_interface(fast)
+# Loading mtiUvm.uvm_pkg(fast)
+# Loading work.serdes_pkg(fast)
+# Loading work.serdes_pkg_sv_unit(fast)
+# Loading mtiUvm.questa_uvm_pkg(fast)
+# Loading work.tb_top(fast)
+# Loading work.serdes_interface(fast__2)
+# Loading work.sipo_shift_register(fast)
+# Loading work.piso_shift_register(fast)
+# ** Warning: (vsim-8441) Clocking block output vif.driver_cb.Rx0_p is not legal in this
+# or another expression.
+#    Time: 0 ps  Iteration: 0  Region: /serdes_pkg::serdes_driver File: ../sv/env/serdes_driver.sv Line: 102
+# ** Warning: (vsim-8441) Clocking block output vif.driver_cb.Rx0_n is not legal in this
+# or another expression.
+#    Time: 0 ps  Iteration: 0  Region: /serdes_pkg::serdes_driver File: ../sv/env/serdes_driver.sv Line: 103
+# ** Warning: (vsim-8441) Clocking block output vif.driver_cb.Rx0_p is not legal in this
+# or another expression.
+#    Time: 0 ps  Iteration: 0  Region: /serdes_pkg::serdes_driver File: ../sv/env/serdes_driver.sv Line: 102
+# ** Warning: (vsim-8441) Clocking block output vif.driver_cb.Rx0_n is not legal in this
+# or another expression.
+#    Time: 0 ps  Iteration: 0  Region: /serdes_pkg::serdes_driver File: ../sv/env/serdes_driver.sv Line: 103
+# ** Warning: (vsim-8441) Clocking block output vif.driver_cb.Tx0 is not legal in this
+# or another expression.
+#    Time: 0 ps  Iteration: 0  Region: /serdes_pkg::serdes_driver File: ../sv/env/serdes_driver.sv Line: 111
+# ** Warning: (vsim-8441) Clocking block output vif.driver_cb.Tx0 is not legal in this
+# or another expression.
+#    Time: 0 ps  Iteration: 0  Region: /serdes_pkg::serdes_driver File: ../sv/env/serdes_driver.sv Line: 111
+# ** Warning: (vsim-8441) Clocking block output vif.driver_cb.Tx0 is not legal in this
+# or another expression.
+#    Time: 0 ps  Iteration: 0  Region: /serdes_pkg::serdes_driver File: ../sv/env/serdes_driver.sv Line: 111
+# Compiling /tmp/vandan-parekh@vandan-parekh-Victus-Gaming-Laptop-15-fa0165TX_dpi_33554/linux_gcc-7.4.0/exportwrapper.c
+# Loading /tmp/vandan-parekh@vandan-parekh-Victus-Gaming-Laptop-15-fa0165TX_dpi_33554/linux_gcc-7.4.0/vsim_auto_compile.so
+# Loading /home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/linux/uvm_dpi.so
+# add wave -r /*
+#  run -all
+# UVM_INFO verilog_src/uvm-1.2/src/base/uvm_root.svh(392) @ 0: reporter [UVM/RELNOTES] 
+# ----------------------------------------------------------------
+# UVM-1.2
+# (C) 2007-2014 Mentor Graphics Corporation
+# (C) 2007-2014 Cadence Design Systems, Inc.
+# (C) 2006-2014 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# (C) 2013-2014 NVIDIA Corporation
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+# Your Selected Speed is 2 G
+# Serdes speed is = 2000000000.000000 Hz
+# Transaction count is = 5
+# Transaction count is = 5
+# Number of agents is = 4
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(116) @ 0: reporter [COMMAND LINE] Serial CLK Period = 0.500000 ns
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(117) @ 0: reporter [COMMAND LINE] Parallel CLK Period = 5.000000 ns
+# UVM_INFO @ 0: reporter [RNTST] Running test serdes_test...
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(22) @ 0: reporter [DUT SIPO RESET] RESET CONDITION DISPLAY Serial clock [0] Rx0_p = x | Rx0_p Decimal = x |shift_reg = xxxxxxxxxx | shift_reg in decimal = x
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(107) @ 0: reporter [DUT PISO RESET CONDITION] RESET CONDITION Serial Clock [0] Tx0 = xxxxxxxxxx | Tx0 Decimal = x |Tx0_p = x | Tx0_n = x
+# UVM_INFO ../sv/env/../test/serdes_test.sv(46) @ 0: uvm_test_top [serdes_test] serial_clk_period = 0.500000
+# UVM_INFO ../sv/env/../test/serdes_test.sv(48) @ 0: uvm_test_top [serdes_test] Drain time = 10000 ps
+# UVM_INFO ../sv/env/serdes_agent_config.sv(33) @ 0: reporter [serdes_agent_config] current_agt_no = 0 and is_parallel = 1
+# UVM_INFO ../sv/env/serdes_agent_config.sv(33) @ 0: reporter [serdes_agent_config] current_agt_no = 1 and is_parallel = 1
+# UVM_INFO ../sv/env/serdes_env.sv(61) @ 0: uvm_test_top.env [serdes_env] agt[0].agt_cfg.is_parallel = 1 | agt[0].agt_cfg.is_active = 1
+# UVM_INFO ../sv/env/serdes_env.sv(61) @ 0: uvm_test_top.env [serdes_env] agt[1].agt_cfg.is_parallel = 1 | agt[1].agt_cfg.is_active = 0
+# UVM_INFO ../sv/env/serdes_env.sv(61) @ 0: uvm_test_top.env [serdes_env] agt[2].agt_cfg.is_parallel = 0 | agt[2].agt_cfg.is_active = 1
+# UVM_INFO ../sv/env/serdes_env.sv(61) @ 0: uvm_test_top.env [serdes_env] agt[3].agt_cfg.is_parallel = 0 | agt[3].agt_cfg.is_active = 0
+# UVM_INFO ../sv/env/serdes_driver.sv(27) @ 0: uvm_test_top.env.agt[0].drv [Driver Build Phase] Inside the build phase of driver class
+# UVM_INFO ../sv/env/serdes_driver.sv(35) @ 0: uvm_test_top.env.agt[0].drv [serdes_driver] BUILD parallel_driver = 1
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequencer.sv(19) @ 0: uvm_test_top.env.agt[0].seqr [Sequencer Build Phase] Inside the build phase of sequencer class
+# UVM_INFO ../sv/env/serdes_driver.sv(27) @ 0: uvm_test_top.env.agt[2].drv [Driver Build Phase] Inside the build phase of driver class
+# UVM_INFO ../sv/env/serdes_driver.sv(35) @ 0: uvm_test_top.env.agt[2].drv [serdes_driver] BUILD parallel_driver = 0
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequencer.sv(19) @ 0: uvm_test_top.env.agt[2].seqr [Sequencer Build Phase] Inside the build phase of sequencer class
+# UVM_INFO ../sv/env/serdes_driver.sv(42) @ 0: uvm_test_top.env.agt[0].drv [Driver Connect Phase] Inside the Connect Phase of driver class
+# UVM_INFO ../sv/env/serdes_driver.sv(42) @ 0: uvm_test_top.env.agt[2].drv [Driver Connect Phase] Inside the Connect Phase of driver class
+# UVM_INFO ../sv/env/serdes_driver.sv(49) @ 0: uvm_test_top.env.agt[0].drv [Driver EOE Phase] Inside the EOE Phase of driver class
+# UVM_INFO ../sv/env/serdes_driver.sv(49) @ 0: uvm_test_top.env.agt[2].drv [Driver EOE Phase] Inside the EOE Phase of driver class
+# UVM_INFO ../sv/env/../test/serdes_test.sv(67) @ 0: uvm_test_top [Driver EOE Phase] Inside the EOE Phase of driver class
+# UVM_INFO verilog_src/uvm-1.2/src/base/uvm_root.svh(579) @ 0: reporter [UVMTOP] UVM testbench topology:
+# ---------------------------------------------------------------------
+# Name                           Type                       Size  Value
+# ---------------------------------------------------------------------
+# uvm_test_top                   serdes_test                -     @385 
+#   env                          serdes_env                 -     @415 
+#     agt[0]                     serdes_agent               -     @444 
+#       drv                      serdes_driver              -     @501 
+#         rsp_port               uvm_analysis_port          -     @518 
+#         seq_item_port          uvm_seq_item_pull_port     -     @509 
+#       mon                      serdes_monitor             -     @650 
+#         packet_collected_port  uvm_analysis_port          -     @658 
+#       seqr                     serdes_sequencer           -     @527 
+#         rsp_export             uvm_analysis_export        -     @535 
+#         seq_item_export        uvm_seq_item_pull_imp      -     @641 
+#         arbitration_queue      array                      0     -    
+#         lock_queue             array                      0     -    
+#         num_last_reqs          integral                   32    'd1  
+#         num_last_rsps          integral                   32    'd1  
+#     agt[1]                     serdes_agent               -     @454 
+#       mon                      serdes_monitor             -     @681 
+#         packet_collected_port  uvm_analysis_port          -     @689 
+#     agt[2]                     serdes_agent               -     @464 
+#       drv                      serdes_driver              -     @700 
+#         rsp_port               uvm_analysis_port          -     @717 
+#         seq_item_port          uvm_seq_item_pull_port     -     @708 
+#       mon                      serdes_monitor             -     @849 
+#         packet_collected_port  uvm_analysis_port          -     @857 
+#       seqr                     serdes_sequencer           -     @726 
+#         rsp_export             uvm_analysis_export        -     @734 
+#         seq_item_export        uvm_seq_item_pull_imp      -     @840 
+#         arbitration_queue      array                      0     -    
+#         lock_queue             array                      0     -    
+#         num_last_reqs          integral                   32    'd1  
+#         num_last_rsps          integral                   32    'd1  
+#     agt[3]                     serdes_agent               -     @474 
+#       mon                      serdes_monitor             -     @880 
+#         packet_collected_port  uvm_analysis_port          -     @888 
+#     scb[0]                     serdes_scoreboard          -     @484 
+#       actual_imp               uvm_analysis_imp_actual    -     @907 
+#       expected_imp             uvm_analysis_imp_expected  -     @898 
+#     scb[1]                     serdes_scoreboard          -     @492 
+#       actual_imp               uvm_analysis_imp_actual    -     @925 
+#       expected_imp             uvm_analysis_imp_expected  -     @916 
+# ---------------------------------------------------------------------
+# 
+# UVM_INFO ../sv/env/../test/serdes_test.sv(80) @ 0: uvm_test_top [serdes_test] seq[0].is_parallel = 1 | env.agt[0].agt_cfg.is_parallel = 1
+# UVM_INFO ../sv/env/../test/serdes_test.sv(80) @ 0: uvm_test_top [serdes_test] seq[1].is_parallel = 0 | env.agt[1].agt_cfg.is_parallel = 0
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(34) @ 0: uvm_test_top.env.agt[0].seqr@@seq[0] [PRE-BODY] INSIDE PRE-BODY TASK
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(35) @ 0: uvm_test_top.env.agt[0].seqr@@seq[0] [PRE_BODY] serial_transaction_count=5, parallel_transaction_count = 5, is_parallel=1
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(34) @ 0: uvm_test_top.env.agt[2].seqr@@seq[1] [PRE-BODY] INSIDE PRE-BODY TASK
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(35) @ 0: uvm_test_top.env.agt[2].seqr@@seq[1] [PRE_BODY] serial_transaction_count=5, parallel_transaction_count = 5, is_parallel=0
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 500: reporter [DUT SIPO] Serial clock [1000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0000000000 | shift_reg in decimal = 0 | sipo_main_count = 2
+# UVM_INFO ../sv/env/serdes_monitor.sv(158) @ 500: uvm_test_top.env.agt[0].mon [serdes_monitor] TIME PARALLEL ACTIVE = 500
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(48) @ 500: uvm_test_top.env.agt[0].seqr@@seq[0] [BODY] Parallel transaction: Tx0 in Binary=0010001111 | Tx0 in Decimal = 143
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 1100000101 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 500: uvm_test_top.env.agt[0].drv [serdes_driver] after get next item req.Tx0 = 0010001111 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 750: reporter [Serial clock top] FROM TOP SERIAL TIME = 1000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 1000: reporter [Serial clock top] FROM TOP SERIAL TIME = 1000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 1000: reporter [DUT SIPO] Serial clock [1000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0000000000 | shift_reg in decimal = 0 | sipo_main_count = 3
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 1000: reporter [DUT PISO] Serial Clock [1000] Tx0 = 0000000000 | Tx0 Decimal = 0 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 2
+# I = 1
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 1000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(189) @ 1000: uvm_test_top.env.agt[3].mon [serdes_monitor] TIME SERIAL = 1000
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 1000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 1000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0001000001 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 1250: reporter [Serial clock top] FROM TOP SERIAL TIME = 1000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 1500: reporter [Serial clock top] FROM TOP SERIAL TIME = 2000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 1500: reporter [DUT SIPO] Serial clock [2000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0000000000 | shift_reg in decimal = 0 | sipo_main_count = 4
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 1500: reporter [DUT PISO] Serial Clock [2000] Tx0 = 0000000000 | Tx0 Decimal = 0 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 3
+# I = 2
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 1500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(182) @ 1500: uvm_test_top.env.agt[2].mon [serdes_monitor] TIME SERIAL ACTIVE = 1500
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 1500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 0
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 1500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 1500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0001000100 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 1750: reporter [Serial clock top] FROM TOP SERIAL TIME = 2000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 2000: reporter [Serial clock top] FROM TOP SERIAL TIME = 2000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 2000: reporter [DUT SIPO] Serial clock [2000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0000000000 | shift_reg in decimal = 0 | sipo_main_count = 5
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 2000: reporter [DUT PISO] Serial Clock [2000] Tx0 = 0000000000 | Tx0 Decimal = 0 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 4
+# I = 3
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 2000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 2000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 2000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 2000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 2000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0101011100 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 2250: reporter [Serial clock top] FROM TOP SERIAL TIME = 2000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 2500: reporter [Serial clock top] FROM TOP SERIAL TIME = 3000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 2500: reporter [DUT SIPO] Serial clock [3000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 0000000000 | shift_reg in decimal = 0 | sipo_main_count = 6
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 2500: reporter [DUT PISO] Serial Clock [3000] Tx0 = 0000000000 | Tx0 Decimal = 0 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 5
+# I = 4
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 2500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 2500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 2500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 2
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 2500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 2500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 1011010001 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 2750: reporter [Serial clock top] FROM TOP SERIAL TIME = 3000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(141) @ 3000: reporter [Serial clock top] FROM TOP SERIAL TIME = 3000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 3000: reporter [Serial clock top] FROM TOP SERIAL TIME = 3000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 3000: reporter [DUT SIPO] Serial clock [3000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0000000001 | shift_reg in decimal = 1 | sipo_main_count = 7
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 3000: reporter [DUT PISO] Serial Clock [3000] Tx0 = 0000000000 | Tx0 Decimal = 0 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 6
+# I = 5
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 3000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 3000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 3
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 3000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 3000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 3000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0011100001 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 3250: reporter [Serial clock top] FROM TOP SERIAL TIME = 3000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 3500: reporter [Serial clock top] FROM TOP SERIAL TIME = 4000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 3500: reporter [DUT SIPO] Serial clock [4000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 0000000010 | shift_reg in decimal = 2 | sipo_main_count = 8
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 3500: reporter [DUT PISO] Serial Clock [4000] Tx0 = 0000000000 | Tx0 Decimal = 0 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 7
+# I = 6
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 3500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 3500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 3500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 4
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 3500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 3500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0000110111 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 3750: reporter [Serial clock top] FROM TOP SERIAL TIME = 4000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 4000: reporter [Serial clock top] FROM TOP SERIAL TIME = 4000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 4000: reporter [DUT SIPO] Serial clock [4000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0000000101 | shift_reg in decimal = 5 | sipo_main_count = 9
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 4000: reporter [DUT PISO] Serial Clock [4000] Tx0 = 0000000000 | Tx0 Decimal = 0 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 8
+# I = 7
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 4000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 4000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 5
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 4000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 4000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 4000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 1111001100 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 4250: reporter [Serial clock top] FROM TOP SERIAL TIME = 4000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 4500: reporter [Serial clock top] FROM TOP SERIAL TIME = 5000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 4500: reporter [DUT SIPO] Serial clock [5000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0000001010 | shift_reg in decimal = 10 | sipo_main_count = 10
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 4500: reporter [DUT PISO] Serial Clock [5000] Tx0 = 0000000000 | Tx0 Decimal = 0 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 9
+# I = 8
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 4500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 4500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 4500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 6
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 4500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 4500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0111000011 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 4750: reporter [Serial clock top] FROM TOP SERIAL TIME = 5000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 5000: reporter [Serial clock top] FROM TOP SERIAL TIME = 5000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 5000: reporter [DUT SIPO] Serial clock [5000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 0000010100 | shift_reg in decimal = 20 | sipo_main_count = 11
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 5000: reporter [DUT PISO] Serial Clock [5000] Tx0 = 0000000000 | Tx0 Decimal = 0 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 10
+# I = 9
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 5000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 5000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 7
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 5000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 5000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 5000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 1111100111 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 5250: reporter [Serial clock top] FROM TOP SERIAL TIME = 5000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(141) @ 5500: reporter [Serial clock top] FROM TOP SERIAL TIME = 6000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 5500: reporter [Serial clock top] FROM TOP SERIAL TIME = 6000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 5500: reporter [DUT SIPO] Serial clock [6000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 0000101001 | shift_reg in decimal = 41 | sipo_main_count = 12
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 5500: reporter [DUT PISO] Serial Clock [6000] Tx0 = 0000000000 | Tx0 Decimal = 0 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 11
+# I = 10
+# UVM_INFO ../sv/env/serdes_driver.sv(112) @ 5500: uvm_test_top.env.agt[0].drv [serdes_driver] After parallel drive DRIV_IF.Tx0 = 0010001111 | DRIV_IF.Tx0 = 143
+# UVM_INFO ../sv/env/serdes_monitor.sv(169) @ 5500: uvm_test_top.env.agt[1].mon [serdes_monitor] TIME PARALLEL PASSIVE = 5500
+# UVM_INFO ../sv/env/serdes_monitor.sv(37) @ 5500: uvm_test_top.env.agt[0].mon [serdes_monitor] ACTIVE_PARALLEL_MONITOR mon_pkt.Tx0 = 0000000000 | mon_pkt.Tx0 = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 5500: uvm_test_top.env.agt[0].mon [serdes_monitor] Sending transaction: Tx0=0000000000, Rx0=0000000000, mon_parallel_Tx0=0000000000, mon_parallel_Rx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(54) @ 5500: uvm_test_top.env.scb[0] [serdes_scoreboard] SCOREBOARD Received expected transaction: Tx0=0000000000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(57) @ 5500: uvm_test_top.env.scb[0] [serdes_scoreboard] Received expected transaction: Tx0=0000000000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 5500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 5500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 5500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 8
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 5500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(48) @ 5500: uvm_test_top.env.agt[0].seqr@@seq[0] [BODY] Parallel transaction: Tx0 in Binary=0000001000 | Tx0 in Decimal = 8
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 5500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 1101011100 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 5500: uvm_test_top.env.agt[0].drv [serdes_driver] after get next item req.Tx0 = 0000001000 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 5750: reporter [Serial clock top] FROM TOP SERIAL TIME = 6000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 6000: reporter [Serial clock top] FROM TOP SERIAL TIME = 6000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 6000: reporter [DUT SIPO] Serial clock [6000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0001010011 | shift_reg in decimal = 83 | sipo_main_count = 13
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 6000: reporter [DUT PISO] Serial Clock [6000] Tx0 = 0010001111 | Tx0 Decimal = 143 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 2
+# I = 1
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 6000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 6000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 9
+# UVM_INFO ../sv/env/serdes_monitor.sv(76) @ 6000: uvm_test_top.env.agt[3].mon [serdes_monitor] HELLO monitor converting serial data into parallel data | mon_pkt.mon_parallel_Tx0 = 0000000000 | mon_pkt.mon_parallel_Tx0 = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 6000: uvm_test_top.env.agt[3].mon [serdes_monitor] Sending transaction: Tx0=0000000000, Rx0=0000000000, mon_parallel_Tx0=0000000000, mon_parallel_Rx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(65) @ 6000: uvm_test_top.env.scb[0] [serdes_scoreboard] Received actual transaction: Tx0=0000000000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 6000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(123) @ 6000: uvm_test_top.env.scb[0] [serdes_scoreboard] PACKET SIZE Inside Scoreboard Run Phase actual packet is got actual_q.size = 1 | Expected_q.size = 1
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(130) @ 6000: uvm_test_top.env.scb[0] [serdes_scoreboard] exp.mon_parallel_Rx0 = 0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(132) @ 6000: uvm_test_top.env.scb[0] [serdes_scoreboard] act.Rx0 = 0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(141) @ 6000: uvm_test_top.env.scb[0] [serdes_scoreboard] Inside Scoreboard Run Phase Tx scoreboard condition
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(74) @ 6000: uvm_test_top.env.scb[0] [serdes_scoreboard] [Scoreboard Tx] COMPARISON TX PASSED | exp.Tx0 = 0000000000 | exp_Tx0 = 0 | act.mon_parallel_Tx0 = 0000000000 | act.mon_parallel_Tx0 = 0
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 6000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 6000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0100001101 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 6250: reporter [Serial clock top] FROM TOP SERIAL TIME = 6000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 6500: reporter [Serial clock top] FROM TOP SERIAL TIME = 7000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 6500: reporter [DUT SIPO] Serial clock [7000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0010100110 | shift_reg in decimal = 166 | sipo_main_count = 14
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 6500: reporter [DUT PISO] Serial Clock [7000] Tx0 = 0010001111 | Tx0 Decimal = 143 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 3
+# I = 2
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 6500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 6500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 6500: uvm_test_top.env.agt[2].mon [serdes_monitor] Sending transaction: Tx0=0000000000, Rx0=0000000000, mon_parallel_Tx0=0000000000, mon_parallel_Rx0=0010100110
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(54) @ 6500: uvm_test_top.env.scb[1] [serdes_scoreboard] SCOREBOARD Received expected transaction: Tx0=0000000000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(57) @ 6500: uvm_test_top.env.scb[1] [serdes_scoreboard] Received expected transaction: Tx0=0000000000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 6500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 0
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 6500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 6500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0101110110 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 6750: reporter [Serial clock top] FROM TOP SERIAL TIME = 7000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 7000: reporter [Serial clock top] FROM TOP SERIAL TIME = 7000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 7000: reporter [DUT SIPO] Serial clock [7000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 0101001100 | shift_reg in decimal = 332 | sipo_main_count = 2
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 7000: reporter [DUT PISO] Serial Clock [7000] Tx0 = 0010001111 | Tx0 Decimal = 143 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 4
+# I = 3
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 7000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 7000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 7000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 7000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 7000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 1011000111 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 7250: reporter [Serial clock top] FROM TOP SERIAL TIME = 7000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 7500: reporter [Serial clock top] FROM TOP SERIAL TIME = 8000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 7500: reporter [DUT SIPO] Serial clock [8000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 1010011001 | shift_reg in decimal = 665 | sipo_main_count = 3
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 7500: reporter [DUT PISO] Serial Clock [8000] Tx0 = 0010001111 | Tx0 Decimal = 143 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 5
+# I = 4
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 7500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 7500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 7500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 2
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 7500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 7500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0100011111 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 7750: reporter [Serial clock top] FROM TOP SERIAL TIME = 8000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(141) @ 8000: reporter [Serial clock top] FROM TOP SERIAL TIME = 8000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 8000: reporter [Serial clock top] FROM TOP SERIAL TIME = 8000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 8000: reporter [DUT SIPO] Serial clock [8000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0100110011 | shift_reg in decimal = 307 | sipo_main_count = 4
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 8000: reporter [DUT PISO] Serial Clock [8000] Tx0 = 0010001111 | Tx0 Decimal = 143 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 6
+# I = 5
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 8000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 8000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 3
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 8000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 8000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 8000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 1000011111 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 8250: reporter [Serial clock top] FROM TOP SERIAL TIME = 8000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 8500: reporter [Serial clock top] FROM TOP SERIAL TIME = 9000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 8500: reporter [DUT SIPO] Serial clock [9000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 1001100110 | shift_reg in decimal = 614 | sipo_main_count = 5
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 8500: reporter [DUT PISO] Serial Clock [9000] Tx0 = 0010001111 | Tx0 Decimal = 143 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 7
+# I = 6
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 8500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 8500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 8500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 4
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 8500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 8500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 1110011101 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 8750: reporter [Serial clock top] FROM TOP SERIAL TIME = 9000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 9000: reporter [Serial clock top] FROM TOP SERIAL TIME = 9000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 9000: reporter [DUT SIPO] Serial clock [9000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 0011001100 | shift_reg in decimal = 204 | sipo_main_count = 6
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 9000: reporter [DUT PISO] Serial Clock [9000] Tx0 = 0010001111 | Tx0 Decimal = 143 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 8
+# I = 7
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 9000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 9000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 5
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 9000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 9000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 9000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0011001110 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 9250: reporter [Serial clock top] FROM TOP SERIAL TIME = 9000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 9500: reporter [Serial clock top] FROM TOP SERIAL TIME = 10000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 9500: reporter [DUT SIPO] Serial clock [10000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0110011001 | shift_reg in decimal = 409 | sipo_main_count = 7
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 9500: reporter [DUT PISO] Serial Clock [10000] Tx0 = 0010001111 | Tx0 Decimal = 143 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 9
+# I = 8
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 9500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 9500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 9500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 6
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 9500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 9500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0001111111 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 9750: reporter [Serial clock top] FROM TOP SERIAL TIME = 10000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 10000: reporter [Serial clock top] FROM TOP SERIAL TIME = 10000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 10000: reporter [DUT SIPO] Serial clock [10000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 1100110010 | shift_reg in decimal = 818 | sipo_main_count = 8
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 10000: reporter [DUT PISO] Serial Clock [10000] Tx0 = 0010001111 | Tx0 Decimal = 143 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 10
+# I = 9
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 10000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 10000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 7
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 10000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 10000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 10000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0101110110 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 10250: reporter [Serial clock top] FROM TOP SERIAL TIME = 10000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(141) @ 10500: reporter [Serial clock top] FROM TOP SERIAL TIME = 11000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 10500: reporter [Serial clock top] FROM TOP SERIAL TIME = 11000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 10500: reporter [DUT SIPO] Serial clock [11000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 1001100101 | shift_reg in decimal = 613 | sipo_main_count = 9
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 10500: reporter [DUT PISO] Serial Clock [11000] Tx0 = 0010001111 | Tx0 Decimal = 143 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 11
+# I = 10
+# UVM_INFO ../sv/env/serdes_driver.sv(112) @ 10500: uvm_test_top.env.agt[0].drv [serdes_driver] After parallel drive DRIV_IF.Tx0 = 0000001000 | DRIV_IF.Tx0 = 8
+# UVM_INFO ../sv/env/serdes_monitor.sv(37) @ 10500: uvm_test_top.env.agt[0].mon [serdes_monitor] ACTIVE_PARALLEL_MONITOR mon_pkt.Tx0 = 0010001111 | mon_pkt.Tx0 = 143
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 10500: uvm_test_top.env.agt[0].mon [serdes_monitor] Sending transaction: Tx0=0010001111, Rx0=0000000000, mon_parallel_Tx0=0000000000, mon_parallel_Rx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(54) @ 10500: uvm_test_top.env.scb[0] [serdes_scoreboard] SCOREBOARD Received expected transaction: Tx0=0010001111, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(57) @ 10500: uvm_test_top.env.scb[0] [serdes_scoreboard] Received expected transaction: Tx0=0010001111, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_monitor.sv(44) @ 10500: uvm_test_top.env.agt[1].mon [serdes_monitor] PASSIVE_PARALLEL_MONITOR mon_pkt.Rx0 = 0010100110 | mon_pkt.Rx0 = 166
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 10500: uvm_test_top.env.agt[1].mon [serdes_monitor] Sending transaction: Tx0=0000000000, Rx0=0010100110, mon_parallel_Tx0=0000000000, mon_parallel_Rx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(65) @ 10500: uvm_test_top.env.scb[1] [serdes_scoreboard] Received actual transaction: Tx0=0000000000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 10500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 10500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 10500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 8
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(123) @ 10500: uvm_test_top.env.scb[1] [serdes_scoreboard] PACKET SIZE Inside Scoreboard Run Phase actual packet is got actual_q.size = 1 | Expected_q.size = 1
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(130) @ 10500: uvm_test_top.env.scb[1] [serdes_scoreboard] exp.mon_parallel_Rx0 = 0010100110
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(132) @ 10500: uvm_test_top.env.scb[1] [serdes_scoreboard] act.Rx0 = 0010100110
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(90) @ 10500: uvm_test_top.env.scb[1] [serdes_scoreboard] [Scoreboard Rx] COMPARISON RX PASSED | exp.mon_parallel_Rx0 = 0010100110 | exp_mon_parallel_Rx0 = 166 | act.Rx0 = 0010100110 | act.Rx0 = 166
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(91) @ 10500: uvm_test_top.env.scb[1] [serdes_scoreboard] [Scoreboard Rx] COMPARISON RX PASSED
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 10500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(48) @ 10500: uvm_test_top.env.agt[0].seqr@@seq[0] [BODY] Parallel transaction: Tx0 in Binary=1001001111 | Tx0 in Decimal = 591
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 10500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0011011010 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 10500: uvm_test_top.env.agt[0].drv [serdes_driver] after get next item req.Tx0 = 1001001111 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 10750: reporter [Serial clock top] FROM TOP SERIAL TIME = 11000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 11000: reporter [Serial clock top] FROM TOP SERIAL TIME = 11000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 11000: reporter [DUT SIPO] Serial clock [11000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 0011001011 | shift_reg in decimal = 203 | sipo_main_count = 10
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 11000: reporter [DUT PISO] Serial Clock [11000] Tx0 = 0000001000 | Tx0 Decimal = 8 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 2
+# I = 1
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 11000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 11000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 9
+# UVM_INFO ../sv/env/serdes_monitor.sv(76) @ 11000: uvm_test_top.env.agt[3].mon [serdes_monitor] HELLO monitor converting serial data into parallel data | mon_pkt.mon_parallel_Tx0 = 0010001111 | mon_pkt.mon_parallel_Tx0 = 143
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 11000: uvm_test_top.env.agt[3].mon [serdes_monitor] Sending transaction: Tx0=0000000000, Rx0=0000000000, mon_parallel_Tx0=0010001111, mon_parallel_Rx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(65) @ 11000: uvm_test_top.env.scb[0] [serdes_scoreboard] Received actual transaction: Tx0=0000000000, mon_parallel_Tx0=0010001111
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 11000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(123) @ 11000: uvm_test_top.env.scb[0] [serdes_scoreboard] PACKET SIZE Inside Scoreboard Run Phase actual packet is got actual_q.size = 1 | Expected_q.size = 1
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(130) @ 11000: uvm_test_top.env.scb[0] [serdes_scoreboard] exp.mon_parallel_Rx0 = 0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(132) @ 11000: uvm_test_top.env.scb[0] [serdes_scoreboard] act.Rx0 = 0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(141) @ 11000: uvm_test_top.env.scb[0] [serdes_scoreboard] Inside Scoreboard Run Phase Tx scoreboard condition
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(74) @ 11000: uvm_test_top.env.scb[0] [serdes_scoreboard] [Scoreboard Tx] COMPARISON TX PASSED | exp.Tx0 = 0010001111 | exp_Tx0 = 143 | act.mon_parallel_Tx0 = 0010001111 | act.mon_parallel_Tx0 = 143
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 11000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 11000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0110010101 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 11250: reporter [Serial clock top] FROM TOP SERIAL TIME = 11000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 11500: reporter [Serial clock top] FROM TOP SERIAL TIME = 12000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 11500: reporter [DUT SIPO] Serial clock [12000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 0110010111 | shift_reg in decimal = 407 | sipo_main_count = 11
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 11500: reporter [DUT PISO] Serial Clock [12000] Tx0 = 0000001000 | Tx0 Decimal = 8 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 3
+# I = 2
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 11500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 11500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 11500: uvm_test_top.env.agt[2].mon [serdes_monitor] Sending transaction: Tx0=0000000000, Rx0=0000000000, mon_parallel_Tx0=0000000000, mon_parallel_Rx0=0110010111
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(54) @ 11500: uvm_test_top.env.scb[1] [serdes_scoreboard] SCOREBOARD Received expected transaction: Tx0=0000000000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(57) @ 11500: uvm_test_top.env.scb[1] [serdes_scoreboard] Received expected transaction: Tx0=0000000000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 11500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 0
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 11500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 11500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0100000110 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 11750: reporter [Serial clock top] FROM TOP SERIAL TIME = 12000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 12000: reporter [Serial clock top] FROM TOP SERIAL TIME = 12000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 12000: reporter [DUT SIPO] Serial clock [12000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 1100101111 | shift_reg in decimal = 815 | sipo_main_count = 2
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 12000: reporter [DUT PISO] Serial Clock [12000] Tx0 = 0000001000 | Tx0 Decimal = 8 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 4
+# I = 3
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 12000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 12000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 12000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 12000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 12000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0101110111 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 12250: reporter [Serial clock top] FROM TOP SERIAL TIME = 12000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 12500: reporter [Serial clock top] FROM TOP SERIAL TIME = 13000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 12500: reporter [DUT SIPO] Serial clock [13000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 1001011111 | shift_reg in decimal = 607 | sipo_main_count = 3
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 12500: reporter [DUT PISO] Serial Clock [13000] Tx0 = 0000001000 | Tx0 Decimal = 8 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 5
+# I = 4
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 12500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 12500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 12500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 2
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 12500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 12500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0011111000 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 12750: reporter [Serial clock top] FROM TOP SERIAL TIME = 13000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(141) @ 13000: reporter [Serial clock top] FROM TOP SERIAL TIME = 13000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 13000: reporter [Serial clock top] FROM TOP SERIAL TIME = 13000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 13000: reporter [DUT SIPO] Serial clock [13000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 0010111111 | shift_reg in decimal = 191 | sipo_main_count = 4
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 13000: reporter [DUT PISO] Serial Clock [13000] Tx0 = 0000001000 | Tx0 Decimal = 8 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 6
+# I = 5
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 13000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 13000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 3
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 13000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 13000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 13000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0010100011 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 13250: reporter [Serial clock top] FROM TOP SERIAL TIME = 13000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 13500: reporter [Serial clock top] FROM TOP SERIAL TIME = 14000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 13500: reporter [DUT SIPO] Serial clock [14000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0101111111 | shift_reg in decimal = 383 | sipo_main_count = 5
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 13500: reporter [DUT PISO] Serial Clock [14000] Tx0 = 0000001000 | Tx0 Decimal = 8 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 7
+# I = 6
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 13500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 13500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 13500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 4
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 13500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 13500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 1011011000 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 13750: reporter [Serial clock top] FROM TOP SERIAL TIME = 14000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 14000: reporter [Serial clock top] FROM TOP SERIAL TIME = 14000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 14000: reporter [DUT SIPO] Serial clock [14000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 1011111110 | shift_reg in decimal = 766 | sipo_main_count = 6
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 14000: reporter [DUT PISO] Serial Clock [14000] Tx0 = 0000001000 | Tx0 Decimal = 8 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 8
+# I = 7
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 14000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 14000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 5
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 14000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 14000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 14000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 1100001110 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 14250: reporter [Serial clock top] FROM TOP SERIAL TIME = 14000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 14500: reporter [Serial clock top] FROM TOP SERIAL TIME = 15000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 14500: reporter [DUT SIPO] Serial clock [15000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0111111100 | shift_reg in decimal = 508 | sipo_main_count = 7
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 14500: reporter [DUT PISO] Serial Clock [15000] Tx0 = 0000001000 | Tx0 Decimal = 8 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 9
+# I = 8
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 14500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 14500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 14500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 6
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 14500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 14500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0010000110 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 14750: reporter [Serial clock top] FROM TOP SERIAL TIME = 15000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 15000: reporter [Serial clock top] FROM TOP SERIAL TIME = 15000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 15000: reporter [DUT SIPO] Serial clock [15000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 1111111000 | shift_reg in decimal = 1016 | sipo_main_count = 8
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 15000: reporter [DUT PISO] Serial Clock [15000] Tx0 = 0000001000 | Tx0 Decimal = 8 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 10
+# I = 9
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 15000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 15000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 7
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 15000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 15000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 15000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0100011001 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 15250: reporter [Serial clock top] FROM TOP SERIAL TIME = 15000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(141) @ 15500: reporter [Serial clock top] FROM TOP SERIAL TIME = 16000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 15500: reporter [Serial clock top] FROM TOP SERIAL TIME = 16000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 15500: reporter [DUT SIPO] Serial clock [16000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 1111110000 | shift_reg in decimal = 1008 | sipo_main_count = 9
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 15500: reporter [DUT PISO] Serial Clock [16000] Tx0 = 0000001000 | Tx0 Decimal = 8 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 11
+# I = 10
+# UVM_INFO ../sv/env/serdes_driver.sv(112) @ 15500: uvm_test_top.env.agt[0].drv [serdes_driver] After parallel drive DRIV_IF.Tx0 = 1001001111 | DRIV_IF.Tx0 = 591
+# UVM_INFO ../sv/env/serdes_monitor.sv(44) @ 15500: uvm_test_top.env.agt[1].mon [serdes_monitor] PASSIVE_PARALLEL_MONITOR mon_pkt.Rx0 = 0110010111 | mon_pkt.Rx0 = 407
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 15500: uvm_test_top.env.agt[1].mon [serdes_monitor] Sending transaction: Tx0=0000000000, Rx0=0110010111, mon_parallel_Tx0=0000000000, mon_parallel_Rx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(65) @ 15500: uvm_test_top.env.scb[1] [serdes_scoreboard] Received actual transaction: Tx0=0000000000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_monitor.sv(37) @ 15500: uvm_test_top.env.agt[0].mon [serdes_monitor] ACTIVE_PARALLEL_MONITOR mon_pkt.Tx0 = 0000001000 | mon_pkt.Tx0 = 8
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 15500: uvm_test_top.env.agt[0].mon [serdes_monitor] Sending transaction: Tx0=0000001000, Rx0=0000000000, mon_parallel_Tx0=0000000000, mon_parallel_Rx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(54) @ 15500: uvm_test_top.env.scb[0] [serdes_scoreboard] SCOREBOARD Received expected transaction: Tx0=0000001000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(57) @ 15500: uvm_test_top.env.scb[0] [serdes_scoreboard] Received expected transaction: Tx0=0000001000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 15500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 15500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 15500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 8
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(123) @ 15500: uvm_test_top.env.scb[1] [serdes_scoreboard] PACKET SIZE Inside Scoreboard Run Phase actual packet is got actual_q.size = 1 | Expected_q.size = 1
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(130) @ 15500: uvm_test_top.env.scb[1] [serdes_scoreboard] exp.mon_parallel_Rx0 = 0110010111
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(132) @ 15500: uvm_test_top.env.scb[1] [serdes_scoreboard] act.Rx0 = 0110010111
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(90) @ 15500: uvm_test_top.env.scb[1] [serdes_scoreboard] [Scoreboard Rx] COMPARISON RX PASSED | exp.mon_parallel_Rx0 = 0110010111 | exp_mon_parallel_Rx0 = 407 | act.Rx0 = 0110010111 | act.Rx0 = 407
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(91) @ 15500: uvm_test_top.env.scb[1] [serdes_scoreboard] [Scoreboard Rx] COMPARISON RX PASSED
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 15500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(48) @ 15500: uvm_test_top.env.agt[0].seqr@@seq[0] [BODY] Parallel transaction: Tx0 in Binary=1011110011 | Tx0 in Decimal = 755
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 15500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 1111110111 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 15500: uvm_test_top.env.agt[0].drv [serdes_driver] after get next item req.Tx0 = 1011110011 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 15750: reporter [Serial clock top] FROM TOP SERIAL TIME = 16000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 16000: reporter [Serial clock top] FROM TOP SERIAL TIME = 16000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 16000: reporter [DUT SIPO] Serial clock [16000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 1111100001 | shift_reg in decimal = 993 | sipo_main_count = 10
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 16000: reporter [DUT PISO] Serial Clock [16000] Tx0 = 1001001111 | Tx0 Decimal = 591 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 2
+# I = 1
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 16000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 16000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 9
+# UVM_INFO ../sv/env/serdes_monitor.sv(76) @ 16000: uvm_test_top.env.agt[3].mon [serdes_monitor] HELLO monitor converting serial data into parallel data | mon_pkt.mon_parallel_Tx0 = 0000001000 | mon_pkt.mon_parallel_Tx0 = 8
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 16000: uvm_test_top.env.agt[3].mon [serdes_monitor] Sending transaction: Tx0=0000000000, Rx0=0000000000, mon_parallel_Tx0=0000001000, mon_parallel_Rx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(65) @ 16000: uvm_test_top.env.scb[0] [serdes_scoreboard] Received actual transaction: Tx0=0000000000, mon_parallel_Tx0=0000001000
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 16000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(123) @ 16000: uvm_test_top.env.scb[0] [serdes_scoreboard] PACKET SIZE Inside Scoreboard Run Phase actual packet is got actual_q.size = 1 | Expected_q.size = 1
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(130) @ 16000: uvm_test_top.env.scb[0] [serdes_scoreboard] exp.mon_parallel_Rx0 = 0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(132) @ 16000: uvm_test_top.env.scb[0] [serdes_scoreboard] act.Rx0 = 0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(141) @ 16000: uvm_test_top.env.scb[0] [serdes_scoreboard] Inside Scoreboard Run Phase Tx scoreboard condition
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(74) @ 16000: uvm_test_top.env.scb[0] [serdes_scoreboard] [Scoreboard Tx] COMPARISON TX PASSED | exp.Tx0 = 0000001000 | exp_Tx0 = 8 | act.mon_parallel_Tx0 = 0000001000 | act.mon_parallel_Tx0 = 8
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 16000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 16000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0001000011 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 16250: reporter [Serial clock top] FROM TOP SERIAL TIME = 16000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 16500: reporter [Serial clock top] FROM TOP SERIAL TIME = 17000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 16500: reporter [DUT SIPO] Serial clock [17000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 1111000010 | shift_reg in decimal = 962 | sipo_main_count = 11
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 16500: reporter [DUT PISO] Serial Clock [17000] Tx0 = 1001001111 | Tx0 Decimal = 591 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 3
+# I = 2
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 16500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 16500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 16500: uvm_test_top.env.agt[2].mon [serdes_monitor] Sending transaction: Tx0=0000000000, Rx0=0000000000, mon_parallel_Tx0=0000000000, mon_parallel_Rx0=1111000010
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(54) @ 16500: uvm_test_top.env.scb[1] [serdes_scoreboard] SCOREBOARD Received expected transaction: Tx0=0000000000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(57) @ 16500: uvm_test_top.env.scb[1] [serdes_scoreboard] Received expected transaction: Tx0=0000000000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 16500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 0
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 16500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 16500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0000011010 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 16750: reporter [Serial clock top] FROM TOP SERIAL TIME = 17000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 17000: reporter [Serial clock top] FROM TOP SERIAL TIME = 17000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 17000: reporter [DUT SIPO] Serial clock [17000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 1110000101 | shift_reg in decimal = 901 | sipo_main_count = 2
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 17000: reporter [DUT PISO] Serial Clock [17000] Tx0 = 1001001111 | Tx0 Decimal = 591 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 4
+# I = 3
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 17000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 17000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 17000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 17000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 17000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0100010001 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 17250: reporter [Serial clock top] FROM TOP SERIAL TIME = 17000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 17500: reporter [Serial clock top] FROM TOP SERIAL TIME = 18000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 17500: reporter [DUT SIPO] Serial clock [18000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 1100001011 | shift_reg in decimal = 779 | sipo_main_count = 3
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 17500: reporter [DUT PISO] Serial Clock [18000] Tx0 = 1001001111 | Tx0 Decimal = 591 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 5
+# I = 4
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 17500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 17500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 17500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 2
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 17500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 17500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0000111111 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 17750: reporter [Serial clock top] FROM TOP SERIAL TIME = 18000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(141) @ 18000: reporter [Serial clock top] FROM TOP SERIAL TIME = 18000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 18000: reporter [Serial clock top] FROM TOP SERIAL TIME = 18000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 18000: reporter [DUT SIPO] Serial clock [18000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 1000010111 | shift_reg in decimal = 535 | sipo_main_count = 4
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 18000: reporter [DUT PISO] Serial Clock [18000] Tx0 = 1001001111 | Tx0 Decimal = 591 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 6
+# I = 5
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 18000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 18000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 3
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 18000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 18000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 18000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0001000000 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 18250: reporter [Serial clock top] FROM TOP SERIAL TIME = 18000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 18500: reporter [Serial clock top] FROM TOP SERIAL TIME = 19000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 18500: reporter [DUT SIPO] Serial clock [19000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0000101110 | shift_reg in decimal = 46 | sipo_main_count = 5
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 18500: reporter [DUT PISO] Serial Clock [19000] Tx0 = 1001001111 | Tx0 Decimal = 591 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 7
+# I = 6
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 18500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 18500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 18500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 4
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 18500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 18500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 1001111010 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 18750: reporter [Serial clock top] FROM TOP SERIAL TIME = 19000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 19000: reporter [Serial clock top] FROM TOP SERIAL TIME = 19000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 19000: reporter [DUT SIPO] Serial clock [19000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 0001011100 | shift_reg in decimal = 92 | sipo_main_count = 6
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 19000: reporter [DUT PISO] Serial Clock [19000] Tx0 = 1001001111 | Tx0 Decimal = 591 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 8
+# I = 7
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 19000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 19000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 5
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 19000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 19000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 19000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 1100011111 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 19250: reporter [Serial clock top] FROM TOP SERIAL TIME = 19000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 19500: reporter [Serial clock top] FROM TOP SERIAL TIME = 20000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 19500: reporter [DUT SIPO] Serial clock [20000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0010111001 | shift_reg in decimal = 185 | sipo_main_count = 7
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 19500: reporter [DUT PISO] Serial Clock [20000] Tx0 = 1001001111 | Tx0 Decimal = 591 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 9
+# I = 8
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 19500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 19500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 19500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 6
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 19500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 19500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 1000001101 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 19750: reporter [Serial clock top] FROM TOP SERIAL TIME = 20000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 20000: reporter [Serial clock top] FROM TOP SERIAL TIME = 20000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 20000: reporter [DUT SIPO] Serial clock [20000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 0101110010 | shift_reg in decimal = 370 | sipo_main_count = 8
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 20000: reporter [DUT PISO] Serial Clock [20000] Tx0 = 1001001111 | Tx0 Decimal = 591 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 10
+# I = 9
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 20000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 20000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 7
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 20000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 20000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 20000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 1010111110 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 20250: reporter [Serial clock top] FROM TOP SERIAL TIME = 20000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(141) @ 20500: reporter [Serial clock top] FROM TOP SERIAL TIME = 21000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 20500: reporter [Serial clock top] FROM TOP SERIAL TIME = 21000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 20500: reporter [DUT SIPO] Serial clock [21000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 1011100101 | shift_reg in decimal = 741 | sipo_main_count = 9
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 20500: reporter [DUT PISO] Serial Clock [21000] Tx0 = 1001001111 | Tx0 Decimal = 591 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 11
+# I = 10
+# UVM_INFO ../sv/env/serdes_driver.sv(112) @ 20500: uvm_test_top.env.agt[0].drv [serdes_driver] After parallel drive DRIV_IF.Tx0 = 1011110011 | DRIV_IF.Tx0 = 755
+# UVM_INFO ../sv/env/serdes_monitor.sv(37) @ 20500: uvm_test_top.env.agt[0].mon [serdes_monitor] ACTIVE_PARALLEL_MONITOR mon_pkt.Tx0 = 1001001111 | mon_pkt.Tx0 = 591
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 20500: uvm_test_top.env.agt[0].mon [serdes_monitor] Sending transaction: Tx0=1001001111, Rx0=0000000000, mon_parallel_Tx0=0000000000, mon_parallel_Rx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(54) @ 20500: uvm_test_top.env.scb[0] [serdes_scoreboard] SCOREBOARD Received expected transaction: Tx0=1001001111, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(57) @ 20500: uvm_test_top.env.scb[0] [serdes_scoreboard] Received expected transaction: Tx0=1001001111, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_monitor.sv(44) @ 20500: uvm_test_top.env.agt[1].mon [serdes_monitor] PASSIVE_PARALLEL_MONITOR mon_pkt.Rx0 = 1111000010 | mon_pkt.Rx0 = 962
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 20500: uvm_test_top.env.agt[1].mon [serdes_monitor] Sending transaction: Tx0=0000000000, Rx0=1111000010, mon_parallel_Tx0=0000000000, mon_parallel_Rx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(65) @ 20500: uvm_test_top.env.scb[1] [serdes_scoreboard] Received actual transaction: Tx0=0000000000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 20500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 20500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 20500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 8
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(123) @ 20500: uvm_test_top.env.scb[1] [serdes_scoreboard] PACKET SIZE Inside Scoreboard Run Phase actual packet is got actual_q.size = 1 | Expected_q.size = 1
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(130) @ 20500: uvm_test_top.env.scb[1] [serdes_scoreboard] exp.mon_parallel_Rx0 = 1111000010
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(132) @ 20500: uvm_test_top.env.scb[1] [serdes_scoreboard] act.Rx0 = 1111000010
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(90) @ 20500: uvm_test_top.env.scb[1] [serdes_scoreboard] [Scoreboard Rx] COMPARISON RX PASSED | exp.mon_parallel_Rx0 = 1111000010 | exp_mon_parallel_Rx0 = 962 | act.Rx0 = 1111000010 | act.Rx0 = 962
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(91) @ 20500: uvm_test_top.env.scb[1] [serdes_scoreboard] [Scoreboard Rx] COMPARISON RX PASSED
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 20500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(48) @ 20500: uvm_test_top.env.agt[0].seqr@@seq[0] [BODY] Parallel transaction: Tx0 in Binary=1110000111 | Tx0 in Decimal = 903
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 20500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0010100001 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 20500: uvm_test_top.env.agt[0].drv [serdes_driver] after get next item req.Tx0 = 1110000111 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 20750: reporter [Serial clock top] FROM TOP SERIAL TIME = 21000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 21000: reporter [Serial clock top] FROM TOP SERIAL TIME = 21000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 21000: reporter [DUT SIPO] Serial clock [21000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0111001010 | shift_reg in decimal = 458 | sipo_main_count = 10
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 21000: reporter [DUT PISO] Serial Clock [21000] Tx0 = 1011110011 | Tx0 Decimal = 755 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 2
+# I = 1
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 21000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 21000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 9
+# UVM_INFO ../sv/env/serdes_monitor.sv(76) @ 21000: uvm_test_top.env.agt[3].mon [serdes_monitor] HELLO monitor converting serial data into parallel data | mon_pkt.mon_parallel_Tx0 = 1001001111 | mon_pkt.mon_parallel_Tx0 = 591
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 21000: uvm_test_top.env.agt[3].mon [serdes_monitor] Sending transaction: Tx0=0000000000, Rx0=0000000000, mon_parallel_Tx0=1001001111, mon_parallel_Rx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(65) @ 21000: uvm_test_top.env.scb[0] [serdes_scoreboard] Received actual transaction: Tx0=0000000000, mon_parallel_Tx0=1001001111
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 21000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(123) @ 21000: uvm_test_top.env.scb[0] [serdes_scoreboard] PACKET SIZE Inside Scoreboard Run Phase actual packet is got actual_q.size = 1 | Expected_q.size = 1
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(130) @ 21000: uvm_test_top.env.scb[0] [serdes_scoreboard] exp.mon_parallel_Rx0 = 0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(132) @ 21000: uvm_test_top.env.scb[0] [serdes_scoreboard] act.Rx0 = 0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(141) @ 21000: uvm_test_top.env.scb[0] [serdes_scoreboard] Inside Scoreboard Run Phase Tx scoreboard condition
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(74) @ 21000: uvm_test_top.env.scb[0] [serdes_scoreboard] [Scoreboard Tx] COMPARISON TX PASSED | exp.Tx0 = 1001001111 | exp_Tx0 = 591 | act.mon_parallel_Tx0 = 1001001111 | act.mon_parallel_Tx0 = 591
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 21000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 21000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0001100000 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 21250: reporter [Serial clock top] FROM TOP SERIAL TIME = 21000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 21500: reporter [Serial clock top] FROM TOP SERIAL TIME = 22000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 21500: reporter [DUT SIPO] Serial clock [22000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 1110010100 | shift_reg in decimal = 916 | sipo_main_count = 11
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 21500: reporter [DUT PISO] Serial Clock [22000] Tx0 = 1011110011 | Tx0 Decimal = 755 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 3
+# I = 2
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 21500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 21500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 21500: uvm_test_top.env.agt[2].mon [serdes_monitor] Sending transaction: Tx0=0000000000, Rx0=0000000000, mon_parallel_Tx0=0000000000, mon_parallel_Rx0=1110010100
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(54) @ 21500: uvm_test_top.env.scb[1] [serdes_scoreboard] SCOREBOARD Received expected transaction: Tx0=0000000000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(57) @ 21500: uvm_test_top.env.scb[1] [serdes_scoreboard] Received expected transaction: Tx0=0000000000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 21500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 0
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 21500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 21500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0000011110 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 21750: reporter [Serial clock top] FROM TOP SERIAL TIME = 22000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 22000: reporter [Serial clock top] FROM TOP SERIAL TIME = 22000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 22000: reporter [DUT SIPO] Serial clock [22000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 1100101001 | shift_reg in decimal = 809 | sipo_main_count = 2
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 22000: reporter [DUT PISO] Serial Clock [22000] Tx0 = 1011110011 | Tx0 Decimal = 755 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 4
+# I = 3
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 22000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 22000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 22000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 22000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 22000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0101000111 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 22250: reporter [Serial clock top] FROM TOP SERIAL TIME = 22000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 22500: reporter [Serial clock top] FROM TOP SERIAL TIME = 23000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 22500: reporter [DUT SIPO] Serial clock [23000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 1001010011 | shift_reg in decimal = 595 | sipo_main_count = 3
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 22500: reporter [DUT PISO] Serial Clock [23000] Tx0 = 1011110011 | Tx0 Decimal = 755 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 5
+# I = 4
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 22500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 22500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 22500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 2
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 22500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 22500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 1000000100 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 22750: reporter [Serial clock top] FROM TOP SERIAL TIME = 23000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(141) @ 23000: reporter [Serial clock top] FROM TOP SERIAL TIME = 23000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 23000: reporter [Serial clock top] FROM TOP SERIAL TIME = 23000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 23000: reporter [DUT SIPO] Serial clock [23000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 0010100110 | shift_reg in decimal = 166 | sipo_main_count = 4
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 23000: reporter [DUT PISO] Serial Clock [23000] Tx0 = 1011110011 | Tx0 Decimal = 755 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 6
+# I = 5
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 23000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 23000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 3
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 23000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 23000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 23000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0000011111 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 23250: reporter [Serial clock top] FROM TOP SERIAL TIME = 23000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 23500: reporter [Serial clock top] FROM TOP SERIAL TIME = 24000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 23500: reporter [DUT SIPO] Serial clock [24000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 0101001101 | shift_reg in decimal = 333 | sipo_main_count = 5
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 23500: reporter [DUT PISO] Serial Clock [24000] Tx0 = 1011110011 | Tx0 Decimal = 755 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 7
+# I = 6
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 23500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 23500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 23500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 4
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 23500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 23500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0110010010 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 23750: reporter [Serial clock top] FROM TOP SERIAL TIME = 24000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 24000: reporter [Serial clock top] FROM TOP SERIAL TIME = 24000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 24000: reporter [DUT SIPO] Serial clock [24000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 1010011011 | shift_reg in decimal = 667 | sipo_main_count = 6
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 24000: reporter [DUT PISO] Serial Clock [24000] Tx0 = 1011110011 | Tx0 Decimal = 755 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 8
+# I = 7
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 24000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 24000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 5
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 24000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 24000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 24000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0110110011 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 24250: reporter [Serial clock top] FROM TOP SERIAL TIME = 24000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 24500: reporter [Serial clock top] FROM TOP SERIAL TIME = 25000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 24500: reporter [DUT SIPO] Serial clock [25000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 0100110111 | shift_reg in decimal = 311 | sipo_main_count = 7
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 24500: reporter [DUT PISO] Serial Clock [25000] Tx0 = 1011110011 | Tx0 Decimal = 755 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 9
+# I = 8
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 24500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 24500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 24500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 6
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 24500: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=1, Rx0_n=0
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 24500: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 1001101010 | req.Rx0_p = 1 | req.Rx0_n = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 24750: reporter [Serial clock top] FROM TOP SERIAL TIME = 25000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 25000: reporter [Serial clock top] FROM TOP SERIAL TIME = 25000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 25000: reporter [DUT SIPO] Serial clock [25000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 1001101111 | shift_reg in decimal = 623 | sipo_main_count = 8
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 25000: reporter [DUT PISO] Serial Clock [25000] Tx0 = 1011110011 | Tx0 Decimal = 755 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 10
+# I = 9
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 25000: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 1 | DRIV_IF.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 25000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 7
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 25000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(69) @ 25000: uvm_test_top.env.agt[2].seqr@@seq[1] [BODY] Serial transaction: Rx0_p=0, Rx0_n=1
+# UVM_INFO ../sv/env/serdes_driver.sv(66) @ 25000: uvm_test_top.env.agt[2].drv [serdes_driver] after get next item req.Tx0 = 0011001101 | req.Rx0_p = 0 | req.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 25250: reporter [Serial clock top] FROM TOP SERIAL TIME = 25000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(141) @ 25500: reporter [Serial clock top] FROM TOP SERIAL TIME = 26000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 25500: reporter [Serial clock top] FROM TOP SERIAL TIME = 26000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 25500: reporter [DUT SIPO] Serial clock [26000] Rx0_p = 1 | Rx0_p Decimal = 1 |shift_reg = 0011011110 | shift_reg in decimal = 222 | sipo_main_count = 9
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 25500: reporter [DUT PISO] Serial Clock [26000] Tx0 = 1011110011 | Tx0 Decimal = 755 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 11
+# I = 10
+# UVM_INFO ../sv/env/serdes_driver.sv(112) @ 25500: uvm_test_top.env.agt[0].drv [serdes_driver] After parallel drive DRIV_IF.Tx0 = 1110000111 | DRIV_IF.Tx0 = 903
+# UVM_INFO ../sv/env/serdes_monitor.sv(44) @ 25500: uvm_test_top.env.agt[1].mon [serdes_monitor] PASSIVE_PARALLEL_MONITOR mon_pkt.Rx0 = 1110010100 | mon_pkt.Rx0 = 916
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 25500: uvm_test_top.env.agt[1].mon [serdes_monitor] Sending transaction: Tx0=0000000000, Rx0=1110010100, mon_parallel_Tx0=0000000000, mon_parallel_Rx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(65) @ 25500: uvm_test_top.env.scb[1] [serdes_scoreboard] Received actual transaction: Tx0=0000000000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_monitor.sv(37) @ 25500: uvm_test_top.env.agt[0].mon [serdes_monitor] ACTIVE_PARALLEL_MONITOR mon_pkt.Tx0 = 1011110011 | mon_pkt.Tx0 = 755
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 25500: uvm_test_top.env.agt[0].mon [serdes_monitor] Sending transaction: Tx0=1011110011, Rx0=0000000000, mon_parallel_Tx0=0000000000, mon_parallel_Rx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(54) @ 25500: uvm_test_top.env.scb[0] [serdes_scoreboard] SCOREBOARD Received expected transaction: Tx0=1011110011, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(57) @ 25500: uvm_test_top.env.scb[0] [serdes_scoreboard] Received expected transaction: Tx0=1011110011, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_driver.sv(104) @ 25500: uvm_test_top.env.agt[2].drv [serdes_driver] After serial drive DRIV_IF.Rx0_p = 0 | DRIV_IF.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 25500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 25500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 8
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(123) @ 25500: uvm_test_top.env.scb[1] [serdes_scoreboard] PACKET SIZE Inside Scoreboard Run Phase actual packet is got actual_q.size = 1 | Expected_q.size = 1
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(130) @ 25500: uvm_test_top.env.scb[1] [serdes_scoreboard] exp.mon_parallel_Rx0 = 1110010100
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(132) @ 25500: uvm_test_top.env.scb[1] [serdes_scoreboard] act.Rx0 = 1110010100
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(90) @ 25500: uvm_test_top.env.scb[1] [serdes_scoreboard] [Scoreboard Rx] COMPARISON RX PASSED | exp.mon_parallel_Rx0 = 1110010100 | exp_mon_parallel_Rx0 = 916 | act.Rx0 = 1110010100 | act.Rx0 = 916
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(91) @ 25500: uvm_test_top.env.scb[1] [serdes_scoreboard] [Scoreboard Rx] COMPARISON RX PASSED
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(77) @ 25500: uvm_test_top.env.agt[0].seqr@@seq[0] [POST-BODY] INSIDE POST-BODY TASK
+# UVM_INFO ../sv/env/../seq_lib/serdes_sequence.sv(77) @ 25500: uvm_test_top.env.agt[2].seqr@@seq[1] [POST-BODY] INSIDE POST-BODY TASK
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 25750: reporter [Serial clock top] FROM TOP SERIAL TIME = 26000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 26000: reporter [Serial clock top] FROM TOP SERIAL TIME = 26000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 26000: reporter [DUT SIPO] Serial clock [26000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0110111101 | shift_reg in decimal = 445 | sipo_main_count = 10
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 26000: reporter [DUT PISO] Serial Clock [26000] Tx0 = 1110000111 | Tx0 Decimal = 903 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 2
+# I = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 26000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 9
+# UVM_INFO ../sv/env/serdes_monitor.sv(76) @ 26000: uvm_test_top.env.agt[3].mon [serdes_monitor] HELLO monitor converting serial data into parallel data | mon_pkt.mon_parallel_Tx0 = 1011110011 | mon_pkt.mon_parallel_Tx0 = 755
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 26000: uvm_test_top.env.agt[3].mon [serdes_monitor] Sending transaction: Tx0=0000000000, Rx0=0000000000, mon_parallel_Tx0=1011110011, mon_parallel_Rx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(65) @ 26000: uvm_test_top.env.scb[0] [serdes_scoreboard] Received actual transaction: Tx0=0000000000, mon_parallel_Tx0=1011110011
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 26000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 1 | mon_pkt.Rx0_n = 0
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(123) @ 26000: uvm_test_top.env.scb[0] [serdes_scoreboard] PACKET SIZE Inside Scoreboard Run Phase actual packet is got actual_q.size = 1 | Expected_q.size = 1
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(130) @ 26000: uvm_test_top.env.scb[0] [serdes_scoreboard] exp.mon_parallel_Rx0 = 0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(132) @ 26000: uvm_test_top.env.scb[0] [serdes_scoreboard] act.Rx0 = 0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(141) @ 26000: uvm_test_top.env.scb[0] [serdes_scoreboard] Inside Scoreboard Run Phase Tx scoreboard condition
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(74) @ 26000: uvm_test_top.env.scb[0] [serdes_scoreboard] [Scoreboard Tx] COMPARISON TX PASSED | exp.Tx0 = 1011110011 | exp_Tx0 = 755 | act.mon_parallel_Tx0 = 1011110011 | act.mon_parallel_Tx0 = 755
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 26250: reporter [Serial clock top] FROM TOP SERIAL TIME = 26000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 26500: reporter [Serial clock top] FROM TOP SERIAL TIME = 27000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 26500: reporter [DUT SIPO] Serial clock [27000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 1101111010 | shift_reg in decimal = 890 | sipo_main_count = 11
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 26500: reporter [DUT PISO] Serial Clock [27000] Tx0 = 1110000111 | Tx0 Decimal = 903 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 3
+# I = 2
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 26500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 26500: uvm_test_top.env.agt[2].mon [serdes_monitor] Sending transaction: Tx0=0000000000, Rx0=0000000000, mon_parallel_Tx0=0000000000, mon_parallel_Rx0=1101111010
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(54) @ 26500: uvm_test_top.env.scb[1] [serdes_scoreboard] SCOREBOARD Received expected transaction: Tx0=0000000000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(57) @ 26500: uvm_test_top.env.scb[1] [serdes_scoreboard] Received expected transaction: Tx0=0000000000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 26500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 26750: reporter [Serial clock top] FROM TOP SERIAL TIME = 27000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 27000: reporter [Serial clock top] FROM TOP SERIAL TIME = 27000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 27000: reporter [DUT SIPO] Serial clock [27000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 1011110100 | shift_reg in decimal = 756 | sipo_main_count = 2
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 27000: reporter [DUT PISO] Serial Clock [27000] Tx0 = 1110000111 | Tx0 Decimal = 903 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 4
+# I = 3
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 27000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 27000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 27250: reporter [Serial clock top] FROM TOP SERIAL TIME = 27000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 27500: reporter [Serial clock top] FROM TOP SERIAL TIME = 28000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 27500: reporter [DUT SIPO] Serial clock [28000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0111101000 | shift_reg in decimal = 488 | sipo_main_count = 3
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 27500: reporter [DUT PISO] Serial Clock [28000] Tx0 = 1110000111 | Tx0 Decimal = 903 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 5
+# I = 4
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 27500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 27500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 2
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 27750: reporter [Serial clock top] FROM TOP SERIAL TIME = 28000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(141) @ 28000: reporter [Serial clock top] FROM TOP SERIAL TIME = 28000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 28000: reporter [Serial clock top] FROM TOP SERIAL TIME = 28000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 28000: reporter [DUT SIPO] Serial clock [28000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 1111010000 | shift_reg in decimal = 976 | sipo_main_count = 4
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 28000: reporter [DUT PISO] Serial Clock [28000] Tx0 = 1110000111 | Tx0 Decimal = 903 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 6
+# I = 5
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 28000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 3
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 28000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 28250: reporter [Serial clock top] FROM TOP SERIAL TIME = 28000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 28500: reporter [Serial clock top] FROM TOP SERIAL TIME = 29000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 28500: reporter [DUT SIPO] Serial clock [29000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 1110100000 | shift_reg in decimal = 928 | sipo_main_count = 5
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 28500: reporter [DUT PISO] Serial Clock [29000] Tx0 = 1110000111 | Tx0 Decimal = 903 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 7
+# I = 6
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 28500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 28500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 4
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 28750: reporter [Serial clock top] FROM TOP SERIAL TIME = 29000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 29000: reporter [Serial clock top] FROM TOP SERIAL TIME = 29000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 29000: reporter [DUT SIPO] Serial clock [29000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 1101000000 | shift_reg in decimal = 832 | sipo_main_count = 6
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 29000: reporter [DUT PISO] Serial Clock [29000] Tx0 = 1110000111 | Tx0 Decimal = 903 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 8
+# I = 7
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 29000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 5
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 29000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 29250: reporter [Serial clock top] FROM TOP SERIAL TIME = 29000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 29500: reporter [Serial clock top] FROM TOP SERIAL TIME = 30000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 29500: reporter [DUT SIPO] Serial clock [30000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 1010000000 | shift_reg in decimal = 640 | sipo_main_count = 7
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 29500: reporter [DUT PISO] Serial Clock [30000] Tx0 = 1110000111 | Tx0 Decimal = 903 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 9
+# I = 8
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 29500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 29500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 6
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 29750: reporter [Serial clock top] FROM TOP SERIAL TIME = 30000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 30000: reporter [Serial clock top] FROM TOP SERIAL TIME = 30000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 30000: reporter [DUT SIPO] Serial clock [30000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0100000000 | shift_reg in decimal = 256 | sipo_main_count = 8
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 30000: reporter [DUT PISO] Serial Clock [30000] Tx0 = 1110000111 | Tx0 Decimal = 903 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 10
+# I = 9
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 30000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 7
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 30000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 30250: reporter [Serial clock top] FROM TOP SERIAL TIME = 30000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(141) @ 30500: reporter [Serial clock top] FROM TOP SERIAL TIME = 31000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 30500: reporter [Serial clock top] FROM TOP SERIAL TIME = 31000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 30500: reporter [DUT SIPO] Serial clock [31000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 1000000000 | shift_reg in decimal = 512 | sipo_main_count = 9
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 30500: reporter [DUT PISO] Serial Clock [31000] Tx0 = 1110000111 | Tx0 Decimal = 903 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 11
+# I = 10
+# UVM_INFO ../sv/env/serdes_monitor.sv(37) @ 30500: uvm_test_top.env.agt[0].mon [serdes_monitor] ACTIVE_PARALLEL_MONITOR mon_pkt.Tx0 = 1110000111 | mon_pkt.Tx0 = 903
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 30500: uvm_test_top.env.agt[0].mon [serdes_monitor] Sending transaction: Tx0=1110000111, Rx0=0000000000, mon_parallel_Tx0=0000000000, mon_parallel_Rx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(54) @ 30500: uvm_test_top.env.scb[0] [serdes_scoreboard] SCOREBOARD Received expected transaction: Tx0=1110000111, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(57) @ 30500: uvm_test_top.env.scb[0] [serdes_scoreboard] Received expected transaction: Tx0=1110000111, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_monitor.sv(44) @ 30500: uvm_test_top.env.agt[1].mon [serdes_monitor] PASSIVE_PARALLEL_MONITOR mon_pkt.Rx0 = 1101111010 | mon_pkt.Rx0 = 890
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 30500: uvm_test_top.env.agt[1].mon [serdes_monitor] Sending transaction: Tx0=0000000000, Rx0=1101111010, mon_parallel_Tx0=0000000000, mon_parallel_Rx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(65) @ 30500: uvm_test_top.env.scb[1] [serdes_scoreboard] Received actual transaction: Tx0=0000000000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 30500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 30500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 8
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(123) @ 30500: uvm_test_top.env.scb[1] [serdes_scoreboard] PACKET SIZE Inside Scoreboard Run Phase actual packet is got actual_q.size = 1 | Expected_q.size = 1
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(130) @ 30500: uvm_test_top.env.scb[1] [serdes_scoreboard] exp.mon_parallel_Rx0 = 1101111010
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(132) @ 30500: uvm_test_top.env.scb[1] [serdes_scoreboard] act.Rx0 = 1101111010
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(90) @ 30500: uvm_test_top.env.scb[1] [serdes_scoreboard] [Scoreboard Rx] COMPARISON RX PASSED | exp.mon_parallel_Rx0 = 1101111010 | exp_mon_parallel_Rx0 = 890 | act.Rx0 = 1101111010 | act.Rx0 = 890
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(91) @ 30500: uvm_test_top.env.scb[1] [serdes_scoreboard] [Scoreboard Rx] COMPARISON RX PASSED
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 30750: reporter [Serial clock top] FROM TOP SERIAL TIME = 31000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 31000: reporter [Serial clock top] FROM TOP SERIAL TIME = 31000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 31000: reporter [DUT SIPO] Serial clock [31000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0000000000 | shift_reg in decimal = 0 | sipo_main_count = 10
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 31000: reporter [DUT PISO] Serial Clock [31000] Tx0 = 1110000111 | Tx0 Decimal = 903 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 2
+# I = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 31000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 9
+# UVM_INFO ../sv/env/serdes_monitor.sv(76) @ 31000: uvm_test_top.env.agt[3].mon [serdes_monitor] HELLO monitor converting serial data into parallel data | mon_pkt.mon_parallel_Tx0 = 1110000111 | mon_pkt.mon_parallel_Tx0 = 903
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 31000: uvm_test_top.env.agt[3].mon [serdes_monitor] Sending transaction: Tx0=0000000000, Rx0=0000000000, mon_parallel_Tx0=1110000111, mon_parallel_Rx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(65) @ 31000: uvm_test_top.env.scb[0] [serdes_scoreboard] Received actual transaction: Tx0=0000000000, mon_parallel_Tx0=1110000111
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 31000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(123) @ 31000: uvm_test_top.env.scb[0] [serdes_scoreboard] PACKET SIZE Inside Scoreboard Run Phase actual packet is got actual_q.size = 1 | Expected_q.size = 1
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(130) @ 31000: uvm_test_top.env.scb[0] [serdes_scoreboard] exp.mon_parallel_Rx0 = 0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(132) @ 31000: uvm_test_top.env.scb[0] [serdes_scoreboard] act.Rx0 = 0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(141) @ 31000: uvm_test_top.env.scb[0] [serdes_scoreboard] Inside Scoreboard Run Phase Tx scoreboard condition
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(74) @ 31000: uvm_test_top.env.scb[0] [serdes_scoreboard] [Scoreboard Tx] COMPARISON TX PASSED | exp.Tx0 = 1110000111 | exp_Tx0 = 903 | act.mon_parallel_Tx0 = 1110000111 | act.mon_parallel_Tx0 = 903
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 31250: reporter [Serial clock top] FROM TOP SERIAL TIME = 31000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 31500: reporter [Serial clock top] FROM TOP SERIAL TIME = 32000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 31500: reporter [DUT SIPO] Serial clock [32000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0000000000 | shift_reg in decimal = 0 | sipo_main_count = 11
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 31500: reporter [DUT PISO] Serial Clock [32000] Tx0 = 1110000111 | Tx0 Decimal = 903 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 3
+# I = 2
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 31500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 31500: uvm_test_top.env.agt[2].mon [serdes_monitor] Sending transaction: Tx0=0000000000, Rx0=0000000000, mon_parallel_Tx0=0000000000, mon_parallel_Rx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(54) @ 31500: uvm_test_top.env.scb[1] [serdes_scoreboard] SCOREBOARD Received expected transaction: Tx0=0000000000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(57) @ 31500: uvm_test_top.env.scb[1] [serdes_scoreboard] Received expected transaction: Tx0=0000000000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 31500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 0
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 31750: reporter [Serial clock top] FROM TOP SERIAL TIME = 32000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 32000: reporter [Serial clock top] FROM TOP SERIAL TIME = 32000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 32000: reporter [DUT SIPO] Serial clock [32000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0000000000 | shift_reg in decimal = 0 | sipo_main_count = 2
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 32000: reporter [DUT PISO] Serial Clock [32000] Tx0 = 1110000111 | Tx0 Decimal = 903 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 4
+# I = 3
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 32000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 32000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 32250: reporter [Serial clock top] FROM TOP SERIAL TIME = 32000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 32500: reporter [Serial clock top] FROM TOP SERIAL TIME = 33000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 32500: reporter [DUT SIPO] Serial clock [33000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0000000000 | shift_reg in decimal = 0 | sipo_main_count = 3
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 32500: reporter [DUT PISO] Serial Clock [33000] Tx0 = 1110000111 | Tx0 Decimal = 903 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 5
+# I = 4
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 32500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 32500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 2
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 32750: reporter [Serial clock top] FROM TOP SERIAL TIME = 33000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(141) @ 33000: reporter [Serial clock top] FROM TOP SERIAL TIME = 33000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 33000: reporter [Serial clock top] FROM TOP SERIAL TIME = 33000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 33000: reporter [DUT SIPO] Serial clock [33000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0000000000 | shift_reg in decimal = 0 | sipo_main_count = 4
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 33000: reporter [DUT PISO] Serial Clock [33000] Tx0 = 1110000111 | Tx0 Decimal = 903 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 6
+# I = 5
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 33000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 3
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 33000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 33250: reporter [Serial clock top] FROM TOP SERIAL TIME = 33000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 33500: reporter [Serial clock top] FROM TOP SERIAL TIME = 34000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 33500: reporter [DUT SIPO] Serial clock [34000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0000000000 | shift_reg in decimal = 0 | sipo_main_count = 5
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 33500: reporter [DUT PISO] Serial Clock [34000] Tx0 = 1110000111 | Tx0 Decimal = 903 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 7
+# I = 6
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 33500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 33500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 4
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 33750: reporter [Serial clock top] FROM TOP SERIAL TIME = 34000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 34000: reporter [Serial clock top] FROM TOP SERIAL TIME = 34000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 34000: reporter [DUT SIPO] Serial clock [34000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0000000000 | shift_reg in decimal = 0 | sipo_main_count = 6
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 34000: reporter [DUT PISO] Serial Clock [34000] Tx0 = 1110000111 | Tx0 Decimal = 903 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 8
+# I = 7
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 34000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 5
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 34000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 34250: reporter [Serial clock top] FROM TOP SERIAL TIME = 34000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 34500: reporter [Serial clock top] FROM TOP SERIAL TIME = 35000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 34500: reporter [DUT SIPO] Serial clock [35000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0000000000 | shift_reg in decimal = 0 | sipo_main_count = 7
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 34500: reporter [DUT PISO] Serial Clock [35000] Tx0 = 1110000111 | Tx0 Decimal = 903 |Tx0_p = 0 | Tx0_n = 1
+# main_Count = 9
+# I = 8
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 34500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 34500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 0 | mon_pkt.Tx0_n = 1 | count2 = 6
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 34750: reporter [Serial clock top] FROM TOP SERIAL TIME = 35000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 35000: reporter [Serial clock top] FROM TOP SERIAL TIME = 35000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 35000: reporter [DUT SIPO] Serial clock [35000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0000000000 | shift_reg in decimal = 0 | sipo_main_count = 8
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 35000: reporter [DUT PISO] Serial Clock [35000] Tx0 = 1110000111 | Tx0 Decimal = 903 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 10
+# I = 9
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 35000: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 7
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 35000: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 35250: reporter [Serial clock top] FROM TOP SERIAL TIME = 35000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(141) @ 35500: reporter [Serial clock top] FROM TOP SERIAL TIME = 36000
+# UVM_INFO ../sv/env/../../tb_top/serdes_top_tb.sv(125) @ 35500: reporter [Serial clock top] FROM TOP SERIAL TIME = 36000
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(42) @ 35500: reporter [DUT SIPO] Serial clock [36000] Rx0_p = 0 | Rx0_p Decimal = 0 |shift_reg = 0000000000 | shift_reg in decimal = 0 | sipo_main_count = 9
+# UVM_INFO ../sv/env/../../sve/serdes_dut.sv(113) @ 35500: reporter [DUT PISO] Serial Clock [36000] Tx0 = 1110000111 | Tx0 Decimal = 903 |Tx0_p = 1 | Tx0_n = 0
+# main_Count = 11
+# I = 10
+# UVM_INFO verilog_src/uvm-1.2/src/base/uvm_objection.svh(1270) @ 35500: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO ../sv/env/serdes_monitor.sv(44) @ 35500: uvm_test_top.env.agt[1].mon [serdes_monitor] PASSIVE_PARALLEL_MONITOR mon_pkt.Rx0 = 0000000000 | mon_pkt.Rx0 = 0
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 35500: uvm_test_top.env.agt[1].mon [serdes_monitor] Sending transaction: Tx0=0000000000, Rx0=0000000000, mon_parallel_Tx0=0000000000, mon_parallel_Rx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(65) @ 35500: uvm_test_top.env.scb[1] [serdes_scoreboard] Received actual transaction: Tx0=0000000000, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_monitor.sv(37) @ 35500: uvm_test_top.env.agt[0].mon [serdes_monitor] ACTIVE_PARALLEL_MONITOR mon_pkt.Tx0 = 1110000111 | mon_pkt.Tx0 = 903
+# UVM_INFO ../sv/env/serdes_monitor.sv(205) @ 35500: uvm_test_top.env.agt[0].mon [serdes_monitor] Sending transaction: Tx0=1110000111, Rx0=0000000000, mon_parallel_Tx0=0000000000, mon_parallel_Rx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(54) @ 35500: uvm_test_top.env.scb[0] [serdes_scoreboard] SCOREBOARD Received expected transaction: Tx0=1110000111, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(57) @ 35500: uvm_test_top.env.scb[0] [serdes_scoreboard] Received expected transaction: Tx0=1110000111, mon_parallel_Tx0=0000000000
+# UVM_INFO ../sv/env/serdes_monitor.sv(60) @ 35500: uvm_test_top.env.agt[2].mon [serdes_monitor] ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = 0 | mon_pkt.Rx0_n = 1
+# UVM_INFO ../sv/env/serdes_monitor.sv(73) @ 35500: uvm_test_top.env.agt[3].mon [serdes_monitor] PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = 1 | mon_pkt.Tx0_n = 0 | count2 = 8
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(123) @ 35500: uvm_test_top.env.scb[1] [serdes_scoreboard] PACKET SIZE Inside Scoreboard Run Phase actual packet is got actual_q.size = 1 | Expected_q.size = 1
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(130) @ 35500: uvm_test_top.env.scb[1] [serdes_scoreboard] exp.mon_parallel_Rx0 = 0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(132) @ 35500: uvm_test_top.env.scb[1] [serdes_scoreboard] act.Rx0 = 0000000000
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(90) @ 35500: uvm_test_top.env.scb[1] [serdes_scoreboard] [Scoreboard Rx] COMPARISON RX PASSED | exp.mon_parallel_Rx0 = 0000000000 | exp_mon_parallel_Rx0 = 0 | act.Rx0 = 0000000000 | act.Rx0 = 0
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(91) @ 35500: uvm_test_top.env.scb[1] [serdes_scoreboard] [Scoreboard Rx] COMPARISON RX PASSED
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(256) @ 35500: uvm_test_top.env.scb[0] [Scoreboard_Check_Phase] Expected count is equal to actual count | Expected_count = 6 | actual count = 6
+# UVM_INFO ../sv/env/serdes_scoreboard.sv(256) @ 35500: uvm_test_top.env.scb[1] [Scoreboard_Check_Phase] Expected count is equal to actual count | Expected_count = 6 | actual count = 6
+# UVM_INFO ../sv/env/../test/serdes_test.sv(102) @ 35500: uvm_test_top [Report_Phase of test] Testcase Passed
+# UVM_INFO verilog_src/uvm-1.2/src/base/uvm_report_server.svh(847) @ 35500: reporter [UVM/REPORT/SERVER] 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :  783
+# UVM_WARNING :    0
+# UVM_ERROR :    0
+# UVM_FATAL :    0
+# ** Report counts by id
+# [BODY]    55
+# [COMMAND LINE]     2
+# [DUT PISO]    70
+# [DUT PISO RESET CONDITION]     1
+# [DUT SIPO]    71
+# [DUT SIPO RESET]     1
+# [Driver Build Phase]     2
+# [Driver Connect Phase]     2
+# [Driver EOE Phase]     3
+# [POST-BODY]     2
+# [PRE-BODY]     2
+# [PRE_BODY]     2
+# [Questa UVM]     2
+# [RNTST]     1
+# [Report_Phase of test]     1
+# [Scoreboard_Check_Phase]     2
+# [Sequencer Build Phase]     2
+# [Serial clock top]   154
+# [TEST_DONE]     1
+# [UVM/RELNOTES]     1
+# [UVMTOP]     1
+# [serdes_agent_config]     2
+# [serdes_driver]   112
+# [serdes_env]     4
+# [serdes_monitor]   185
+# [serdes_scoreboard]    98
+# [serdes_test]     4
+# 
+# ** Note: $finish    : /home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/linux/../verilog_src/uvm-1.2/src/base/uvm_root.svh(517)
+#    Time: 35500 ps  Iteration: 67  Instance: /tb_top
+# End time: 18:30:12 on Aug 04,2025, Elapsed time: 0:00:05
+# Errors: 0, Warnings: 7
