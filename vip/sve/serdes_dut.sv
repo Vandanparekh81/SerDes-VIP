@@ -1,20 +1,32 @@
+// ----------------------------------------------------------------------- //
+// This is dut of serializer and deserializer 
+// Serializer DUT convert parallel data into serial data and gives serial data  at every rising edge of the serial clock
+// Deserializer DUT Convert serial data into parallel data and give parallel data at every rising edge of parallel clock
+// ----------------------------------------------------------------------- //
+
+// Timescale of Dut
 `timescale 1ns/1ps
+
+// Deserializer Dut
 module sipo_shift_register #(parameter WIDTH=10) 
 (
-  input logic serial_clk,
-  input logic parallel_clk,
-  input logic rst,
-  input logic Rx0_p, Rx0_n,
-  output logic [WIDTH-1 : 0] Rx0
+  // Port Declaration
+  input logic serial_clk, //Serial clock
+  input logic parallel_clk, // Parallel_clock
+  input logic rst, // Reset
+  input logic Rx0_p, Rx0_n, // Serial data
+  output logic [WIDTH-1 : 0] Rx0 // parallel data
 );
 
-  logic [WIDTH-1 : 0] shift_reg;
-  logic [WIDTH-1 : 0] parallel_data;
-  int sipo_main_count = 0;
-  int count = 0;
+  logic [WIDTH-1 : 0] shift_reg; // Temporary register
+  logic [WIDTH-1 : 0] parallel_data; // Temporary Register
+  int sipo_main_count = 0; // Flag
+  int count = 0; // Flag
 
+// Inside this always block serial data continously converted into parallel
    always @(posedge serial_clk or posedge rst) begin
     if(rst) begin
+      // Reset Condition
       shift_reg <= '0;
       parallel_data <= 0;
       sipo_main_count <= 1;
@@ -22,6 +34,7 @@ module sipo_shift_register #(parameter WIDTH=10)
       `uvm_info("DUT SIPO RESET", $sformatf("RESET CONDITION DISPLAY Serial clock [%0t] Rx0_p = %b | Rx0_p Decimal = %0d |shift_reg = %b | shift_reg in decimal = %0d", $time, Rx0_p, Rx0_p, shift_reg, shift_reg), UVM_LOW)
     end
     else begin
+       // Logic of conversion
       if(sipo_main_count >= 1) begin
         shift_reg <= {shift_reg[WIDTH-2:0], Rx0_p};
         sipo_main_count++;
@@ -44,6 +57,7 @@ module sipo_shift_register #(parameter WIDTH=10)
     end
   end
 
+  // Assigning the parallel data to interface
   assign Rx0 = parallel_data;
 
    /* always_ff @(posedge serial_clk or posedge rst) begin
@@ -72,20 +86,21 @@ module sipo_shift_register #(parameter WIDTH=10)
 endmodule  
 
 
-
+//Serializer Dut
 module piso_shift_register #(
     parameter WIDTH = 10 
 ) (
-    input logic serial_clk,
-    input logic parallel_clk,
-    input logic rst,       
-    input logic [WIDTH-1:0] Tx0, 
-    output logic Tx0_p, Tx0_n 
+    // Port Declaration
+    input logic serial_clk, // Serial clock
+    input logic parallel_clk, // Parallel clock
+    input logic rst, // Reset
+    input logic [WIDTH-1:0] Tx0, // Parallel data 
+    output logic Tx0_p, Tx0_n  // Serial Data
 );
-    logic [WIDTH-1:0] shift_reg;
-    int i = 1;
-    int count = 0;
-    int main_count = 0;
+    logic [WIDTH-1:0] shift_reg; // Temporary register
+    int i = 1; // Flag
+    int count = 0; // Flag
+    int main_count = 0; // Flag
 
 
     /* always_ff @(posedge clk or negedge rst_n) begin
@@ -100,6 +115,7 @@ module piso_shift_register #(
         end
     end */
 
+    // Inside this loop every posedge of serial clock parallel data msb given to serial data
     always @(posedge serial_clk or posedge rst) begin
       if(rst) begin
         Tx0_p <= 0;
@@ -127,6 +143,7 @@ module piso_shift_register #(
       end
     end
 
+    // Inside this loop flag is resetting
     always @(posedge parallel_clk or posedge rst) begin
       if(rst) begin
         main_count <= 0;
