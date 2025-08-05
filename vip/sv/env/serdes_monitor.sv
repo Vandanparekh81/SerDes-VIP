@@ -14,6 +14,7 @@ class serdes_monitor extends uvm_monitor;
   virtual serdes_interface.MONITOR vif; // Virtual interface handle
   uvm_analysis_port #(serdes_transaction) packet_collected_port; //Analysis port used to broadcast transaction packet.
   serdes_transaction mon_pkt; // Transaction Packet.
+  serdes_test_config test_cfg;
   bit is_parallel; // This bit tells agent is serial parallel according to this and is_active i have to call the task.
   bit is_active; // This bit tells agent is active or passive.
 

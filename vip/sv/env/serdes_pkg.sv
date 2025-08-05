@@ -14,6 +14,7 @@ package serdes_pkg;
   `include "serdes_driver.sv" // Serdes driver file
   `include "serdes_monitor.sv" // Serdes Monitor file
   `include "serdes_scoreboard.sv" // Serdes scoreboard file
+  `include "serdes_subscriber.sv" // Serdes subscriber file
   `include "serdes_agent.sv" // Serdes agent file
   `include "serdes_env.sv" // Serdes environment file
   `include "../test/serdes_test.sv" // Serdes test component file

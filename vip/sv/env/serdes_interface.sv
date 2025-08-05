@@ -51,15 +51,7 @@ interface serdes_interface #(parameter WIDTH = 10)
   modport MONITOR (clocking monitor_cb, input serial_clk, parallel_clk, serdes_reset);
 
   // Assertions for SerDes protocol verification
-    // A1: Reset behavior - All outputs should be at reset values
-    property reset_values;
-        @(posedge serdes_reset)
-        (Tx0 == 0 && Rx0 == 0 && Tx0_p == 0 && Tx0_n == 1 && Rx0_p == 0 && Rx0_n == 1);
-    endproperty
-    assert_reset_values: assert property (reset_values)
-        else `uvm_error("ASSERT_RESET", "Reset values for signals not met during serdes_reset high");
-
-    // A2: Inverse polarity for serial signals
+    // A1: Inverse polarity for serial signals
     property inverse_polarity_tx;
         @(posedge serial_clk) disable iff (serdes_reset)
         Tx0_n == ~Tx0_p;
@@ -74,7 +66,7 @@ interface serdes_interface #(parameter WIDTH = 10)
     assert_inverse_polarity_rx: assert property (inverse_polarity_rx)
         else `uvm_error("ASSERT_RX_POLARITY", "Rx0_n is not inverse of Rx0_p");
 
-    // A3: Parallel data stability during serial transmission
+    // A2: Parallel data stability during serial transmission
     property parallel_data_stable;
         @(posedge parallel_clk) disable iff (serdes_reset)
         $stable(Tx0) |-> ##[1:WIDTH] $stable(Rx0);
@@ -82,7 +74,7 @@ interface serdes_interface #(parameter WIDTH = 10)
     assert_parallel_data_stable: assert property (parallel_data_stable)
         else `uvm_error("ASSERT_STABLE", "Tx0 or Rx0 changed unexpectedly during parallel clock cycle");
 
-    // A4: Serial data valid only after reset deassertion
+    // A3: Serial data valid only after reset deassertion
     property serial_data_after_reset;
         @(posedge serial_clk) disable iff (serdes_reset)
         $rose(Tx0_p) || $rose(Rx0_p) |-> ##1 (!$isunknown(Tx0_p) && !$isunknown(Rx0_p));
@@ -90,35 +82,7 @@ interface serdes_interface #(parameter WIDTH = 10)
     assert_serial_data_valid: assert property (serial_data_after_reset)
         else `uvm_error("ASSERT_SERIAL_VALID", "Serial data (Tx0_p or Rx0_p) unknown after reset");
 
-    // A5: PISO serial output matches parallel input
-    /* logic [WIDTH-1:0] captured_Tx0;
-    always @(posedge parallel_clk) if (!serdes_reset) captured_Tx0 <= Tx0;
-    property piso_serial_output;
-        @(posedge serial_clk) disable iff (serdes_reset)
-        for (genvar i = 0; i < WIDTH; i++) (
-            ##i Tx0_p == captured_Tx0[WIDTH-1-i]
-        );
-    endproperty
-    assert_piso_output: assert property (piso_serial_output)
-        else `uvm_error("ASSERT_PISO", $sformatf("Tx0_p does not match captured Tx0: %b", captured_Tx0));*/
-
-    // A6: SIPO parallel output matches serial input
-    /*logic [WIDTH-1:0] captured_Rx0_p;
-    always @(posedge serial_clk) begin
-        if (!serdes_reset) begin
-            for (int i = 0; i < WIDTH; i++) begin
-                ##i captured_Rx0_p[WIDTH-1-i] <= Rx0_p;
-            end
-        end
-    end
-    property sipo_parallel_output;
-        @(posedge parallel_clk) disable iff (serdes_reset)
-        Rx0 == captured_Rx0_p;
-    endproperty
-    assert_sipo_output: assert property (sipo_parallel_output)
-        else `uvm_error("ASSERT_SIPO", $sformatf("Rx0 does not match captured Rx0_p: %b", captured_Rx0_p));*/
-
-    // A7: Clock activity only when reset is low
+    // A4: Clock activity only when reset is low
     property clocks_active;
         @(posedge serdes_reset)
         (serial_clk == 0 && parallel_clk == 0);

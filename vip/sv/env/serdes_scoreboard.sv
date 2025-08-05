@@ -119,6 +119,24 @@ class serdes_scoreboard extends uvm_scoreboard;
               //`uvm_info(get_type_name(), $sformatf("Inside Scoreboard Run Phase before actual packet is got"), UVM_LOW)
               wait(actual_q.size() >= 1);
               wait(expected_q.size() >= 1);
+              if(is_tx) begin
+                if(expected_count > test_cfg.parallel_transaction_count) begin
+                  wait(expected_count < test_cfg.parallel_transaction_count);
+                end
+                if(actual_count > test_cfg.parallel_transaction_count) begin
+                  wait(actual_count < test_cfg.parallel_transaction_count);
+                end
+              end
+              else begin
+                if(expected_count > test_cfg.serial_transaction_count) begin
+                  wait(expected_count < test_cfg.serial_transaction_count);
+                end
+                if(actual_count > test_cfg.serial_transaction_count) begin
+                  wait(actual_count < test_cfg.serial_transaction_count);
+                end
+              end
+
+                
               //`uvm_info(get_type_name(), $sformatf("Inside Scoreboard Run Phase after WAIT is got"), UVM_LOW)
               `uvm_info(get_type_name(), $sformatf("PACKET SIZE Inside Scoreboard Run Phase actual packet is got actual_q.size = %0d | Expected_q.size = %0d", actual_q.size(), expected_q.size()), UVM_LOW)
               if(expected_q.size() >= 1) begin // Loop 5

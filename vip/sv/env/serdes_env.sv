@@ -16,7 +16,7 @@ class serdes_env extends uvm_env;
   serdes_agent agt[];// considering 4 agent for that 0 : Active parallel agent || 1 : Passive parallel agent || 2 : active serial agent || 3 : passive serial agent
 
   serdes_scoreboard scb[]; // Variable for storing number of scoreboards which is divide by 2 of number of agents
-
+  serdes_subscriber sub[]; // Variable for storing number of subscribers which is divide by 2 of number of agents
   // Constructor of serdes_env class
   function new (string name, uvm_component parent);
     super.new(name, parent);
@@ -30,6 +30,7 @@ class serdes_env extends uvm_env;
     cfg = new[no_of_agents]; // Number of config same as number of agents
     agt = new[no_of_agents]; // Number of agents
     scb = new[no_of_agents/2]; // Number of scoreboard
+    sub = new[no_of_agents/2]; // Number of subscriber
 
     uvm_config_db #(int)::set(null, "", "no_of_agt", no_of_agents);
 
@@ -65,11 +66,14 @@ class serdes_env extends uvm_env;
     // Second scoreboard collect Rx0 and Rx0_p and Rx0_n data from monitor and compare that if they match then pass successfully otherwise it is fail
     foreach(scb[i]) begin
       scb[i] = serdes_scoreboard::type_id::create($sformatf("scb[%0d]", i), this); // Creation of Scoreboard
+      sub[i] = serdes_subscriber::type_id::create($sformatf("sub[%0d]", i), this); // Creation of Subscriber
       if(i < (no_of_agents/4))begin
         scb[i].is_tx = 1; // First scoreboard is tx scoreboard 
+        sub[i].is_tx = 1; // First subscriber is tx subscriber 
       end
       else begin
         scb[i].is_tx = 0; // Second scoreboard is rx scoreboard
+        sub[i].is_tx = 0; // Second subscriber is rx subscriber
       end
     end
 
@@ -85,9 +89,13 @@ class serdes_env extends uvm_env;
   virtual function void connect_phase(uvm_phase phase);
     super.connect_phase(phase);
     agt[0].mon.packet_collected_port.connect(scb[0].expected_imp);
+    agt[0].mon.packet_collected_port.connect(sub[0].expected_imp);
     agt[1].mon.packet_collected_port.connect(scb[1].actual_imp);
+    agt[1].mon.packet_collected_port.connect(sub[1].actual_imp);
     agt[2].mon.packet_collected_port.connect(scb[1].expected_imp);
+    agt[2].mon.packet_collected_port.connect(sub[1].expected_imp);
     agt[3].mon.packet_collected_port.connect(scb[0].actual_imp);
+    agt[3].mon.packet_collected_port.connect(sub[0].actual_imp);
   endfunction : connect_phase
     
 endclass : serdes_env
