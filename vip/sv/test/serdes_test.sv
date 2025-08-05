@@ -46,6 +46,9 @@ class serdes_test extends uvm_test;
     `uvm_info(get_type_name(), $sformatf("serial_clk_period = %f", serial_clk_period), UVM_LOW)
     drain_time = (serial_clk_period * 20) * 1000;
     `uvm_info(get_type_name(), $sformatf("Drain time = %0d ps", drain_time), UVM_LOW)
+
+    parallel_transaction_count = 1;
+    serial_transaction_count = 1;
     
     // Set serial transaction count for sequence using config db
     uvm_config_db #(int)::set(this, "*", "test_serial_transaction_count", serial_transaction_count);
