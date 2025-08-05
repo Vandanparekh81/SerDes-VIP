@@ -1,0 +1,65 @@
+# Consolidated configuration for SerDes testbench flow using act_yml with QuestaSim
+
+build:
+  top_tb: ../tb_top/serdes_top_tb.sv
+  files:
+    package:
+      - ../sv/env/serdes_pkg.sv
+    additional:
+      - ../sve/serdes_dut.sv
+      - ../sv/env/serdes_interface.sv
+  include_dirs:
+    - ../sv/env
+    - ../seq_lib
+    - ../test
+    - ../tb_top
+    - ../sve
+    - /home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/verilog_src/uvm-1.2/src
+  defines:
+    - SIMULATION=1
+    - DUMP=1
+  timescale:
+    unit: 1ns
+    precision: 1ps
+
+tool:
+  name: questasim
+  version: 2024.1
+  options:
+    vlog:
+      - -work ../script/work
+      - +acc
+      - -cover bcst
+    vopt:
+      - +acc=arn
+      - -o tb_opt
+    vsim:
+      - -c
+      - -assertdebug
+      - -msgmode both
+      - -coverage
+
+sim_cfg:
+  log:
+    path: ../sim
+    dir_name: "log/{testcase}_{speed}_{seed}"
+    filename: "{testcase}_{speed}_{seed}.log"
+  debug:
+    waves: false
+    wave_path: ../sim
+    wave_filename: "log/{testcase}_{speed}_{seed}/{testcase}_{speed}_{seed}.wlf"
+  coverage:
+    code: true
+    functional: true
+  timeout: 60
+
+testcase:
+  name: serdes_test
+  description: Basic functional check for SerDes
+  seed: 100
+  plusargs:
+    - +UVM_TESTNAME=serdes_test
+    - +SPEED=1
+    - +SERIAL_TRANSACTION_COUNT=1
+    - +PARALLEL_TRANSACTION_COUNT=1
+    - +NO_OF_AGENTS=4
