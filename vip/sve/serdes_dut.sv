@@ -134,7 +134,7 @@ module piso_shift_register #(
 
       else begin
         main_count <= 1;
-        i<=1;
+        i <= 1;
       end
 
     end

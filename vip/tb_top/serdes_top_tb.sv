@@ -13,7 +13,7 @@ module tb_top;
 
   // Properties declaration of top
   parameter WIDTH = 10; // Width of parallel data
-  real serdes_speed; // Speed of transfer data which is given from command line
+  int serdes_speed; // Speed of transfer data which is given from command line
   real speed_frequency;// Frequency of given speed from command line
   real serial_freq; // Frequency of serial clock
   real parallel_freq; // Frequency of parallel clock
@@ -57,7 +57,7 @@ module tb_top;
 
     function real get_time_period_rounded(real frequency_hz, int decimal_places);
       real time_period, multiplier;
-      if (frequency_hz <= 0) begin
+      if (frequency_hz <= 0 ) begin
           $display("Error: Frequency must be greater than zero.");
           return 0.0;
       end
@@ -75,9 +75,12 @@ module tb_top;
     // Here we take serdes speed value from command line generally which is 1G, 2G
     if (!$value$plusargs("SPEED=%f", serdes_speed)) begin
       $display("Warning: You did not provide a SPEED value. Using default.");
-      serdes_speed = 1000000000.0;  // If user did not give value from command line we take by default 1G
+      serdes_speed = 1;  // If user did not give value from command line we take by default 1G
     end else begin
       $display("Your Selected Speed is %0d G", serdes_speed);
+      if(serdes_speed > 10.0) begin
+        `uvm_fatal("No support for Serdes_Speed",{"serdes speed must be between 1 to 10 G"})
+      end
       speed_frequency = serdes_speed * 1000000000.0;  
       $display("Serdes speed is = %0f Hz", speed_frequency);
     end
