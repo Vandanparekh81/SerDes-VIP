@@ -105,6 +105,51 @@ R0
 R0
 R0
 R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
 !s11f vlog 2021.2_1 2021.05, May 15 2021
 13
 !s112 1.1
@@ -112,56 +157,57 @@ R0
 !i10e 25
 !i10f 100
 cModel Technology
-Z1 d/home/vandan-parekh/Downloads/uvm_examples/single_component_project_serdes/sim
+d/home/vandan-parekh/Downloads/uvm_examples/single_component_project_serdes/sim
 vpiso_shift_register
-Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-R2
-Z3 DXx6 mtiUvm 7 uvm_pkg 0 22 j8Zha7ihL:X5gY?98N]Y51
-Z4 DXx4 work 10 serdes_pkg 0 22 6kNaDP[a]F_=BUSKMOGW?2
-Z5 DXx4 work 18 serdes_pkg_sv_unit 0 22 EcA<SALie67LNzeGT[8Fc0
-Z6 !s110 1754315222
-Z7 VDg1SIo80bB@j0V0VzS_@n1
+Z1 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+R1
+Z2 DXx6 mtiUvm 7 uvm_pkg 0 22 j8Zha7ihL:X5gY?98N]Y51
+Z3 DXx4 work 10 serdes_pkg 0 22 Ni`OjA^6Ah86hPNSUIYEj3
+Z4 DXx4 work 18 serdes_pkg_sv_unit 0 22 ?]@TIo9ig3@I<NS=;7Inb2
+Z5 !s110 1754488992
+Z6 VDg1SIo80bB@j0V0VzS_@n1
 r1
 !s85 0
 !i10b 1
-!s100 A^lbJ]aA_DEAPL5_SVfm>0
-Icdo<EEjmTT[kmI0_`]A2C1
-Z8 !s105 serdes_pkg_sv_unit
+!s100 ekIEj_Ad4fCU]oN4ihWoY1
+I]OYK<OH@D7UAZjT3Ef]bf3
+Z7 !s105 serdes_pkg_sv_unit
 S1
-R1
-Z9 w1754302546
+Z8 d/home/vandan-parekh/Downloads/uvm_examples/single_component_project_serdes/vip/sim
+Z9 w1754393361
 Z10 8../sv/env/../../sve/serdes_dut.sv
 Z11 F../sv/env/../../sve/serdes_dut.sv
-!i122 108
-L0 76 68
+!i122 154
+L0 90 71
 Z12 OE;L;2021.2_1;73
 31
-Z13 !s108 1754315221.000000
-Z14 !s107 ../sv/env/../../sve/serdes_dut.sv|../sv/env/serdes_interface.sv|../sv/env/../../tb_top/serdes_top_tb.sv|../sv/env/../test/serdes_test.sv|../sv/env/serdes_env.sv|../sv/env/serdes_agent.sv|../sv/env/serdes_scoreboard.sv|../sv/env/serdes_monitor.sv|../sv/env/serdes_driver.sv|../sv/env/../seq_lib/serdes_sequencer.sv|../sv/env/../test/serdes_test_config.sv|../sv/env/serdes_agent_config.sv|../sv/env/../seq_lib/serdes_sequence.sv|../sv/env/../seq_lib/serdes_transaction.sv|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_deprecated_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_reg_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_callback_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_sequence_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/tlm1/uvm_tlm_imps.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_tlm_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_printer_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_object_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_phase_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_message_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_global_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_version_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/uvm_macros.svh|../sv/env/serdes_pkg.sv|
-Z15 !s90 ../sv/env/serdes_pkg.sv|
+Z13 !s108 1754488992.000000
+Z14 !s107 ../sv/env/../../sve/serdes_dut.sv|../sv/env/serdes_interface.sv|../sv/env/../../tb_top/serdes_top_tb.sv|../sv/env/../test/serdes_test.sv|../sv/env/serdes_env.sv|../sv/env/serdes_agent.sv|../sv/env/serdes_subscriber.sv|../sv/env/serdes_scoreboard.sv|../sv/env/serdes_monitor.sv|../sv/env/serdes_driver.sv|../sv/env/../seq_lib/serdes_sequencer.sv|../sv/env/../test/serdes_test_config.sv|../sv/env/serdes_agent_config.sv|../sv/env/../seq_lib/serdes_sequence.sv|../sv/env/../seq_lib/serdes_transaction.sv|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_deprecated_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_reg_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_callback_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_sequence_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/tlm1/uvm_tlm_imps.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_tlm_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_printer_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_object_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_phase_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_message_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_global_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_version_defines.svh|/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/uvm_macros.svh|../sv/env/serdes_pkg.sv|
+Z15 !s90 -cover|bcst|+acc|+cover|../sv/env/serdes_pkg.sv|
 !i113 0
-Z16 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-Z17 tCvgOpt 0
+Z16 !s102 -cover bcst +cover
+Z17 o-cover bcst +acc +cover -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z18 tCvgOpt 0
 Yserdes_interface
-R2
+R1
+R1
 R2
 R3
 R4
 R5
 R6
-R7
 r1
 !s85 0
 !i10b 1
-!s100 4W@IA9GGOMPaH1d[?IjI:3
-I7ZIIOhoc:i3F4=ZoR4>8:3
-R8
+!s100 GNl:a6Zjj58_;?MA0@2Da0
+IG>Z8cC5JRWIz_XRlKJ0R=0
+R7
 S1
-R1
-Z18 w1754315220
+R8
+w1754383034
 8../sv/env/serdes_interface.sv
 Z19 F../sv/env/serdes_interface.sv
-!i122 108
+!i122 154
 L0 8 0
 R12
 31
@@ -171,20 +217,21 @@ R15
 !i113 0
 R16
 R17
+R18
 Xserdes_pkg
 !s115 serdes_interface
-R2
-R3
-Z20 !s110 1754315221
-!i10b 1
-!s100 ;:N_WP>:Tc5[5@_z<zBC>3
-I6kNaDP[a]F_=BUSKMOGW?2
-S1
 R1
-w1754314973
-Z21 8../sv/env/serdes_pkg.sv
-Z22 F../sv/env/serdes_pkg.sv
-Z23 F/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/uvm_macros.svh
+R2
+R5
+!i10b 1
+!s100 GAR?lA5QUiPCWDLSjcH:z3
+INi`OjA^6Ah86hPNSUIYEj3
+S1
+R8
+w1754488989
+Z20 8../sv/env/serdes_pkg.sv
+Z21 F../sv/env/serdes_pkg.sv
+Z22 F/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/uvm_macros.svh
 F/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_version_defines.svh
 F/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_global_defines.svh
 F/home/vandan-parekh/Downloads/Mentor_Graphics_QuestaSim_2021.2.1/installation/questasim/uvm-1.2/../verilog_src/uvm-1.2/src/macros/uvm_message_defines.svh
@@ -205,12 +252,13 @@ F../sv/env/../seq_lib/serdes_sequencer.sv
 F../sv/env/serdes_driver.sv
 F../sv/env/serdes_monitor.sv
 F../sv/env/serdes_scoreboard.sv
+F../sv/env/serdes_subscriber.sv
 F../sv/env/serdes_agent.sv
 F../sv/env/serdes_env.sv
 F../sv/env/../test/serdes_test.sv
-!i122 108
+!i122 154
 L0 5 0
-V6kNaDP[a]F_=BUSKMOGW?2
+VNi`OjA^6Ah86hPNSUIYEj3
 R12
 r1
 !s85 0
@@ -221,30 +269,31 @@ R15
 !i113 0
 R16
 R17
+R18
 Xserdes_pkg_sv_unit
-R2
+R1
+R1
 R2
 R3
-R4
-R20
-VEcA<SALie67LNzeGT[8Fc0
+R5
+V?]@TIo9ig3@I<NS=;7Inb2
 r1
 !s85 0
 !i10b 1
-!s100 n2]X2hMn=ozXeWfMJQMQI0
-IEcA<SALie67LNzeGT[8Fc0
+!s100 2gBDGK2nnM=PK?BM2LAE]0
+I?]@TIo9ig3@I<NS=;7Inb2
 !i103 1
 S1
-R1
-R18
+R8
+Z23 w1754486558
+R20
 R21
 R22
-R23
 Z24 F../sv/env/../../tb_top/serdes_top_tb.sv
 R19
 R11
-!i122 108
-L0 21 0
+!i122 154
+L0 22 0
 R12
 31
 R13
@@ -253,27 +302,28 @@ R15
 !i113 0
 R16
 R17
+R18
 vsipo_shift_register
-R2
+R1
+R1
 R2
 R3
 R4
 R5
 R6
-R7
 r1
 !s85 0
 !i10b 1
-!s100 ^iAJWhlD@[[S119@JV0:O0
-I=D1X]4PAg0Zz87YKBI93j0
-R8
+!s100 nKBEMQ;I]nZjk7lRFN`f`2
+IjzZfPIfk8_ke4;R9`hcSH0
+R7
 S1
-R1
+R8
 R9
 R10
 R11
-!i122 108
-L0 2 71
+!i122 154
+L0 11 76
 R12
 31
 R13
@@ -282,37 +332,38 @@ R15
 !i113 0
 R16
 R17
+R18
 Ttb_opt
-!s11d serdes_pkg /home/vandan-parekh/Downloads/uvm_examples/single_component_project_serdes/sim/work 1 serdes_interface 1 /home/vandan-parekh/Downloads/uvm_examples/single_component_project_serdes/sim/work 
-R6
-Ve38K`[LLlz9^8enBMno_80
+!s11d serdes_pkg /home/vandan-parekh/Downloads/uvm_examples/single_component_project_serdes/vip/sim/work 1 serdes_interface 1 /home/vandan-parekh/Downloads/uvm_examples/single_component_project_serdes/vip/sim/work 
+R5
+V3nbmje;PW6WM4H4:kRZ<e2
 04 6 4 work tb_top fast 0
 !s124 OEM100
 o+acc=arn
-R17
+R18
 ntb_opt
 OE;O;2021.2_1;73
 vtb_top
-R2
+R1
+R1
 R2
 R3
 R4
 R5
 R6
-R7
 r1
 !s85 0
 !i10b 1
-!s100 Q9ElTWm@S>1B=kD3j10<l1
-I7ah@U4gRFWASZ=o5R?Ed?0
-R8
+!s100 Yfk_kR_6oQ;?=HI02EAU50
+IWC^IV1c:e6mVFa47LXk6o3
+R7
 S1
-R1
-w1754312253
+R8
+R23
 8../sv/env/../../tb_top/serdes_top_tb.sv
 R24
-!i122 108
-L0 12 161
+!i122 154
+L0 12 125
 R12
 31
 R13
@@ -321,3 +372,4 @@ R15
 !i113 0
 R16
 R17
+R18

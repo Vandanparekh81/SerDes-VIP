@@ -57,57 +57,26 @@ module tb_top;
 
     function real get_time_period_rounded(real frequency_hz, int decimal_places);
       real time_period, multiplier;
-      if (frequency_hz <= 0 ) begin
-          $display("Error: Frequency must be greater than zero.");
-          return 0.0;
-      end
       time_period = 1.0 * 1e9/ frequency_hz;
       multiplier = 1.0;
       repeat (decimal_places)
           multiplier *= 10.0;
       return $rtoi(time_period * multiplier + 0.5) / multiplier;
     endfunction
- 
-
 
   // Below we take value from command line using Value plus args
   initial begin
     // Here we take serdes speed value from command line generally which is 1G, 2G
     if (!$value$plusargs("SPEED=%f", serdes_speed)) begin
-      $display("Warning: You did not provide a SPEED value. Using default.");
+      `uvm_warning("Warning FROM TOP", $sformatf("You did not provide a SPEED value from command line. Using default 1G"))
       serdes_speed = 1;  // If user did not give value from command line we take by default 1G
     end else begin
-      $display("Your Selected Speed is %0d G", serdes_speed);
-      if(serdes_speed > 10.0) begin
+      `uvm_info("Serdes Speed", $sformatf("Your Selected Speed is %0d G", serdes_speed), UVM_LOW)
+      if(serdes_speed > 10 || serdes_speed < 1) begin
         `uvm_fatal("No support for Serdes_Speed",{"serdes speed must be between 1 to 10 G"})
       end
       speed_frequency = serdes_speed * 1000000000.0;  
-      $display("Serdes speed is = %0f Hz", speed_frequency);
-    end
-
-    // Here we take serial transaction count value from command line.
-    if (!$value$plusargs("SERIAL_TRANSACTION_COUNT=%0d", serial_transaction_count)) begin
-      $display("Warning: You did not provide a transaction value. Using default.");
-      serial_transaction_count = 1; // If user did not give value from command line we take by default 1 
-    end else begin
-      $display("Transaction count is = %0d", serial_transaction_count);
-    end
-
-    // Here we take parallel transaction count value from command line.
-    if (!$value$plusargs("PARALLEL_TRANSACTION_COUNT=%0d", parallel_transaction_count)) begin
-      $display("Warning: You did not provide a transaction value. Using default.");
-      parallel_transaction_count = 1; // If user did not give value from command line we take by default 1 
-    end else begin
-      $display("Transaction count is = %0d", serial_transaction_count);
-    end
-
-    // Here we take number of agents value from command line.
-    if (!$value$plusargs("NO_OF_AGENTS=%d", no_of_agents)) begin
-      $display("Warning: You did not provide a value for number of agents. Using default.");
-      no_of_agents = 4; // If user did not give value from command line we take by default 4
-    end 
-    else begin
-      $display("Number of agents is = %0d", no_of_agents);
+      `uvm_info("Speed Frequency", $sformatf("Serdes_speed frequency is %0f", speed_frequency), UVM_LOW)
     end
 
     //Calculation for clock configuration
@@ -116,8 +85,8 @@ module tb_top;
     serial_clk_period = get_time_period_rounded(serial_freq, 2); //serial Clock period is Inverse of serial frequency taking into nanoseconds we take 1e9
     parallel_clk_period = serial_clk_period * 10.0; //parallel Clock period is Inverse of parallel frequency taking into nanoseconds we take 1e9
 
-    `uvm_info("COMMAND LINE", $sformatf("Serial CLK Period = %f ns", serial_clk_period), UVM_LOW)
-    `uvm_info("COMMAND LINE", $sformatf("Parallel CLK Period = %f ns", parallel_clk_period), UVM_LOW)
+    `uvm_info("Serial CLK Period", $sformatf("Serial CLK Period = %f ns", serial_clk_period), UVM_LOW)
+    `uvm_info("Parallel CLK Period", $sformatf("Parallel CLK Period = %f ns", parallel_clk_period), UVM_LOW)
   end
 
   // Serial Clock configuration
@@ -125,7 +94,6 @@ module tb_top;
     forever begin
       if(serdes_reset == 0) begin
         #((serial_clk_period) / 2.0) serial_clk = ~serial_clk;
-        `uvm_info("Serial clock top", $sformatf("FROM TOP SERIAL TIME = %0t", $time), UVM_LOW)
       end
       else begin
         serial_clk = 0;
@@ -141,7 +109,6 @@ module tb_top;
     forever begin
       if(serdes_reset == 0) begin
         #((parallel_clk_period) / 2.0) parallel_clk = ~parallel_clk;
-        `uvm_info("Serial clock top", $sformatf("FROM TOP SERIAL TIME = %0t", $time), UVM_LOW)
       end
       else begin
         parallel_clk = 0;
@@ -152,18 +119,12 @@ module tb_top;
   end
 
 
-  /*initial begin
-    #1000000 $finish;
-  end */ 
   
   // Here we set all the variables which is given from command line using config_db
   initial begin
-    uvm_config_db #(virtual serdes_interface)::set(uvm_root::get(), "*", "vif", intf); // Virtual Interface Handle
+    uvm_config_db #(virtual serdes_interface)::set(null, "*", "vif", intf); // Virtual Interface Handle
     uvm_config_db#(virtual serdes_interface.DRIVER)::set(null, "uvm_test_top.env.*", "drv_vif", intf.DRIVER); // Virtual interface with Driver modport handle
     uvm_config_db#(virtual serdes_interface.MONITOR)::set(null, "uvm_test_top.env.*", "mon_vif", intf.MONITOR); // Virtual interface with Driver modport handle
-    uvm_config_db #(int)::set(uvm_root::get(), "*", "serial_transaction_count", serial_transaction_count); // Transaction count
-    uvm_config_db #(int)::set(uvm_root::get(), "*", "parallel_transaction_count", parallel_transaction_count); // Transaction count
-    uvm_config_db #(int)::set(uvm_root::get(), "uvm_test_top.env", "no_of_agents", no_of_agents); // Number of agents
     uvm_config_db #(real)::set(uvm_root::get(), "uvm_test_top", "serial_clk_period", serial_clk_period); // Serial clk period
     run_test("serdes_test");
   end 

@@ -12,6 +12,11 @@
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
-# OpenFile ./log/serdes_test_3_100/serdes_test_3_100.wlf
-add wave -position insertpoint serdes_test_3_100:/tb_top/intf/*
-add wave -position insertpoint serdes_test_3_100:/tb_top/piso_inst/*
+# OpenFile ./log/serdes_test_1_100/serdes_test_1_100.wlf
+add wave -position insertpoint serdes_test_1_100:/tb_top/intf/*
+add wave -position insertpoint serdes_test_1_100:/tb_top/piso_inst/*
+add wave -position insertpoint serdes_test_1_100:/tb_top/sipo_inst/*
+# 
+# 
+# 
+# 

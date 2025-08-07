@@ -31,14 +31,6 @@ class serdes_test extends uvm_test;
     if(!uvm_config_db#(virtual serdes_interface)::get(this, "", "vif", vif))
       `uvm_fatal("NO_VIF",{"virtual interface must be set for: ",get_full_name(),".vif"});
 
-    // Get serial transaction count from tb_top using config db
-    if(!uvm_config_db#(int)::get(this, "", "serial_transaction_count", serial_transaction_count))
-      `uvm_fatal("NO_SERIAL_TRANSACTION_COUNT",{"Serial Transaction count must be set for: ",get_full_name()});
-      
-    // Get parallel transaction count from tb_top using config db
-    if(!uvm_config_db#(int)::get(this, "", "parallel_transaction_count", parallel_transaction_count))
-      `uvm_fatal("NO_PARALLEL_TRANSACTION_COUNT",{"Parallel transaction count must be set for: ",get_full_name()});
-
     // Get Serdes Speed from tb_top using config db
     if(!uvm_config_db#(real)::get(this, "", "serial_clk_period", serial_clk_period))
       `uvm_fatal("NO_SERIAL_CLK_PERIOD",{"serial_clk_period must be set for: ",get_full_name()});
@@ -47,18 +39,7 @@ class serdes_test extends uvm_test;
     drain_time = (serial_clk_period * 20) * 1000;
     `uvm_info(get_type_name(), $sformatf("Drain time = %0d ps", drain_time), UVM_LOW)
 
-    parallel_transaction_count = 1;
-    serial_transaction_count = 1;
-    
-    // Set serial transaction count for sequence using config db
-    uvm_config_db #(int)::set(this, "*", "test_serial_transaction_count", serial_transaction_count);
-
-    // Set serial transaction count for sequence using config db
-    uvm_config_db #(int)::set(this, "*", "test_parallel_transaction_count", parallel_transaction_count);
-
     env = serdes_env::type_id::create("env", this); // Cretion of env class instance
-    test_cfg.parallel_transaction_count = parallel_transaction_count;
-    test_cfg.serial_transaction_count = serial_transaction_count;
   endfunction : build_phase
 
   // Connect phase of test class
@@ -103,7 +84,7 @@ class serdes_test extends uvm_test;
   // Report phase of test
   // Inside the report phase the transaction count is checked and if it is match with actual count of respective scoreboard then testcase is passed otherwise it is display uvm error as testcase is failed
   virtual function void report_phase(uvm_phase phase);
-    if((parallel_transaction_count+1 == env.scb[0].actual_count) && (serial_transaction_count+1 == env.scb[1].actual_count)) begin
+    if((test_cfg.parallel_transaction_count+1 == env.scb[0].actual_count) && (test_cfg.serial_transaction_count+1 == env.scb[1].actual_count)) begin
       `uvm_info("Report_Phase of test", $sformatf("Testcase Passed"), UVM_LOW)
     end
     

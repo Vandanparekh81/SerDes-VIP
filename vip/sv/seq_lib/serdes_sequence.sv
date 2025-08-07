@@ -10,6 +10,7 @@ class serdes_sequence extends uvm_sequence #(serdes_transaction);
   // Properties declaration of sequence class
   parameter WIDTH = 10;
   int count = 0;
+  int walk1;
 
   int serial_transaction_count; // Number of serial transactions
   int parallel_transaction_count; // Number of parallel transactions 
@@ -21,11 +22,11 @@ class serdes_sequence extends uvm_sequence #(serdes_transaction);
     super.new(name);
     
     // Get serial transaction count from test using config db
-    if(!uvm_config_db#(int)::get(null, "uvm_test_top.*", "test_serial_transaction_count", serial_transaction_count))
+    if(!uvm_config_db#(int)::get(null, "*", "serial_transaction_count", serial_transaction_count))
       `uvm_fatal("NO_SERIAL_TRANSACTION_COUNT",{"Serial Transaction count must be set for: ",get_full_name()});
       
     // Get parallel transaction count from test using config db
-    if(!uvm_config_db#(int)::get(null, "uvm_test_top.*", "test_parallel_transaction_count", parallel_transaction_count))
+    if(!uvm_config_db#(int)::get(null, "*", "parallel_transaction_count", parallel_transaction_count))
       `uvm_fatal("NO_PARALLEL_TRANSACTION_COUNT",{"Parallel transaction count must be set for: ",get_full_name()});
   endfunction : new
 
@@ -44,7 +45,10 @@ class serdes_sequence extends uvm_sequence #(serdes_transaction);
       repeat(parallel_transaction_count) begin
         req = serdes_transaction::type_id::create("req"); // Creation of transaction packet
         start_item(req);
-        assert(req.randomize() with { Tx0 != 0; }); // Ensure non-zero for testing
+        walk1 = 1 << (count % WIDTH); // shifts 1 across WIDTH
+        assert(req.randomize() with { Tx0 == walk1; });
+        count++;
+        //assert(req.randomize() with { Tx0 != 0; }); // Ensure non-zero for testing
         `uvm_info("BODY", $sformatf("Parallel transaction: Tx0 in Binary=%b | Tx0 in Decimal = %0d", req.Tx0,req.Tx0), UVM_LOW)
         finish_item(req); // This task will return if driver provide item_done
       end
@@ -56,16 +60,16 @@ class serdes_sequence extends uvm_sequence #(serdes_transaction);
       repeat(serial_transaction_count * WIDTH) begin // WIDTH=10 for serial bits
         req = serdes_transaction::type_id::create("req"); // Creation of transaction packet
         start_item(req);
-        /*if(count % 2 != 0) begin
-          assert(req.randomize() with { Rx0_p == 0; });// Equal distribution for 0 and 1
+        if(count % 2 != 0) begin
+          assert(req.randomize() with { Rx0_p == 0; Rx0_n == 1; });// Equal distribution for 0 and 1
           count++;
         end
         else begin
-          assert(req.randomize() with { Rx0_p == 1; }); // Equal distribution for 0 and 1
+          assert(req.randomize() with { Rx0_p == 1; Rx0_n == 0; }); // Equal distribution for 0 and 1
           count++;
-        end*/ 
+        end 
 
-        assert(req.randomize() with { Rx0_p dist {0:/50, 1:/50}; }); // Equal distribution for 0 and 1
+        //assert(req.randomize() with { Rx0_p dist {0:/50, 1:/50}; }); // Equal distribution for 0 and 1
         `uvm_info("BODY", $sformatf("Serial transaction: Rx0_p=%b, Rx0_n=%b", req.Rx0_p, req.Rx0_n), UVM_LOW)
         finish_item(req); // This task will return if driver provide item_done
       end

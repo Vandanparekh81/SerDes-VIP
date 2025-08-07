@@ -9,29 +9,18 @@ class serdes_env extends uvm_env;
   `uvm_component_utils(serdes_env);
 
   //Properties Declaration of Scoreboard
-  int no_of_agents; // Variable for storing number of agents which is give from command line
+  int no_of_agents = 4; // Variable for storing number of agents which is give from command line
   
-  serdes_agent_config cfg[]; // considering 4 agents for that 0 : Active parallel agent config || 1 : passive paralllel agent config || 2 : active serial agent config || 3 : passive serial agent config
+  serdes_agent_config cfg[4]; // considering 4 agents for that 0 : Active parallel agent config || 1 : passive paralllel agent config || 2 : active serial agent config || 3 : passive serial agent config
   
-  serdes_agent agt[];// considering 4 agent for that 0 : Active parallel agent || 1 : Passive parallel agent || 2 : active serial agent || 3 : passive serial agent
+  serdes_agent agt[4];// considering 4 agent for that 0 : Active parallel agent || 1 : Passive parallel agent || 2 : active serial agent || 3 : passive serial agent
 
-  serdes_scoreboard scb[]; // Variable for storing number of scoreboards which is divide by 2 of number of agents
-  serdes_subscriber sub[]; // Variable for storing number of subscribers which is divide by 2 of number of agents
+  serdes_scoreboard scb[2]; // Variable for storing number of scoreboards which is divide by 2 of number of agents
+  serdes_subscriber sub[2]; // Variable for storing number of subscribers which is divide by 2 of number of agents
   // Constructor of serdes_env class
   function new (string name, uvm_component parent);
     super.new(name, parent);
     
-    // This will get number of agents from top that will given from command line
-    if(!uvm_config_db#(int)::get(this, "", "no_of_agents", no_of_agents)) // Total number of agents get from env
-      `uvm_fatal("NO Number agent is get ",{"number of agent must be set for: ",get_full_name()}); 
-   
-   //the size of instance is given below 
-   //Above during the properties declaration i take dynamic array for number of agents and scoreboard and agt_cfg their size is given here after the value of number of agent is got
-    cfg = new[no_of_agents]; // Number of config same as number of agents
-    agt = new[no_of_agents]; // Number of agents
-    scb = new[no_of_agents/2]; // Number of scoreboard
-    sub = new[no_of_agents/2]; // Number of subscriber
-
     uvm_config_db #(int)::set(null, "", "no_of_agt", no_of_agents);
 
     //Creation of agent config is happen
@@ -42,12 +31,6 @@ class serdes_env extends uvm_env;
       cfg[i] = serdes_agent_config::type_id::create($sformatf("cfg[%0d]", i)); // Creation of agent config class instances
     end
 
-    /* foreach(cfg[i]) begin
-      cfg[i] = serdes_agent_config::type_id::create($sformatf("cfg_srl[%0d]", i));
-      cfg[i].is_parallel = 0;
-      cfg[i].active = (i==0) ? UVM_ACTIVE : UVM_PASSIVE;
-    end */
-    
   endfunction : new
 
   //Build phase of env inside this agent and scoreboard is created and also there two scoreboard in my tb_Architecture one for tx and one for rx data 
