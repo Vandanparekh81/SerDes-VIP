@@ -56,10 +56,7 @@ class serdes_monitor extends uvm_monitor;
       if(is_active == 1) begin
         for(int count1 = 0; count1 < WIDTH; count1++) begin
           @(posedge vif.serial_clk); 
-          mon_pkt.Rx0_p = vif.monitor_cb.Rx0_p; // sample Rx0_p from interface
-          mon_pkt.Rx0_n = vif.monitor_cb.Rx0_n; // sample Rx0_p from interface
-        `uvm_info(get_type_name(), $sformatf("ACTIVE SERIAL MONITOR serial data | mon_pkt.Rx0_p = %b | mon_pkt.Rx0_n = %b", mon_pkt.Rx0_p, mon_pkt.Rx0_n), UVM_LOW)
-          mon_pkt.mon_parallel_Rx0 = {mon_pkt.mon_parallel_Rx0 [WIDTH-2 : 0], mon_pkt.Rx0_p};
+          mon_pkt.mon_parallel_Rx0 = {mon_pkt.mon_parallel_Rx0 [WIDTH-2 : 0], vif.monitor_cb.Rx0_p};
         end    
       end
 
@@ -69,12 +66,9 @@ class serdes_monitor extends uvm_monitor;
       else begin
         for(int count2 = 0; count2 < WIDTH; count2++) begin
           @(posedge vif.serial_clk);
-          mon_pkt.Tx0_p = vif.monitor_cb.Tx0_p; // Sample Tx0_p from interface
-          mon_pkt.Tx0_n = vif.monitor_cb.Tx0_n; // Sample Tx0_n from interface
-        `uvm_info(get_type_name(), $sformatf("PASSIVE SERIAL MONITOR serial data | mon_pkt.Tx0_p = %b | mon_pkt.Tx0_n = %b | count2 = %0d", mon_pkt.Tx0_p, mon_pkt.Tx0_n, count2), UVM_LOW)
-          mon_pkt.mon_parallel_Tx0 = {mon_pkt.mon_parallel_Tx0 [WIDTH-2 : 0], mon_pkt.Tx0_p};
+          mon_pkt.mon_parallel_Tx0 = {mon_pkt.mon_parallel_Tx0 [WIDTH-2 : 0], vif.monitor_cb.Tx0_p};
         end
-        `uvm_info(get_type_name(), $sformatf("HELLO monitor converting serial data into parallel data | mon_pkt.mon_parallel_Tx0 = %b | mon_pkt.mon_parallel_Tx0 = %0d", mon_pkt.mon_parallel_Tx0, mon_pkt.mon_parallel_Tx0), UVM_LOW)
+        `uvm_info(get_type_name(), $sformatf("monitor converting serial data into parallel data | mon_pkt.mon_parallel_Tx0 = %b | mon_pkt.mon_parallel_Tx0 = %0d", mon_pkt.mon_parallel_Tx0, mon_pkt.mon_parallel_Tx0), UVM_LOW)
       end
     end
 
@@ -116,12 +110,6 @@ class serdes_monitor extends uvm_monitor;
   endtask */
 
   task reset();
-    mon_pkt.Tx0 = 0;
-    mon_pkt.Rx0 = 0;
-    mon_pkt.Tx0_p = 0;
-    mon_pkt.Tx0_n = 0;
-    mon_pkt.Rx0_p = 0;
-    mon_pkt.Rx0_n = 0;
     wait(!vif.serdes_reset);
   endtask : reset
 
@@ -156,7 +144,6 @@ class serdes_monitor extends uvm_monitor;
     // If monitor is active parallel monitor then it will sample Tx0 from interface so it will sample after driver drive to interface so for that we take one posedge of parallel clock
     if(is_parallel == 1 && is_active == 1) begin 
       @(posedge vif.parallel_clk); // Posedge of parallel clock
-      `uvm_info(get_type_name(), $sformatf("TIME PARALLEL ACTIVE = %0t", $time), UVM_LOW)
     end
 
     // If monitor is passive parallel then it will have to sample Rx0 which is output of deserializer and we have to start sample after two posedge of clock because at first posedge of parallel clock driver drive the data and after that dut take time to convert it into parallel form
@@ -167,7 +154,6 @@ class serdes_monitor extends uvm_monitor;
       repeat(2) begin 
         @(posedge vif.parallel_clk);
       end
-        `uvm_info(get_type_name(), $sformatf("TIME PARALLEL PASSIVE = %0t", $time), UVM_LOW)
     end
 
     // If monitor is active serial then it will montitor Rx0_p and Rx0_n and it
@@ -180,14 +166,12 @@ class serdes_monitor extends uvm_monitor;
       repeat(2) begin
         @(posedge vif.serial_clk); // Posedge of serial clock
       end
-      `uvm_info(get_type_name(), $sformatf("TIME SERIAL ACTIVE = %0t", $time), UVM_LOW)
     end
 
     // if monitor is passive serial then it will monitor Tx0_p and Tx0_n which is output of serializer 
     else begin
       @(posedge vif.parallel_clk); // Posedge of parallel clock
       @(posedge vif.serial_clk); // Posedge of serial clock
-        `uvm_info(get_type_name(), $sformatf("TIME SERIAL = %0t", $time), UVM_LOW)
     end
       // when reset is off then monitor have to monitor signal from interface
       forever begin
@@ -239,3 +223,4 @@ class serdes_monitor extends uvm_monitor;
 
 
 endclass : serdes_monitor
+

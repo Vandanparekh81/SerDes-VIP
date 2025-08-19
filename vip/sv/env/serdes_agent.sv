@@ -31,6 +31,7 @@ class serdes_agent extends uvm_agent;
       drv = serdes_driver::type_id::create("drv", this); // Creation of driver
       drv.parallel_driver = agt_cfg.is_parallel; // In my tb_architecture there are two driver one driver drive parallel data only so it will be called as parallel driver and other driver drive serial data so it will be called as serial driver
       seqr = serdes_sequencer::type_id::create("seqr", this); // Creation of sequencer is happen 
+      `uvm_info(get_type_name(), $sformatf("ALL THE ACTIVE COMPONENTS CREATED"), UVM_LOW)
     end
 
     mon = serdes_monitor::type_id::create("mon", this); // Creation of monitor 

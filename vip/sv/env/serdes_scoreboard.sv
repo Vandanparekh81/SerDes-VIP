@@ -121,18 +121,22 @@ class serdes_scoreboard extends uvm_scoreboard;
               wait(expected_q.size() >= 1);
               if(is_tx) begin
                 if(expected_count > test_cfg.parallel_transaction_count) begin
+                  $display("NUMBER OF EXPECTED COUNT TX = %0d | test_cfg.parallel_count = %0d", expected_count, test_cfg.parallel_transaction_count);
                   wait(expected_count < test_cfg.parallel_transaction_count);
                 end
                 if(actual_count > test_cfg.parallel_transaction_count) begin
+                  $display("NUMBER OF actual COUNT TX = %0d | test_cfg.parallel_count = %0d", actual_count, test_cfg.parallel_transaction_count);
                   wait(actual_count < test_cfg.parallel_transaction_count);
                 end
               end
               else begin
-                if(expected_count > test_cfg.serial_transaction_count) begin
-                  wait(expected_count < test_cfg.serial_transaction_count);
+                if(expected_count > test_cfg.serial_transaction_count-1) begin
+                  $display("NUMBER OF EXPECTED COUNT RX = %0d | test_cfg.parallel_count = %0d", expected_count, test_cfg.serial_transaction_count);
+                  wait(expected_count < test_cfg.serial_transaction_count-1);
                 end
-                if(actual_count > test_cfg.serial_transaction_count) begin
-                  wait(actual_count < test_cfg.serial_transaction_count);
+                if(actual_count > test_cfg.serial_transaction_count-1) begin
+                  $display("NUMBER OF actual COUNT RX = %0d | test_cfg.parallel_count = %0d", actual_count, test_cfg.serial_transaction_count);
+                  wait(actual_count < test_cfg.serial_transaction_count-1);
                 end
               end
 

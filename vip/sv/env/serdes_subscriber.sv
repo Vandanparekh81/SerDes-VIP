@@ -25,29 +25,69 @@ class serdes_subscriber extends uvm_component;
     
     // Covergroup for coverage collection
     covergroup cg;
-        option.per_instance = 1;
-        
-        // Tx-specific coverpoints (active when is_tx is 1)
-        cp_tx_expected: coverpoint exp_tr.Tx0 iff (is_tx) {
-            bins zero = {0};
-            bins non_zero = {[1:1023]};
-        }
-        cp_tx_actual: coverpoint act_tr.mon_parallel_Tx0 iff (is_tx) {
-            bins zero = {0};
-            bins non_zero = {[1:1023]};
-        }
-        
-        // Rx-specific coverpoints (active when is_tx is 0)
-        cp_rx_expected: coverpoint exp_tr.mon_parallel_Rx0 iff (!is_tx) {
-            bins zero = {0};
-            bins non_zero = {[1:1023]};
-        }
-        cp_rx_actual: coverpoint act_tr.Rx0 iff (!is_tx) {
-            bins zero = {0};
-            bins non_zero = {[1:1023]};
-        }
+      option.per_instance = 1;
+
+      // For TX Expected
+      cp_tx_expected: coverpoint exp_tr.Tx0 iff (is_tx) {
+        bins zero = {0};
+        bins walking_one[] = {1,2,4,8,16,32,64,128,256,512};
+        bins walking_zero[] = {1022,1021,1019,1015,1007,991,959,895,767,511};
+        bins alternate_5 = {341}; // 1023 minus bit 2
+        bins alternate_a = {682}; // 1023 minus bit 4
+        bins all_one = {1023};
+        bins increment = {[1:100]};
+        bins low_range = {[1:255]};
+        bins mid_range = {[256:511]};
+        bins high_range = {[512:767]};
+        bins max_range = {[768:1023]};
+      }
+
+      // For TX Actual
+      cp_tx_actual: coverpoint act_tr.mon_parallel_Tx0 iff (is_tx) {
+        bins zero = {0};
+        bins walking_one[] = {1,2,4,8,16,32,64,128,256,512};
+        bins walking_zero[] = {1022,1021,1019,1015,1007,991,959,895,767,511};
+        bins alternate_5 = {341};
+        bins alternate_a = {682};
+        bins all_one = {1023};
+        bins increment = {[1:100]};
+        bins low_range = {[1:255]};
+        bins mid_range = {[256:511]};
+        bins high_range = {[512:767]};
+        bins max_range = {[768:1023]};
+      }
+
+      // For RX Expected
+      cp_rx_expected: coverpoint exp_tr.mon_parallel_Rx0 iff (!is_tx) {
+        bins zero = {0};
+        bins walking_one[] = {1,2,4,8,16,32,64,128,256,512};
+        bins walking_zero[] = {1022,1021,1019,1015,1007,991,959,895,767,511};
+        bins alternate_5 = {341};
+        bins alternate_a = {682};
+        bins all_one = {1023};
+        bins increment = {[1:100]};
+        bins low_range = {[1:255]};
+        bins mid_range = {[256:511]};
+        bins high_range = {[512:767]};
+        bins max_range = {[768:1023]};
+      }
+
+      // For RX Actual
+      cp_rx_actual: coverpoint act_tr.Rx0 iff (!is_tx) {
+        bins zero = {0};
+        bins walking_one[] = {1,2,4,8,16,32,64,128,256,512};
+        bins walking_zero[] = {1022,1021,1019,1015,1007,991,959,895,767,511};
+        bins alternate_5 = {341};
+        bins alternate_a = {682};
+        bins all_one = {1023};
+        bins increment = {[1:100]};
+        bins low_range = {[1:255]};
+        bins mid_range = {[256:511]};
+        bins high_range = {[512:767]};
+        bins max_range = {[768:1023]};
+      }
     endgroup
-    
+
     // Constructor
     function new(string name, uvm_component parent);
         super.new(name, parent);
@@ -89,3 +129,4 @@ class serdes_subscriber extends uvm_component;
     endfunction
 
 endclass : serdes_subscriber
+

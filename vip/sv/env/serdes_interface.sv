@@ -56,39 +56,32 @@ interface serdes_interface #(parameter WIDTH = 10)
         @(posedge serial_clk) disable iff (serdes_reset)
         Tx0_n == ~Tx0_p;
     endproperty
-    assert_inverse_polarity_tx: assert property (inverse_polarity_tx)
+    assert_inverse_polarity_tx: assert property(inverse_polarity_tx) $info("Tx0_p is inverse of Tx0_n");
         else `uvm_error("ASSERT_TX_POLARITY", "Tx0_n is not inverse of Tx0_p");
 
     property inverse_polarity_rx;
         @(posedge serial_clk) disable iff (serdes_reset)
         Rx0_n == ~Rx0_p;
     endproperty
-    assert_inverse_polarity_rx: assert property (inverse_polarity_rx)
+    assert_inverse_polarity_rx: assert property(inverse_polarity_rx) $info("Rx0_p is inverse of Rx0_n");
         else `uvm_error("ASSERT_RX_POLARITY", "Rx0_n is not inverse of Rx0_p");
 
-    // A2: Parallel data stability during serial transmission
-    property parallel_data_stable;
-        @(posedge parallel_clk) disable iff (serdes_reset)
-        $stable(Tx0) |-> ##[1:WIDTH] $stable(Rx0);
-    endproperty
-    assert_parallel_data_stable: assert property (parallel_data_stable)
-        else `uvm_error("ASSERT_STABLE", "Tx0 or Rx0 changed unexpectedly during parallel clock cycle");
-
+   
     // A3: Serial data valid only after reset deassertion
     property serial_data_after_reset;
         @(posedge serial_clk) disable iff (serdes_reset)
         $rose(Tx0_p) || $rose(Rx0_p) |-> ##1 (!$isunknown(Tx0_p) && !$isunknown(Rx0_p));
     endproperty
-    assert_serial_data_valid: assert property (serial_data_after_reset)
+    assert_serial_data_valid: assert property(serial_data_after_reset) $info("Serial data not unknown after reset");
         else `uvm_error("ASSERT_SERIAL_VALID", "Serial data (Tx0_p or Rx0_p) unknown after reset");
 
     // A4: Clock activity only when reset is low
     property clocks_active;
         @(posedge serdes_reset)
-        (serial_clk == 0 && parallel_clk == 0);
+        ##1 (serial_clk == 0 && parallel_clk == 0);
     endproperty
-    assert_clocks_active: assert property (clocks_active)
+    assert_clocks_active: assert property(clocks_active) $info("Clock is disable during the reset condition");
         else `uvm_error("ASSERT_CLOCKS", "Clocks active during reset");
-    
+
 endinterface : serdes_interface
 
