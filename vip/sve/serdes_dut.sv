@@ -11,15 +11,15 @@
 module sipo_shift_register #(parameter WIDTH=10) 
 (
   // Port Declaration
-  input logic serial_clk, //Serial clock
-  input logic parallel_clk, // Parallel_clock
-  input logic rst, // Reset
-  input logic Rx0_p, Rx0_n, // Serial data
-  output logic [WIDTH-1 : 0] Rx0 // parallel data
+  input wire serial_clk, //Serial clock
+  input wire parallel_clk, // Parallel_clock
+  input wire rst, // Reset
+  input wire Rx0_p, Rx0_n, // Serial data
+  output reg [WIDTH-1 : 0] Rx0 // parallel data
 );
 
-  logic [WIDTH-1 : 0] shift_reg; // Temporary register
-  logic [WIDTH-1 : 0] parallel_data; // Temporary Register
+  reg [WIDTH-1 : 0] shift_reg; // Temporary register
+  reg [WIDTH-1 : 0] parallel_data; // Temporary Register
   int sipo_main_count = 0; // Flag
   int count = 0; // Flag
 
@@ -91,13 +91,13 @@ module piso_shift_register #(
     parameter WIDTH = 10 
 ) (
     // Port Declaration
-    input logic serial_clk, // Serial clock
-    input logic parallel_clk, // Parallel clock
-    input logic rst, // Reset
-    input logic [WIDTH-1:0] Tx0, // Parallel data 
-    output logic Tx0_p, Tx0_n  // Serial Data
+    input wire serial_clk, // Serial clock
+    input wire parallel_clk, // Parallel clock
+    input wire rst, // Reset
+    input reg [WIDTH-1:0] Tx0, // Parallel data 
+    output reg Tx0_p, Tx0_n  // Serial Data
 );
-    logic [WIDTH-1:0] shift_reg; // Temporary register
+    reg [WIDTH-1:0] shift_reg; // Temporary register
     int i = 1; // Flag
     int count = 0; // Flag
     int main_count = 0; // Flag
@@ -128,9 +128,6 @@ module piso_shift_register #(
           Tx0_n <= ~Tx0[WIDTH-i];
           `uvm_info("DUT PISO", $sformatf("Serial Clock [%0t] Tx0 = %b | Tx0 Decimal = %0d |Tx0_p = %b | Tx0_n = %0d", $time, Tx0, Tx0, Tx0_p, Tx0_n), UVM_LOW)
           main_count++;
-          $display("main_Count = %0d", main_count);
-          $display("I = %0d", i);
-
           if(main_count == WIDTH+1) begin
             main_count <= 0;
             i <= 1;
