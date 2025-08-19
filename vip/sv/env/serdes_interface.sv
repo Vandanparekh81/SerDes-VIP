@@ -67,7 +67,7 @@ interface serdes_interface #(parameter WIDTH = 10)
         else `uvm_error("ASSERT_RX_POLARITY", "Rx0_n is not inverse of Rx0_p");
 
    
-    // A3: Serial data valid only after reset deassertion
+    // A2: Serial data valid only after reset deassertion
     property serial_data_after_reset;
         @(posedge serial_clk) disable iff (serdes_reset)
         $rose(Tx0_p) || $rose(Rx0_p) |-> ##1 (!$isunknown(Tx0_p) && !$isunknown(Rx0_p));
@@ -75,7 +75,7 @@ interface serdes_interface #(parameter WIDTH = 10)
     assert_serial_data_valid: assert property(serial_data_after_reset) $info("Serial data not unknown after reset");
         else `uvm_error("ASSERT_SERIAL_VALID", "Serial data (Tx0_p or Rx0_p) unknown after reset");
 
-    // A4: Clock activity only when reset is low
+    // A3: Clock activity only when reset is low
     property clocks_active;
         @(posedge serdes_reset)
         ##1 (serial_clk == 0 && parallel_clk == 0);

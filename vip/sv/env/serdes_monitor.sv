@@ -17,6 +17,7 @@ class serdes_monitor extends uvm_monitor;
   serdes_test_config test_cfg;
   bit is_parallel; // This bit tells agent is serial parallel according to this and is_active i have to call the task.
   bit is_active; // This bit tells agent is active or passive.
+  int sampling_count = 1;
 
   // Constructor of monitor class
   function new (string name, uvm_component parent);
@@ -58,6 +59,7 @@ class serdes_monitor extends uvm_monitor;
           @(posedge vif.serial_clk); 
           mon_pkt.mon_parallel_Rx0 = {mon_pkt.mon_parallel_Rx0 [WIDTH-2 : 0], vif.monitor_cb.Rx0_p};
         end    
+        `uvm_info(get_type_name(), $sformatf("monitor converting Rx serial data into parallel data | mon_pkt.mon_parallel_Rx0 = %b | mon_pkt.mon_parallel_Rx0 = %0d", mon_pkt.mon_parallel_Rx0, mon_pkt.mon_parallel_Rx0), UVM_LOW)
       end
 
       // If serial passive agent call the monitoring task then it will go inside this else loop and it will sample interface serial signal which is output of serializer at the posedge of serial clock
@@ -68,7 +70,7 @@ class serdes_monitor extends uvm_monitor;
           @(posedge vif.serial_clk);
           mon_pkt.mon_parallel_Tx0 = {mon_pkt.mon_parallel_Tx0 [WIDTH-2 : 0], vif.monitor_cb.Tx0_p};
         end
-        `uvm_info(get_type_name(), $sformatf("monitor converting serial data into parallel data | mon_pkt.mon_parallel_Tx0 = %b | mon_pkt.mon_parallel_Tx0 = %0d", mon_pkt.mon_parallel_Tx0, mon_pkt.mon_parallel_Tx0), UVM_LOW)
+        `uvm_info(get_type_name(), $sformatf("monitor converting Tx serial data into parallel data | mon_pkt.mon_parallel_Tx0 = %b | mon_pkt.mon_parallel_Tx0 = %0d", mon_pkt.mon_parallel_Tx0, mon_pkt.mon_parallel_Tx0), UVM_LOW)
       end
     end
 
@@ -111,10 +113,9 @@ class serdes_monitor extends uvm_monitor;
 
   task reset();
     wait(!vif.serdes_reset);
+    sampling_count = 0;
   endtask : reset
-
     
-
   // Build phase of monitor class
   function void build_phase (uvm_phase phase);
     super.build_phase(phase);
@@ -122,13 +123,6 @@ class serdes_monitor extends uvm_monitor;
     // Get interface using config_fb which is set from top module using config_db
     if(!uvm_config_db#(virtual serdes_interface.MONITOR)::get(this, "", "mon_vif", vif))
       `uvm_fatal("NO_VIF",{"virtual interface must be set for: ",get_full_name(),".vif"});  
-    
-    //if(!uvm_config_db#(int)::get(null, "", "is_parallel", is_parallel))
-      //`uvm_fatal("NO_is_parallel",{"do not get value for is parallel from agent_config: ",get_full_name(),".is_parallel"});  
-    
-    //if(!uvm_config_db#(int)::get(null, "", "is_active", is_active))
-      //`uvm_fatal("NO_is_active",{"do not get value for is active from agent_config: ",get_full_name(),".is_active"});  
-
   endfunction : build_phase
 
   // Connect phase of Monitor
@@ -140,76 +134,93 @@ class serdes_monitor extends uvm_monitor;
   //There are 4 monitor in my testbench architecture  
   task run_phase(uvm_phase phase);
     super.run_phase(phase);
+    forever begin
 
     // If monitor is active parallel monitor then it will sample Tx0 from interface so it will sample after driver drive to interface so for that we take one posedge of parallel clock
-    if(is_parallel == 1 && is_active == 1) begin 
-      @(posedge vif.parallel_clk); // Posedge of parallel clock
-    end
+      if(sampling_count == 0) begin
 
-    // If monitor is passive parallel then it will have to sample Rx0 which is output of deserializer and we have to start sample after two posedge of clock because at first posedge of parallel clock driver drive the data and after that dut take time to convert it into parallel form
+        if(is_parallel == 1 && is_active == 1) begin 
+          @(posedge vif.parallel_clk); // Posedge of parallel clock
+          @(posedge vif.parallel_clk); // Posedge of parallel clock
+        end
 
-    else if(is_parallel == 1 && is_active  == 0) begin
-      
-      // Two posedge of parallel clock
-      repeat(2) begin 
-        @(posedge vif.parallel_clk);
+        // If monitor is passive parallel then it will have to sample Rx0 which is output of deserializer and we have to start sample after two posedge of clock because at first posedge of parallel clock driver drive the data and after that dut take time to convert it into parallel form
+
+        else if(is_parallel == 1 && is_active  == 0) begin
+          
+          // Two posedge of parallel clock
+          repeat(2) begin 
+            @(posedge vif.parallel_clk);
+          end
+        end
+
+        // If monitor is active serial then it will montitor Rx0_p and Rx0_n and it
+        // will be drive from driver at first posedge of serial clock so we have to
+        // start after the driver drive means the next posege of serial clock
+        else if(is_parallel == 0 && is_active == 1) begin
+          @(posedge vif.parallel_clk); // Posedge of parallel clock after reset is go off
+          
+          // Two posedge of serial clock
+          repeat(2) begin
+            @(posedge vif.serial_clk); // Posedge of serial clock
+          end
+        end
+
+        // if monitor is passive serial then it will monitor Tx0_p and Tx0_n which is output of serializer 
+        else begin
+          @(posedge vif.parallel_clk); // Posedge of parallel clock
+          @(posedge vif.parallel_clk); // Posedge of parallel clock
+          @(posedge vif.serial_clk); // Posedge of serial clock
+        end
+        sampling_count = 1;
       end
-    end
-
-    // If monitor is active serial then it will montitor Rx0_p and Rx0_n and it
-    // will be drive from driver at first posedge of serial clock so we have to
-    // start after the driver drive means the next posege of serial clock
-    else if(is_parallel == 0 && is_active == 1) begin
-      @(posedge vif.parallel_clk); // Posedge of parallel clock after reset is go off
-      
-      // Two posedge of serial clock
-      repeat(2) begin
-        @(posedge vif.serial_clk); // Posedge of serial clock
-      end
-    end
-
-    // if monitor is passive serial then it will monitor Tx0_p and Tx0_n which is output of serializer 
-    else begin
-      @(posedge vif.parallel_clk); // Posedge of parallel clock
-      @(posedge vif.serial_clk); // Posedge of serial clock
-    end
-      // when reset is off then monitor have to monitor signal from interface
-      forever begin
-        mon_pkt = serdes_transaction::type_id::create("mon_pkt"); // Creation of packet
+        // when reset is off then monitor have to monitor signal from interface
+      else begin
+          mon_pkt = serdes_transaction::type_id::create("mon_pkt"); // Creation of packet
         fork
 
-          // Thread 1
+            // Thread 1
           begin
 
-            // When reset is off then it will start monitoring
+              // When reset is off then it will start monitoring
             if(!vif.serdes_reset) begin
 
-              // Monitoring task which take all 4 monitor task 
+                // Monitoring task which take all 4 monitor task 
               monitoring(mon_pkt); 
 
-              `uvm_info(get_type_name(), $sformatf("Sending transaction: Tx0=%b, Rx0=%b, mon_parallel_Tx0=%b, mon_parallel_Rx0=%b", mon_pkt.Tx0, mon_pkt.Rx0, mon_pkt.mon_parallel_Tx0, mon_pkt.mon_parallel_Rx0), UVM_LOW)
+              if(sampling_count > 0) begin
 
-              // Broadcasting this packet through analysis port
-              packet_collected_port.write(mon_pkt);
+                `uvm_info(get_type_name(), $sformatf("Sending transaction: Tx0=%b, Rx0=%b, mon_parallel_Tx0=%b, mon_parallel_Rx0=%b", mon_pkt.Tx0, mon_pkt.Rx0, mon_pkt.mon_parallel_Tx0, mon_pkt.mon_parallel_Rx0), UVM_LOW)
+
+                  // Broadcasting this packet through analysis port
+                packet_collected_port.write(mon_pkt);
+              end
+
+              else begin
+                sampling_count = 1;
+              end
+
             end
 
-            //When reset is on then it will wait for reset go off
+              //When reset is on then it will wait for reset go off
             else begin
               wait(!vif.serdes_reset);
+              sampling_count = 0;
             end
 
           end
 
-          //Thread 2
-          //Reset Condition
+            //Thread 2
+            //Reset Condition
           begin
 
-            // When reset is on then it will detect the reset condition and call  the reset task
+              // When reset is on then it will detect the reset condition and call  the reset task
             if(vif.serdes_reset) begin
-              reset();       
+              wait(!vif.serdes_reset);
+              sampling_count = 0;
             end
 
-            // When reset is off it will wait reset is ON
+              // When reset is off it will wait reset is ON
             else begin
               wait(vif.serdes_reset);
             end
@@ -217,10 +228,10 @@ class serdes_monitor extends uvm_monitor;
           end
 
         join_any
+        disable fork;
       end
+    end
 
   endtask : run_phase
 
-
 endclass : serdes_monitor
-

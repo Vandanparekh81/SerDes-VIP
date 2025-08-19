@@ -48,12 +48,9 @@ class serdes_agent_config extends uvm_object;
       active = UVM_PASSIVE;
     end
 
-    //active == (current_agt_no % 2 == 0) ? UVM_ACTIVE : UVM_PASSIVE;
 
     //It is also set this agent or passive
     is_active = (active == UVM_ACTIVE) ? 1 : 0 ; 
-    //uvm_config_db #(int)::set(null, "", "is_parallel", is_parallel);
-    //uvm_config_db #(int)::set(null, "", "is_active", is_active);
   endfunction : new
 
 endclass : serdes_agent_config

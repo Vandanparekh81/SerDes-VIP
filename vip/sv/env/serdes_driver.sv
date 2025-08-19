@@ -32,8 +32,6 @@ class serdes_driver extends uvm_driver #(serdes_transaction);
     if(!uvm_config_db#(virtual serdes_interface.DRIVER)::get(this, "", "drv_vif", vif))
       `uvm_fatal("NO_VIF",{"virtual interface must be set for: ",get_full_name(),".vif"});
     
-    //if(!uvm_config_db#(int)::get(null, "", "is_parallel", parallel_driver))
-      //`uvm_fatal("NO_is_parallel",{"do not get value for is parallel from agent_config: ",get_full_name(),".parallel_driver"});  
     `uvm_info(get_type_name(), $sformatf("BUILD parallel_driver = %b", parallel_driver), UVM_LOW)
 
   endfunction : build_phase
@@ -48,7 +46,6 @@ class serdes_driver extends uvm_driver #(serdes_transaction);
   virtual task run_phase(uvm_phase phase);
       
       // When reset is off then driver starts to drive the transaction
-    `uvm_info("Driver Run Phase", $sformatf("Inside the Connect Phase of driver class"), UVM_LOW)
       forever begin
         fork
 
@@ -56,16 +53,11 @@ class serdes_driver extends uvm_driver #(serdes_transaction);
           // When reset is off then this thread drive the data to interface there are two driver in my tb_architecture one is driving parallel data another one driving serial data this all take care by drive task
           begin
             
-            `uvm_info("Driver Run Phase 1", $sformatf("Inside the Connect Phase of driver class"), UVM_LOW)
             if(!vif.serdes_reset) begin
               
-              `uvm_info("Driver Run Phase 2", $sformatf("Inside the Connect Phase of driver class"), UVM_LOW)
               seq_item_port.get_next_item(req);// Get the transaction from sequencer
-              `uvm_info("Driver Run Phase 3", $sformatf("Inside the Connect Phase of driver class"), UVM_LOW)
               seq_item_done = 1;
-              `uvm_info(get_type_name(), $sformatf("after get next item req.Tx0 = %b | req.Rx0_p = %b", req.Tx0,req.Rx0_p), UVM_LOW)
               drive(parallel_driver); // Drive task if parallel driver is called this task then it will drive parallel data to interface otherwise it will drive serial data
-              `uvm_info("Driver Run Phase 4", $sformatf("Inside the Connect Phase of driver class"), UVM_LOW)
             end
 
             //This condition when reset is on

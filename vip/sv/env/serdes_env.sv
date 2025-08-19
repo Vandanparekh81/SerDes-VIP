@@ -17,6 +17,7 @@ class serdes_env extends uvm_env;
 
   serdes_scoreboard scb[2]; // Variable for storing number of scoreboards which is divide by 2 of number of agents
   serdes_subscriber sub[2]; // Variable for storing number of subscribers which is divide by 2 of number of agents
+  bit is_tx;
   // Constructor of serdes_env class
   function new (string name, uvm_component parent);
     super.new(name, parent);
@@ -49,15 +50,23 @@ class serdes_env extends uvm_env;
     // Second scoreboard collect Rx0 and Rx0_p and Rx0_n data from monitor and compare that if they match then pass successfully otherwise it is fail
     foreach(scb[i]) begin
       scb[i] = serdes_scoreboard::type_id::create($sformatf("scb[%0d]", i), this); // Creation of Scoreboard
-      sub[i] = serdes_subscriber::type_id::create($sformatf("sub[%0d]", i), this); // Creation of Subscriber
       if(i < (no_of_agents/4))begin
         scb[i].is_tx = 1; // First scoreboard is tx scoreboard 
-        sub[i].is_tx = 1; // First subscriber is tx subscriber 
       end
       else begin
         scb[i].is_tx = 0; // Second scoreboard is rx scoreboard
-        sub[i].is_tx = 0; // Second subscriber is rx subscriber
       end
+    end
+
+    foreach(sub[i]) begin
+      if(i < (no_of_agents/4))begin
+        is_tx = 1; // First subscriber is tx subscriber 
+      end
+      else begin
+        is_tx = 0; // Second subscriber is rx subscriber
+      end
+      uvm_config_db#(int)::set(this, "*", "is_tx", is_tx);
+      sub[i] = serdes_subscriber::type_id::create($sformatf("sub[%0d]", i), this); // Creation of Subscriber
     end
 
      /* foreach(agt_srl) begin

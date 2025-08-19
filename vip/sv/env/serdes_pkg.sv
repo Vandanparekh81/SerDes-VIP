@@ -7,9 +7,11 @@ package serdes_pkg;
   import uvm_pkg::*;
   `include "uvm_macros.svh"
   `include "../seq_lib/serdes_transaction.sv" // Serdes_transaction file
-  `include "../seq_lib/serdes_sequence.sv" // Serdes sequencre file
-  `include "../seq_lib/serdes_same_data_for_tx_rx_sequence.sv" // Serdes sequencre file
-  `include "../seq_lib/serdes_data_pattern_sequence.sv" // Serdes sequencre file
+  `include "../seq_lib/serdes_sequence.sv" // Serdes sequence file
+  `include "../seq_lib/serdes_same_data_for_tx_rx_sequence.sv" // Sequence for same_data_for_tx_rx testcase
+  `include "../seq_lib/serdes_opposite_data_for_tx_rx_sequence.sv" // Sequence for opposite_data_for_tx_rx testcase
+  `include "../seq_lib/serdes_data_error_injection_sequence.sv" // Sequence for data error injection testcase
+  `include "../seq_lib/serdes_data_pattern_sequence.sv" // Sequence for data pattern testcase
   `include "serdes_agent_config.sv" // Serdes agent config file
   `include "../test/serdes_test_config.sv" // Serdes test config file
   `include "../seq_lib/serdes_sequencer.sv" // Serdes sequencer file
@@ -19,10 +21,12 @@ package serdes_pkg;
   `include "serdes_subscriber.sv" // Serdes subscriber file
   `include "serdes_agent.sv" // Serdes agent file
   `include "serdes_env.sv" // Serdes environment file
-  `include "../test/serdes_sanity_test.sv" // Serdes test component file
-  `include "../test/serdes_multiple_transaction_test.sv" // Serdes test component file
-  `include "../test/serdes_data_pattern_test.sv" // Serdes test component file
+  `include "../test/serdes_sanity_test.sv" // Serdes sanity test component file
+  `include "../test/serdes_multiple_transaction_test.sv" // Serdes multiple transaction test file
+  `include "../test/serdes_data_pattern_test.sv" // Serdes data pattern test component file
   `include "../test/serdes_same_data_for_tx_rx_test.sv" // Serdes same data for tx rx file
+  `include "../test/serdes_opposite_data_for_tx_rx_test.sv" // Serdes opposite data for tx rx test file  
+  `include "../test/serdes_data_error_injection_test.sv" // Serdes data error injection test file  
 endpackage
 import uvm_pkg::*;
 `include "uvm_macros.svh"

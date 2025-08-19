@@ -24,6 +24,11 @@ class serdes_scoreboard extends uvm_scoreboard;
   serdes_test_config test_cfg; // Test_config class instance to access reset from test
   int expected_count = 0;  // Expected Count 
   int actual_count = 0; // Actual Packet Count
+  bit data_error_injection;
+  uvm_event exp_event;
+  string event_name;
+  serdes_transaction data_error_tr;
+  serdes_transaction data_error_cpy;
   
   //serdes_transaction cpy;
 
@@ -41,6 +46,10 @@ class serdes_scoreboard extends uvm_scoreboard;
     super.build_phase(phase);
     expected_imp = new("expected_imp", this); // Creation expected implementation port
     actual_imp = new("actual_imp", this); // Creation of actual implmentation port
+    `uvm_info(get_type_name(), $sformatf("Inside Build phase of scoreboard"), UVM_LOW)
+    `uvm_info(get_type_name(), $sformatf("Is TX is_tx = %b", is_tx), UVM_LOW)
+    
+    
   endfunction : build_phase
 
   // Connect phase of serdes scoreboard
@@ -52,9 +61,11 @@ class serdes_scoreboard extends uvm_scoreboard;
   function void write_expected(serdes_transaction tr);
     serdes_transaction cpy = serdes_transaction::type_id::create("cpy"); // Creation of copy packet
     `uvm_info(get_type_name(), $sformatf("SCOREBOARD Received expected transaction: Tx0=%b, mon_parallel_Tx0=%b", tr.Tx0, tr.mon_parallel_Tx0), UVM_LOW)
-    cpy.copy(tr); // Copy method is called
-    expected_q.push_back(cpy); // Store into expected queue
-    `uvm_info(get_type_name(), $sformatf("Received expected transaction: Tx0=%b, mon_parallel_Tx0=%b", cpy.Tx0, cpy.mon_parallel_Tx0), UVM_LOW)
+    if(!data_error_injection) begin
+      cpy.copy(tr); // Copy method is called
+      expected_q.push_back(cpy); // Store into expected queue
+      `uvm_info(get_type_name(), $sformatf("Received expected transaction: Tx0=%b, mon_parallel_Tx0=%b", cpy.Tx0, cpy.mon_parallel_Tx0), UVM_LOW)
+    end
   endfunction
   
   // If monitor send actual packet then this method is called this method basically copy that packet and store into actual queue
@@ -101,6 +112,31 @@ class serdes_scoreboard extends uvm_scoreboard;
 
   task run_phase (uvm_phase phase);
     super.run_phase(phase);
+
+    if(data_error_injection) begin
+      fork
+        forever begin
+        event_name = (is_tx) ? "tx_exp_event" : "rx_exp_event";
+        `uvm_info(get_type_name(), $sformatf("EVENT NAME = %s", event_name), UVM_LOW)
+          exp_event = uvm_event_pool::get_global(event_name);
+          if(exp_event == null) begin
+            `uvm_fatal(get_type_name(), $sformatf("exp_event is null for %s", event_name))
+          end
+
+      `uvm_info(get_type_name(), $sformatf("[Scoreboard Rx] Wait TRIGGER bEFORE"), UVM_LOW)
+          exp_event.wait_trigger();
+      `uvm_info(get_type_name(), $sformatf("[Scoreboard Rx] Wait TRIGGER AFter"), UVM_LOW)
+          $cast(data_error_tr, exp_event.get_trigger_data());
+          `uvm_info(get_type_name(), $sformatf("Transaction Received"), UVM_LOW)
+          data_error_cpy = serdes_transaction::type_id::create("data_error_cpy");
+          data_error_cpy.copy(data_error_tr);
+          data_error_cpy.mon_parallel_Rx0 = data_error_cpy.Rx0_p;
+          expected_q.push_back(data_error_cpy);
+          `uvm_info(get_type_name(), $sformatf("Received expected transaction from sequence event: Tx0=%b [%0d], Rx0_p=%b [%0d] EXPECTED Q SIZE = %0d", data_error_cpy.Tx0, data_error_cpy.Tx0, data_error_cpy.Rx0_p, data_error_cpy.Rx0_p, expected_q.size()), UVM_LOW)
+        end
+
+      join_none
+    end
      
       // Forever loop of run phase
       forever begin // Loop 1
@@ -120,13 +156,13 @@ class serdes_scoreboard extends uvm_scoreboard;
               wait(actual_q.size() >= 1);
               wait(expected_q.size() >= 1);
               if(is_tx) begin
-                if(expected_count > test_cfg.parallel_transaction_count) begin
+                if(expected_count > test_cfg.parallel_transaction_count - 1) begin
                   $display("NUMBER OF EXPECTED COUNT TX = %0d | test_cfg.parallel_count = %0d", expected_count, test_cfg.parallel_transaction_count);
-                  wait(expected_count < test_cfg.parallel_transaction_count);
+                  wait(expected_count < test_cfg.parallel_transaction_count - 1);
                 end
-                if(actual_count > test_cfg.parallel_transaction_count) begin
+                if(actual_count > test_cfg.parallel_transaction_count - 1) begin
                   $display("NUMBER OF actual COUNT TX = %0d | test_cfg.parallel_count = %0d", actual_count, test_cfg.parallel_transaction_count);
-                  wait(actual_count < test_cfg.parallel_transaction_count);
+                  wait(actual_count < test_cfg.parallel_transaction_count - 1);
                 end
               end
               else begin
@@ -148,6 +184,7 @@ class serdes_scoreboard extends uvm_scoreboard;
 
                 //If both queue size greater than or equal to 1 then we have to pop their first element
                 exp = expected_q.pop_front(); // Pop the element of expected queue
+                `uvm_info(get_type_name(), $sformatf("EXPECTED PACKET OF SCOREBOARD exp = %p", exp), UVM_LOW)
                 expected_count++;
                 `uvm_info(get_type_name(), $sformatf("exp.mon_parallel_Rx0 = %b", exp.mon_parallel_Rx0), UVM_LOW)
                 act = actual_q.pop_front(); // Pop the element of actual queue
@@ -275,7 +312,8 @@ class serdes_scoreboard extends uvm_scoreboard;
 
   virtual function void check_phase(uvm_phase phase);
     if(expected_count == actual_count) begin
-      `uvm_info("Scoreboard_Check_Phase", $sformatf("Expected count is equal to actual count | Expected_count = %0d | actual count = %0d", expected_count, actual_count), UVM_LOW)
+      `uvm_info("Scoreboard_Check_Phase", $sformatf("Expected count is equal to actual count | Expected_count = %0d | actual count = %0d | matches = %0d | mismatch = %0d", expected_count, actual_count, match, mismatch), UVM_LOW)
+
     end
     else begin
       `uvm_error("Scoreboard_Check_Phase", $sformatf("Expected count is not equal to actual count | Expected_count = %0d | Actual count = %0d", expected_count, actual_count) )
