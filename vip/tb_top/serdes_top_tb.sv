@@ -22,7 +22,6 @@ module tb_top;
   real parallel_lanes = 10.0; // Parallel lanes width
   int serial_transaction_count; // Transaction count of serial 
   int parallel_transaction_count; // Transaction count of parallel
-  int no_of_agents; // No of agentd which is given from command line
 
   bit serdes_reset = 1; // Active High Reset 
   bit serial_clk = 0; // Serial clock
@@ -49,11 +48,6 @@ module tb_top;
         .Tx0_p(intf.Tx0_p),
         .Tx0_n(intf.Tx0_n)
     );
-
-    task reset_initiate(int asserted, int deasserted);
-      #(asserted) serdes_reset = 1;
-      #(deasserted) serdes_reset = 0;
-    endtask
 
     function real get_time_period_rounded(real frequency_hz, int decimal_places);
       real time_period, multiplier;
@@ -89,35 +83,84 @@ module tb_top;
     `uvm_info("Parallel CLK Period", $sformatf("Parallel CLK Period = %f ns", parallel_clk_period), UVM_LOW)
   end
 
-  // Serial Clock configuration
+  //Configuration of parallel clock and serial clock
+  //If reset is off then both clock immediately become zero
   initial begin
-    forever begin
-      if(serdes_reset == 0) begin
-        #((serial_clk_period) / 2.0) serial_clk = ~serial_clk;
-      end
-      else begin
-        serial_clk = 0;
-        wait(!serdes_reset);
-        serial_clk = 1;
-      end
-    end
-  end
-  
-  //Parallel clock configuration
-  initial begin
-    //#(serial_clk_period);
-    forever begin
-      if(serdes_reset == 0) begin
-        #((parallel_clk_period) / 2.0) parallel_clk = ~parallel_clk;
-      end
-      else begin
-        parallel_clk = 0;
-        wait(!serdes_reset);
-        parallel_clk = 1;
-      end
-    end
-  end
+    fork
+      
+      // Parallel Clock 
+      forever begin
+        fork
+          
+          // Thread 1
+          begin
+            if(serdes_reset == 0) begin
+              #((parallel_clk_period) / 2.0) parallel_clk = ~parallel_clk;
+            end
 
+            else begin
+              wait(!serdes_reset);
+            end
+          end
+
+          // Thread 2
+          begin
+            if(serdes_reset == 1) begin
+              parallel_clk = 0;
+            end
+
+            else begin
+              wait(serdes_reset);
+            end
+          end
+
+        join_any
+        disable fork;
+        if(serdes_reset == 1) begin
+          parallel_clk = 0;
+          wait(!serdes_reset);
+          parallel_clk = 1;
+        end
+
+      end
+
+      // Serial Clock
+      forever begin
+        fork
+          begin
+            if(serdes_reset == 0) begin
+              #((serial_clk_period) / 2.0) serial_clk = ~serial_clk;
+            end
+
+            else begin
+              wait(!serdes_reset);
+            end
+
+          end
+
+          begin
+
+            if(serdes_reset) begin
+              serial_clk = 0;
+            end
+
+            else begin
+              wait(serdes_reset);
+            end
+
+          end
+
+        join_any
+        disable fork;
+        if(serdes_reset == 1) begin
+          serial_clk = 0;
+          wait(!serdes_reset);
+          serial_clk = 1;
+        end
+      end
+
+    join
+  end
 
   
   // Here we set all the variables which is given from command line using config_db
@@ -125,15 +168,9 @@ module tb_top;
     uvm_config_db #(virtual serdes_interface)::set(null, "*", "vif", intf); // Virtual Interface Handle
     uvm_config_db#(virtual serdes_interface.DRIVER)::set(null, "uvm_test_top.env.*", "drv_vif", intf.DRIVER); // Virtual interface with Driver modport handle
     uvm_config_db#(virtual serdes_interface.MONITOR)::set(null, "uvm_test_top.env.*", "mon_vif", intf.MONITOR); // Virtual interface with Driver modport handle
-    uvm_config_db #(real)::set(uvm_root::get(), "uvm_test_top", "serial_clk_period", serial_clk_period); // Serial clk period
+    uvm_config_db #(real)::set(null, "uvm_test_top", "serial_clk_period", serial_clk_period); // Serial clk period
+    uvm_config_db #(int)::set(null, "*", "serdes_speed", serdes_speed); // Speed of serdes this is get in the transaction class for coverage purpose
     run_test("serdes_test");
   end 
   
-  initial begin
-    #(((serial_clk_period) / 1.0)) serdes_reset = 0; //Deassert of Reset
-  end
-
 endmodule : tb_top
-
-
- 
