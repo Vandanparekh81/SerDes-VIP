@@ -1,49 +1,28 @@
 // -------------------------------------------------------------------------------------------- //
-// This is test class 
-// This class basically create the environment component and it will create the env and sequence and start to sequence on the sequencer and it also check total number of transactions is equal to scoreboard actual transaction
+// File Name : serdes_opposite_data_for_tx_rx_test.sv
+// Author Name : Vandan Parekh
+// Propetier Name : ASICraft Technologies LLP.
+// Decription : This is opposite_data_for_tx_rx_test class 
 // This testcase generate opposite data of tx for rx side
 // -------------------------------------------------------------------------------------------- //
 
-class serdes_opposite_data_for_tx_rx_test extends uvm_test;
+class serdes_opposite_data_for_tx_rx_test extends serdes_base_test;
 
    // Factory registration of test class     
    `uvm_component_utils(serdes_opposite_data_for_tx_rx_test);
 
    // Properties declaration of test class
-   serdes_env env; // Serdes env class instance
    serdes_opposite_data_for_tx_rx_sequence seq[2]; // Two instance of sequence one for parallel sequencer and one for serial sequencer
-   serdes_test_config test_cfg; // Test config class Instance
-   int serial_transaction_count; // Serial transaction count
-   int parallel_transaction_count; // Parallel transaction count
-   real serial_clk_period;
-   real drain_time;
-   virtual serdes_interface vif; // Virtual Interface handle
-   string force_path = "tb_top.serdes_reset";
-   //serdes_transaction same_data;
    event synchro_between_seq;
 
   // Constructor of serdes_opposite_data_for_tx_rx_test class
   function new (string name, uvm_component parent);
     super.new(name, parent);
-    test_cfg = serdes_test_config::type_id::create("test_cfg"); // Creation of test_cfg class instance
   endfunction : new
 
   // Build phase of serdes test class
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
-    // Get interface from tb_top using config db
-    if(!uvm_config_db#(virtual serdes_interface)::get(this, "", "vif", vif))
-      `uvm_fatal("NO_VIF",{"virtual interface must be set for: ",get_full_name(),".vif"});
-
-    // Get Serdes Speed from tb_top using config db
-    if(!uvm_config_db#(real)::get(this, "", "serial_clk_period", serial_clk_period))
-      `uvm_fatal("NO_SERIAL_CLK_PERIOD",{"serial_clk_period must be set for: ",get_full_name()});
-
-    `uvm_info(get_type_name(), $sformatf("serial_clk_period = %f", serial_clk_period), UVM_LOW)
-    drain_time = (serial_clk_period * 20) * 1000;
-    `uvm_info(get_type_name(), $sformatf("Drain time = %0d ps", drain_time), UVM_LOW)
-
-    env = serdes_env::type_id::create("env", this); // Cretion of env class instance
   endfunction : build_phase
 
   // Connect phase of test class
@@ -54,27 +33,17 @@ class serdes_opposite_data_for_tx_rx_test extends uvm_test;
   // End of elaboration phase of test class
   virtual function void end_of_elaboration_phase(uvm_phase phase);
     super.end_of_elaboration_phase(phase);
-    `uvm_info("Test EOE Phase", $sformatf("Inside the EOE Phase of test class"), UVM_LOW)
-    uvm_top.print_topology();
   endfunction : end_of_elaboration_phase
 
   // Run phase of test class
   virtual task run_phase(uvm_phase phase);
     super.run_phase(phase);
     phase.raise_objection(this); // Objection is raised
-    //same_data = serdes_transaction::type_id::create("same_data");
-    //assert (same_data.randomize() with {Tx0 != 0; Rx0_p == Tx0;}); 
-    //`uvm_info(get_type_name(), $sformatf("SAME DATA.Tx0 = %b (%0d) | SAME DATA.Rx0_p = %b (%0d)", same_data.Tx0, same_data.Tx0, same_data.Rx0_p, same_data.Rx0_p), UVM_LOW)
-
     // Foreach loop of sequence instance here the sequence is created and if it is parallel sequence then is_parallel = 1 otherwise is_parallel = 0
     foreach(seq[i]) begin
       seq[i] = serdes_opposite_data_for_tx_rx_sequence::type_id::create($sformatf("seq[%0d]", i)); // Creation of sequence
       seq[i].is_parallel = env.agt[i*2].agt_cfg.is_parallel; // Is_parallel configuration
       `uvm_info(get_type_name(), $sformatf("seq[%0d].is_parallel = %b | env.agt[%0d].agt_cfg.is_parallel = %b", i,seq[i].is_parallel,i,env.agt[i*2].agt_cfg.is_parallel), UVM_LOW)
-      //seq[i].req= same_data; 
-      //  seq[i].req.Tx0 = same_data.Tx0; 
-      //  seq[i].req.Rx0_p = same_data.Rx0_p; 
-      //`uvm_info(get_type_name(), $sformatf("SEQUENCE REQ DATA seq[%0d].req.Tx0 = %b (%0d) | seq[%0d].req.Rx0_p = %b (%0d)", i,seq[i].req.Tx0,seq[i].req.Tx0,i,seq[i].req.Rx0_p, seq[i].req.Rx0_p), UVM_LOW)
       seq[i].synchro_seq = synchro_between_seq;
     end
 
@@ -87,6 +56,7 @@ class serdes_opposite_data_for_tx_rx_test extends uvm_test;
       begin
         #1000;
         uvm_hdl_force(force_path, 1'b0);
+        test_cfg.serdes_reset=0;
         `uvm_info("RESET", $sformatf("RESET_dEasserted"), UVM_LOW)
       end
       seq[0].start(env.agt[0].seqr); // Sequence is started on sequencer 1
@@ -100,14 +70,7 @@ class serdes_opposite_data_for_tx_rx_test extends uvm_test;
   // Report phase of test
   // Inside the report phase the transaction count is checked and if it is match with actual count of respective scoreboard then testcase is passed otherwise it is display uvm error as testcase is failed
   virtual function void report_phase(uvm_phase phase);
-    if((test_cfg.parallel_transaction_count == env.scb[0].match) && (test_cfg.serial_transaction_count == env.scb[1].match)) begin
-      `uvm_info("Report_Phase of test", $sformatf("Testcase Passed"), UVM_LOW)
-    end
-    
-    else begin
-      `uvm_error("Report phase of test",$sformatf("Testcase Failed"))
-    end
+    super.report_phase(phase);
   endfunction : report_phase
 
 endclass : serdes_opposite_data_for_tx_rx_test
-

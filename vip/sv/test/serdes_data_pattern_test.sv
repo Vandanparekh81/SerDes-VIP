@@ -1,48 +1,53 @@
-
-// -------------------------------------------------------------------------------------------- //
-// This is test class 
-// This class basically create the environment component and it will create the env and sequence and start to sequence on the sequencer and it also check total number of transactions is equal to scoreboard actual transaction
+// ---------------------------------------------------------------------------------------------- //
+// File Name : serdes_data_pattern_test.sv
+// Author Name : Vandan Parekh
+// Propetier Name : ASICraft Technologies LLP.
+// Decription : This is data_pattern_test class 
 // This testcase generate different patterns for verifying data_transaction
-// -------------------------------------------------------------------------------------------- //
+// ---------------------------------------------------------------------------------------------- //
 
-class serdes_data_pattern_test extends uvm_test;
+class serdes_data_pattern_test extends serdes_base_test;
 
-   // Factory registration of test class     
-   `uvm_component_utils(serdes_data_pattern_test);
+  // Factory registration of test class     
+  `uvm_component_utils(serdes_data_pattern_test);
 
-   // Properties declaration of test class
-   serdes_env env; // Serdes env class instance
-   serdes_data_pattern_sequence seq[2]; // Two instance of sequence one for parallel sequencer and one for serial sequencer
-   serdes_test_config test_cfg; // Test config class Instance
-   int serial_transaction_count; // Serial transaction count
-   int parallel_transaction_count; // Parallel transaction count
-   real serial_clk_period;
-   string force_path = "tb_top.serdes_reset";
-   real drain_time;
-   virtual serdes_interface vif; // Virtual Interface handle
+  // Properties declaration of test class
+  serdes_data_pattern_sequence seq[2]; // Two instance of sequence one for parallel sequencer and one for serial sequencer
+  serdes_transaction::data_pattern_e data_pattern_seq; // New field for data pattern
 
   // Constructor of serdes_test class
   function new (string name, uvm_component parent);
     super.new(name, parent);
-    test_cfg = serdes_test_config::type_id::create("test_cfg"); // Creation of test_cfg class instance
+    // Parse data pattern from command line
+    begin
+      string data_pattern_str;
+      if (!$value$plusargs("DATA_PATTERN=%s", data_pattern_str)) begin
+        `uvm_warning(get_type_name(), $sformatf("DATA_PATTERN not provided, defaulting to RANDOM"));
+        data_pattern_seq = serdes_transaction::RANDOM; // Default to RANDOM
+      end else begin
+        case (data_pattern_str)
+          "RANDOM":       data_pattern_seq = serdes_transaction::RANDOM;
+          "ALL_ZERO":     data_pattern_seq = serdes_transaction::ALL_ZERO;
+          "ALL_ONE":      data_pattern_seq = serdes_transaction::ALL_ONE;
+          "ALTERNATING_5": data_pattern_seq = serdes_transaction::ALTERNATING_5;
+          "ALTERNATING_A": data_pattern_seq = serdes_transaction::ALTERNATING_A;
+          "WALKING_1":    data_pattern_seq = serdes_transaction::WALKING_1;
+          "WALKING_0":    data_pattern_seq = serdes_transaction::WALKING_0;
+          "INCREMENT":    data_pattern_seq = serdes_transaction::INCREMENT;
+          "DECREMENT":    data_pattern_seq = serdes_transaction::DECREMENT;
+          default: begin
+            `uvm_warning(get_type_name(), $sformatf("Invalid DATA_PATTERN=%s, defaulting to RANDOM", data_pattern_str));
+            data_pattern_seq = serdes_transaction::RANDOM;
+          end
+        endcase
+        `uvm_info(get_type_name(), $sformatf("Data Pattern set to %s", data_pattern_seq.name()), UVM_LOW)
+      end
+    end
   endfunction : new
 
   // Build phase of serdes test class
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
-    // Get interface from tb_top using config db
-    if(!uvm_config_db#(virtual serdes_interface)::get(this, "", "vif", vif))
-      `uvm_fatal("NO_VIF",{"virtual interface must be set for: ",get_full_name(),".vif"});
-
-    // Get Serdes Speed from tb_top using config db
-    if(!uvm_config_db#(real)::get(this, "", "serial_clk_period", serial_clk_period))
-      `uvm_fatal("NO_SERIAL_CLK_PERIOD",{"serial_clk_period must be set for: ",get_full_name()});
-
-    `uvm_info(get_type_name(), $sformatf("serial_clk_period = %f", serial_clk_period), UVM_LOW)
-    drain_time = (serial_clk_period * 20) * 1000;
-    `uvm_info(get_type_name(), $sformatf("Drain time = %0d ps", drain_time), UVM_LOW)
-
-    env = serdes_env::type_id::create("env", this); // Cretion of env class instance
   endfunction : build_phase
 
   // Connect phase of test class
@@ -53,8 +58,6 @@ class serdes_data_pattern_test extends uvm_test;
   // End of elaboration phase of test class
   virtual function void end_of_elaboration_phase(uvm_phase phase);
     super.end_of_elaboration_phase(phase);
-    `uvm_info("Driver EOE Phase", $sformatf("Inside the EOE Phase of driver class"), UVM_LOW)
-    uvm_top.print_topology();
   endfunction : end_of_elaboration_phase
 
   // Run phase of test class
@@ -66,7 +69,7 @@ class serdes_data_pattern_test extends uvm_test;
     foreach(seq[i]) begin
       seq[i] = serdes_data_pattern_sequence::type_id::create($sformatf("seq[%0d]", i)); // Creation of sequence
       seq[i].is_parallel = env.agt[i*2].agt_cfg.is_parallel; // Is_parallel configuration
-      seq[i].data_pattern_seq = serdes_transaction::WALKING_1;
+      seq[i].data_pattern_seq = data_pattern_seq;
       `uvm_info(get_type_name(), $sformatf("seq[%0d].is_parallel = %b | env.agt[%0d].agt_cfg.is_parallel = %b", i,seq[i].is_parallel,i,env.agt[i*2].agt_cfg.is_parallel), UVM_LOW)
     end
 
@@ -79,12 +82,12 @@ class serdes_data_pattern_test extends uvm_test;
       begin
         #1000;
         uvm_hdl_force(force_path, 1'b0);
+        test_cfg.serdes_reset = 0;
         `uvm_info("RESET", $sformatf("RESET_dEasserted"), UVM_LOW)
       end
       seq[0].start(env.agt[0].seqr); // Sequence is started on sequencer 1
       seq[1].start(env.agt[2].seqr); // Sequence is started on sequencer 2
     join
-
 
     phase.phase_done.set_drain_time(this, drain_time); // Drain time 
     phase.drop_objection(this); // Objection dropped
@@ -94,14 +97,7 @@ class serdes_data_pattern_test extends uvm_test;
   // Report phase of test
   // Inside the report phase the transaction count is checked and if it is match with actual count of respective scoreboard then testcase is passed otherwise it is display uvm error as testcase is failed
   virtual function void report_phase(uvm_phase phase);
-    if((test_cfg.parallel_transaction_count == env.scb[0].match) && (test_cfg.serial_transaction_count == env.scb[1].match)) begin
-      `uvm_info("Report_Phase of test", $sformatf("Testcase Passed"), UVM_LOW)
-    end
-    
-    else begin
-      `uvm_error("Report phase of test",$sformatf("Testcase Failed"))
-    end
+    super.report_phase(phase);
   endfunction : report_phase
-
 
 endclass : serdes_data_pattern_test

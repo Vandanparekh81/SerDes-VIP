@@ -1,47 +1,27 @@
 // -------------------------------------------------------------------------------------------- //
-// This is test class 
-// This class basically create the environment component and it will create the env and sequence and start to sequence on the sequencer and it also check total number of transactions is equal to scoreboard actual transaction
+// File Name : serdes_sanity_test.sv
+// Author Name : Vandan Parekh
+// Propetier Name : ASICraft Technologies LLP.
+// Decription : This is sanity_test class 
+// This testcase create a single transaction for both side
 // -------------------------------------------------------------------------------------------- //
 
-class serdes_sanity_test extends uvm_test;
+class serdes_sanity_test extends serdes_base_test;
 
    // Factory registration of test class     
    `uvm_component_utils(serdes_sanity_test);
 
    // Properties declaration of test class
-   serdes_env env; // Serdes env class instance
    serdes_sequence seq[2]; // Two instance of sequence one for parallel sequencer and one for serial sequencer
-   serdes_test_config test_cfg; // Test config class Instance
-   int serial_transaction_count; // Serial transaction count
-   int parallel_transaction_count; // Parallel transaction count
-   real serial_clk_period;
-   real drain_time;
-   virtual serdes_interface vif; // Virtual Interface handle
-   string force_path = "tb_top.serdes_reset";
-
 
   // Constructor of serdes_sanity_test class
   function new (string name, uvm_component parent);
     super.new(name, parent);
-    test_cfg = serdes_test_config::type_id::create("test_cfg"); // Creation of test_cfg class instance
   endfunction : new
 
   // Build phase of serdes test class
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
-    // Get interface from tb_top using config db
-    if(!uvm_config_db#(virtual serdes_interface)::get(this, "", "vif", vif))
-      `uvm_fatal("NO_VIF",{"virtual interface must be set for: ",get_full_name(),".vif"});
-
-    // Get Serdes Speed from tb_top using config db
-    if(!uvm_config_db#(real)::get(this, "", "serial_clk_period", serial_clk_period))
-      `uvm_fatal("NO_SERIAL_CLK_PERIOD",{"serial_clk_period must be set for: ",get_full_name()});
-
-    `uvm_info(get_type_name(), $sformatf("serial_clk_period = %f", serial_clk_period), UVM_LOW)
-    drain_time = (serial_clk_period * 20) * 1000;
-    `uvm_info(get_type_name(), $sformatf("Drain time = %0d ps", drain_time), UVM_LOW)
-
-    env = serdes_env::type_id::create("env", this); // Cretion of env class instance
   endfunction : build_phase
 
   // Connect phase of test class
@@ -52,8 +32,6 @@ class serdes_sanity_test extends uvm_test;
   // End of elaboration phase of test class
   virtual function void end_of_elaboration_phase(uvm_phase phase);
     super.end_of_elaboration_phase(phase);
-    `uvm_info("Driver EOE Phase", $sformatf("Inside the EOE Phase of driver class"), UVM_LOW)
-    uvm_top.print_topology();
   endfunction : end_of_elaboration_phase
 
   // Run phase of test class
@@ -77,6 +55,7 @@ class serdes_sanity_test extends uvm_test;
       begin
         #1000;
         uvm_hdl_force(force_path, 1'b0);
+        test_cfg.serdes_reset=0;
         `uvm_info("RESET", $sformatf("RESET_dEasserted"), UVM_LOW)
       end
       seq[0].start(env.agt[0].seqr); // Sequence is started on sequencer 1
@@ -90,14 +69,7 @@ class serdes_sanity_test extends uvm_test;
   // Report phase of test
   // Inside the report phase the transaction count is checked and if it is match with actual count of respective scoreboard then testcase is passed otherwise it is display uvm error as testcase is failed
   virtual function void report_phase(uvm_phase phase);
-    if((test_cfg.parallel_transaction_count == env.scb[0].match) && (test_cfg.serial_transaction_count == env.scb[1].match)) begin
-      `uvm_info("Report_Phase of test", $sformatf("Testcase Passed"), UVM_LOW)
-    end
-    
-    else begin
-      `uvm_error("Report phase of test",$sformatf("Testcase Failed"))
-    end
+    super.report_phase(phase);
   endfunction : report_phase
-
 
 endclass : serdes_sanity_test
