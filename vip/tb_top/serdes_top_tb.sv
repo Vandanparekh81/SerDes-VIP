@@ -1,6 +1,9 @@
 // -------------------------------------------------------------------------------- //
-// This is tb_top component which is responsible to create test inside the top  clock configuration and interface to dut connection is happen inside the top
-// we take instance of interface and we provide the input signal of interface for example clock and we also take instance of dut and provide them interface signals and this the way to connection of interface and DUT
+// File Name : serdes_top_tb.sv
+// Author Name : Vandan Parekh
+// Propetier Name : ASICraft Technologies LLP
+// Description : This Tb Top module inside this module parallel clock serial
+// clock configuration is happen and also it connect the dut with interface. 
 // -------------------------------------------------------------------------------- // 
 
 // importing the serdes package file which include all the component files
@@ -12,17 +15,11 @@ import serdes_pkg::*;
 module tb_top;
 
   // Properties declaration of top
-  parameter WIDTH = 10; // Width of parallel data
   int serdes_speed; // Speed of transfer data which is given from command line
-  real speed_frequency;// Frequency of given speed from command line
   real serial_freq; // Frequency of serial clock
   real parallel_freq; // Frequency of parallel clock
   real serial_clk_period; // Serial clock period
   real parallel_clk_period; // Parallel clock period
-  real parallel_lanes = 10.0; // Parallel lanes width
-  int serial_transaction_count; // Transaction count of serial 
-  int parallel_transaction_count; // Transaction count of parallel
-
   bit serdes_reset = 1; // Active High Reset 
   bit serial_clk = 0; // Serial clock
   bit parallel_clk = 1; // Parallel Clock
@@ -69,15 +66,13 @@ module tb_top;
       if(serdes_speed > 10 || serdes_speed < 1) begin
         `uvm_fatal("No support for Serdes_Speed",{"serdes speed must be between 1 to 10 G"})
       end
-      speed_frequency = serdes_speed * 1000000000.0;  
-      `uvm_info("Speed Frequency", $sformatf("Serdes_speed frequency is %0f", speed_frequency), UVM_LOW)
+      serial_freq = serdes_speed * 1000000000.0;  
+      `uvm_info("Speed Frequency", $sformatf("Serdes_speed frequency is %0f", serial_freq), UVM_LOW)
     end
 
     //Calculation for clock configuration
-    serial_freq = speed_frequency; // Serial frequency which is frequency of speed which is given from command line
-    //parallel_freq = speed_frequency / parallel_lanes; // Parallel frequency which is division of serdes speed by parallel lanes
     serial_clk_period = get_time_period_rounded(serial_freq, 2); //serial Clock period is Inverse of serial frequency taking into nanoseconds we take 1e9
-    parallel_clk_period = serial_clk_period * 10.0; //parallel Clock period is Inverse of parallel frequency taking into nanoseconds we take 1e9
+    parallel_clk_period = serial_clk_period * WIDTH; //parallel Clock period is Inverse of parallel frequency taking into nanoseconds we take 1e9
 
     `uvm_info("Serial CLK Period", $sformatf("Serial CLK Period = %f ns", serial_clk_period), UVM_LOW)
     `uvm_info("Parallel CLK Period", $sformatf("Parallel CLK Period = %f ns", parallel_clk_period), UVM_LOW)

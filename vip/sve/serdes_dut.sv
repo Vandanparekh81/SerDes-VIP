@@ -1,8 +1,14 @@
-// ----------------------------------------------------------------------- //
+// -------------------------------------------------------------------------------------------- //
+// File Name : serdes_dut.sv
+// Author Name : Vandan Parekh
+// Propetier Name : ASICraft Technologies LLP.
+// Decription : This is sanity_dut 
 // This is dut of serializer and deserializer 
-// Serializer DUT convert parallel data into serial data and gives serial data  at every rising edge of the serial clock
-// Deserializer DUT Convert serial data into parallel data and give parallel data at every rising edge of parallel clock
-// ----------------------------------------------------------------------- //
+// Serializer DUT convert parallel data into serial data and gives serial data  at every 
+// rising edge of the serial clock.
+// Deserializer DUT Convert serial data into parallel data and give parallel data at every 
+// rising edge of parallel clock.
+// -------------------------------------------------------------------------------------------- //
 
 // Timescale of Dut
 `timescale 1ns/1ps
