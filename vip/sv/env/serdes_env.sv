@@ -1,6 +1,11 @@
 // ---------------------------------------------------------------------------------------------------------- //
-// This serdes environment class
-// This env class consists agent and scoreboard in my tb_architecture there are 4 agents and two scoreboard and this all creation is happen inside build phase and also the connection between monitor and scoreboards is happen here
+// File Name : serdes_env.sv
+// Author Name : Vandan Parekh
+// Propetier Name : ASICraft Technologies LLP.
+// Decription : This serdes environment class
+// This env class consists agent and scoreboard in my tb_architecture there are 4 agents and two scoreboard 
+// and this all creation is happen inside build phase and also the connection between monitor and scoreboards 
+// is happen here
 // ---------------------------------------------------------------------------------------------------------- //
 
 class serdes_env extends uvm_env;
@@ -43,7 +48,7 @@ class serdes_env extends uvm_env;
     foreach(agt[i]) begin
       agt[i] = serdes_agent::type_id::create($sformatf("agt[%0d]", i), this); // creation of agent
       agt[i].agt_cfg = cfg[i]; // according to agent nu,ber config is also given
-      `uvm_info(get_type_name(), $sformatf("agt[%0d].agt_cfg.is_parallel = %b | agt[%0d].agt_cfg.is_active = %b", i,agt[i].agt_cfg.is_parallel,i, agt[i].agt_cfg.is_active), UVM_LOW)
+      `uvm_info(get_type_name(), $sformatf("agt[%0d].agt_cfg.is_parallel = %b | agt[%0d].agt_cfg.is_active = %b", i,agt[i].agt_cfg.is_parallel,i, agt[i].agt_cfg.is_active), UVM_HIGH)
     end
 
     // There are two scoreboards in my testbench architecture one is only stores tx data Tx0 and Tx0_p and Tx0_n and compare that if they match then pass otherwise fail

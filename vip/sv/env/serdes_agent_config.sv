@@ -1,9 +1,13 @@
-//---------------------------------------------------------------------------------------------------------//
-// This is agent config class
-// In my tb architecture there are 4 agents two parallel(Active, Passive) and  two serial(Active, passive) make 4 agents from one agent class this agent_config class help me, it basically give reusability 
-// This class basically configure is_parallel = 1 if it is parallel agent otherwise 0 and it is configure active = UVM_ACTIVE if it is active otherwise it will configure as a UVM_PASSIVE
-// -------------------------------------------------------------------------------------------------------//
-
+//----------------------------------------------------------------------------//
+//File Name : serdes_agent_config.sv
+//Author Name : Vandan Parekh
+//Propetier Name : ASICraft Technologies LLP.
+//Decription : This is agent config class in my serdes architecture there 
+//are 4 agents two parallel and two serial which is instance of one agent 
+//class all 4 agent have different characteristics so that configuration 
+//is done by agent_config class. It is the component that configure 4 
+//agents
+// ---------------------------------------------------------------------------//
 class serdes_agent_config extends uvm_object;
 
   // Factory Registration
@@ -47,7 +51,6 @@ class serdes_agent_config extends uvm_object;
     else begin
       active = UVM_PASSIVE;
     end
-
 
     //It is also set this agent or passive
     is_active = (active == UVM_ACTIVE) ? 1 : 0 ; 

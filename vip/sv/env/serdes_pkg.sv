@@ -1,12 +1,18 @@
 // -------------------------------------------------------------------------------------------- //
-// This is package that basically contain all the files of vip and take care compilation flow
+// File Name : serdes_pkg.sv
+// Author Name : Vandan Parekh
+// Propetier Name : ASICraft Technologies LLP.
+// Decription : This is package that basically contain all the files of vip and take care 
+// compilation flow
 // -------------------------------------------------------------------------------------------- //
 
 package serdes_pkg; 
   // uvm source code files
   import uvm_pkg::*;
   `include "uvm_macros.svh"
+  `include "serdes_parameter_config.sv"
   `include "../seq_lib/serdes_transaction.sv" // Serdes_transaction file
+  `include "../seq_lib/serdes_base_sequence.sv" // Serdes base sequence file
   `include "../seq_lib/serdes_sequence.sv" // Serdes sequence file
   `include "../seq_lib/serdes_same_data_for_tx_rx_sequence.sv" // Sequence for same_data_for_tx_rx testcase
   `include "../seq_lib/serdes_opposite_data_for_tx_rx_sequence.sv" // Sequence for opposite_data_for_tx_rx testcase
@@ -21,6 +27,7 @@ package serdes_pkg;
   `include "serdes_subscriber.sv" // Serdes subscriber file
   `include "serdes_agent.sv" // Serdes agent file
   `include "serdes_env.sv" // Serdes environment file
+  `include "../test/serdes_base_test.sv" // Serdes base test component file
   `include "../test/serdes_sanity_test.sv" // Serdes sanity test component file
   `include "../test/serdes_multiple_transaction_test.sv" // Serdes multiple transaction test file
   `include "../test/serdes_data_pattern_test.sv" // Serdes data pattern test component file

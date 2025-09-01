@@ -1,8 +1,16 @@
-// ------------------------------------------------------------------------------ //
+// ------------------------------------------------------------------------------------ //
+// File Name : serdes_scoreboard.sv
+// Author Name : Vandan Parekh
+// Propetier Name : ASICraft Technologies LLP.
+// Decription : This serdes scoreboard class
 // This is scoreboard class
-// This scoreboard class takes data from monitor and it will compare expected data and actual data of monitor and it will give result pass if they match else it will give result as a fail
-// There are two scoreboard onein serdes tb_architecture one is tx scoreboard and one is rx scoreboard and it will take data from 4 monitor so we have to use `uvm_analysis_imp_decl that basically give two connection of one scoreboard
-// ------------------------------------------------------------------------------ //
+// This scoreboard class takes data from monitor and it will compare expected data
+// and actual data of monitor and it will give result pass if they match else it 
+// will give result as a fail
+// There are two scoreboard in serdes tb_architecture one is tx scoreboard and one
+// is rx scoreboard and it will take data from 4 monitor so we have to use 
+// `uvm_analysis_imp_decl that basically give two connection of one scoreboard
+// ------------------------------------------------------------------------------------ //
 
 // using below macro we take two implementation port
 `uvm_analysis_imp_decl(_expected) // This port is for expected data
@@ -29,6 +37,7 @@ class serdes_scoreboard extends uvm_scoreboard;
   string event_name;
   serdes_transaction data_error_tr;
   serdes_transaction data_error_cpy;
+  bit scoreboard_enable = 1;
   
   //serdes_transaction cpy;
 
@@ -46,10 +55,8 @@ class serdes_scoreboard extends uvm_scoreboard;
     super.build_phase(phase);
     expected_imp = new("expected_imp", this); // Creation expected implementation port
     actual_imp = new("actual_imp", this); // Creation of actual implmentation port
-    `uvm_info(get_type_name(), $sformatf("Inside Build phase of scoreboard"), UVM_LOW)
-    `uvm_info(get_type_name(), $sformatf("Is TX is_tx = %b", is_tx), UVM_LOW)
-    
-    
+    `uvm_info(get_type_name(), $sformatf("Inside Build phase of scoreboard"), UVM_DEBUG)
+    `uvm_info(get_type_name(), $sformatf("Is TX is_tx = %b", is_tx), UVM_HIGH)
   endfunction : build_phase
 
   // Connect phase of serdes scoreboard
@@ -60,20 +67,23 @@ class serdes_scoreboard extends uvm_scoreboard;
   // If monitor send expected packet then this method is called this method basically copy that packet and push back into the expected queue
   function void write_expected(serdes_transaction tr);
     serdes_transaction cpy = serdes_transaction::type_id::create("cpy"); // Creation of copy packet
-    `uvm_info(get_type_name(), $sformatf("SCOREBOARD Received expected transaction: Tx0=%b, mon_parallel_Tx0=%b", tr.Tx0, tr.mon_parallel_Tx0), UVM_LOW)
-    if(!data_error_injection) begin
-      cpy.copy(tr); // Copy method is called
-      expected_q.push_back(cpy); // Store into expected queue
-      `uvm_info(get_type_name(), $sformatf("Received expected transaction: Tx0=%b, mon_parallel_Tx0=%b", cpy.Tx0, cpy.mon_parallel_Tx0), UVM_LOW)
+    if(scoreboard_enable) begin
+      if(!data_error_injection) begin
+        cpy.copy(tr); // Copy method is called
+        expected_q.push_back(cpy); // Store into expected queue
+        `uvm_info(get_type_name(), $sformatf("Received expected transaction: Tx0=%b, mon_parallel_Tx0=%b", cpy.Tx0, cpy.mon_parallel_Tx0), UVM_LOW)
+      end
     end
   endfunction
   
   // If monitor send actual packet then this method is called this method basically copy that packet and store into actual queue
   function void write_actual(serdes_transaction tr);
     serdes_transaction cpy = serdes_transaction::type_id::create("cpy"); //Creation of copy object
-    cpy.copy(tr); // Copy method is called
-    actual_q.push_back(cpy); // Store into expected queue
-    `uvm_info(get_type_name(), $sformatf("Received actual transaction: Tx0=%b, mon_parallel_Tx0=%b", cpy.Tx0, cpy.mon_parallel_Tx0), UVM_LOW)
+    if(scoreboard_enable) begin
+      cpy.copy(tr); // Copy method is called
+      actual_q.push_back(cpy); // Store into expected queue
+      `uvm_info(get_type_name(), $sformatf("Received actual transaction: Tx0=%b, mon_parallel_Tx0=%b", cpy.Tx0, cpy.mon_parallel_Tx0), UVM_LOW)
+    end
   endfunction
 
   // Below function compare expected and actual tx packet if they match then this function will return 1 otherwise it will return zero
@@ -99,7 +109,7 @@ class serdes_scoreboard extends uvm_scoreboard;
     // Comparison of actual and expected tx packet if they match it will satisfy below condition otherwise it will return zero
     if(exp.mon_parallel_Rx0 == act.Rx0) begin
       `uvm_info(get_type_name(), $sformatf("[Scoreboard Rx] COMPARISON RX PASSED | exp.mon_parallel_Rx0 = %b | exp_mon_parallel_Rx0 = %0d | act.Rx0 = %b | act.Rx0 = %0d", exp.mon_parallel_Rx0,exp.mon_parallel_Rx0,act.Rx0,act.Rx0), UVM_LOW)
-      `uvm_info(get_type_name(), $sformatf("[Scoreboard Rx] COMPARISON RX PASSED"), UVM_LOW)
+      `uvm_info(get_type_name(), $sformatf("[Scoreboard Rx] COMPARISON RX PASSED"), UVM_DEBUG)
       return 1;
     end
     
@@ -117,17 +127,17 @@ class serdes_scoreboard extends uvm_scoreboard;
       fork
         forever begin
         event_name = (is_tx) ? "tx_exp_event" : "rx_exp_event";
-        `uvm_info(get_type_name(), $sformatf("EVENT NAME = %s", event_name), UVM_LOW)
+        `uvm_info(get_type_name(), $sformatf("EVENT NAME = %s", event_name), UVM_HIGH)
           exp_event = uvm_event_pool::get_global(event_name);
           if(exp_event == null) begin
             `uvm_fatal(get_type_name(), $sformatf("exp_event is null for %s", event_name))
           end
 
-      `uvm_info(get_type_name(), $sformatf("[Scoreboard Rx] Wait TRIGGER bEFORE"), UVM_LOW)
+      `uvm_info(get_type_name(), $sformatf("[Scoreboard Rx] Wait TRIGGER bEFORE"), UVM_DEBUG)
           exp_event.wait_trigger();
-      `uvm_info(get_type_name(), $sformatf("[Scoreboard Rx] Wait TRIGGER AFter"), UVM_LOW)
+      `uvm_info(get_type_name(), $sformatf("[Scoreboard Rx] Wait TRIGGER AFter"), UVM_DEBUG)
           $cast(data_error_tr, exp_event.get_trigger_data());
-          `uvm_info(get_type_name(), $sformatf("Transaction Received"), UVM_LOW)
+          `uvm_info(get_type_name(), $sformatf("Transaction Received"), UVM_DEBUG)
           data_error_cpy = serdes_transaction::type_id::create("data_error_cpy");
           data_error_cpy.copy(data_error_tr);
           data_error_cpy.mon_parallel_Rx0 = data_error_cpy.Rx0_p;
@@ -148,11 +158,11 @@ class serdes_scoreboard extends uvm_scoreboard;
           begin // Loop 3
 
             // We have to do scoreboarding if it is not in reset state
-            // `uvm_info(get_type_name(), $sformatf("Inside Scoreboard Run Phase"), UVM_LOW)
+            // `uvm_info(get_type_name(), $sformatf("Inside Scoreboard Run Phase"), UVM_DEBUG)
             if(!test_cfg.serdes_reset) begin // Loop 4
 
               // We have to start scoreboarding if we have both queue size greter than or equal to 1 otherwise we have to wait to become queue size 1 that part is written in else loop
-              //`uvm_info(get_type_name(), $sformatf("Inside Scoreboard Run Phase before actual packet is got"), UVM_LOW)
+              //`uvm_info(get_type_name(), $sformatf("Inside Scoreboard Run Phase before actual packet is got"), UVM_DEBUG)
               wait(actual_q.size() >= 1);
               wait(expected_q.size() >= 1);
               if(is_tx) begin
@@ -177,18 +187,18 @@ class serdes_scoreboard extends uvm_scoreboard;
               end
 
                 
-              //`uvm_info(get_type_name(), $sformatf("Inside Scoreboard Run Phase after WAIT is got"), UVM_LOW)
-              `uvm_info(get_type_name(), $sformatf("PACKET SIZE Inside Scoreboard Run Phase actual packet is got actual_q.size = %0d | Expected_q.size = %0d", actual_q.size(), expected_q.size()), UVM_LOW)
+              //`uvm_info(get_type_name(), $sformatf("Inside Scoreboard Run Phase after WAIT is got"), UVM_DEBUG)
+              `uvm_info(get_type_name(), $sformatf("PACKET SIZE Inside Scoreboard Run Phase actual packet is got actual_q.size = %0d | Expected_q.size = %0d", actual_q.size(), expected_q.size()), UVM_HIGH)
               if(expected_q.size() >= 1) begin // Loop 5
-                //`uvm_info(get_type_name(), $sformatf("Inside Scoreboard Run Phase Expected packet condition"), UVM_LOW)
+                //`uvm_info(get_type_name(), $sformatf("Inside Scoreboard Run Phase Expected packet condition"), UVM_DEBUG)
 
                 //If both queue size greater than or equal to 1 then we have to pop their first element
                 exp = expected_q.pop_front(); // Pop the element of expected queue
-                `uvm_info(get_type_name(), $sformatf("EXPECTED PACKET OF SCOREBOARD exp = %p", exp), UVM_LOW)
+                `uvm_info(get_type_name(), $sformatf("EXPECTED PACKET OF SCOREBOARD exp = %p", exp), UVM_HIGH)
                 expected_count++;
-                `uvm_info(get_type_name(), $sformatf("exp.mon_parallel_Rx0 = %b", exp.mon_parallel_Rx0), UVM_LOW)
+                `uvm_info(get_type_name(), $sformatf("exp.mon_parallel_Rx0 = %b", exp.mon_parallel_Rx0), UVM_HIGH)
                 act = actual_q.pop_front(); // Pop the element of actual queue
-                `uvm_info(get_type_name(), $sformatf("act.Rx0 = %b", act.Rx0), UVM_LOW)
+                `uvm_info(get_type_name(), $sformatf("act.Rx0 = %b", act.Rx0), UVM_HIGH)
                 actual_count++;
 
                 //In the tb_Architecture we have two instance of scoreboard, one instance is doing comparison of Tx input and Tx output and second instance is doing comparison of rx input and rx output
@@ -197,7 +207,7 @@ class serdes_scoreboard extends uvm_scoreboard;
                 if(is_tx) begin // Loop 6
 
                   //Compare tx is function that returns 1 if comparison match otherwise it is return 0                   
-                `uvm_info(get_type_name(), $sformatf("Inside Scoreboard Run Phase Tx scoreboard condition"), UVM_LOW)
+                `uvm_info(get_type_name(), $sformatf("Inside Scoreboard Run Phase Tx scoreboard condition"), UVM_DEBUG)
                   if(compare_tx(exp, act)) begin // Loop 7
                     match++; // if return 1 then we have to plus match 
                   end // Loop 7 end
@@ -213,7 +223,7 @@ class serdes_scoreboard extends uvm_scoreboard;
                   // If it is rx scoreboard then we have to compare rx input and rx output
                   
                   //compare_rx is function that returns 1 if comparison match otherwise it will to return 0
-                  //`uvm_info(get_type_name(), $sformatf("Inside Scoreboard Run Phase Rx scoreboard condition"), UVM_LOW)
+                  //`uvm_info(get_type_name(), $sformatf("Inside Scoreboard Run Phase Rx scoreboard condition"), UVM_DEBUG)
                   if(compare_rx(exp, act)) begin // loop 10
                     match++; // If return 1 then match++
                   end // loop 10
@@ -296,7 +306,7 @@ class serdes_scoreboard extends uvm_scoreboard;
                 expected_q.delete();
                 expected_count = 0;
                 actual_count = 0;
-                `uvm_info(get_type_name(), $sformatf("Reset Expected queue is flushed and expected and actual count set to zero"), UVM_LOW)
+                `uvm_info(get_type_name(), $sformatf("Reset Expected queue is flushed and expected and actual count set to zero"), UVM_DEBUG)
               end
               wait(!test_cfg.serdes_reset);
             end
@@ -311,12 +321,14 @@ class serdes_scoreboard extends uvm_scoreboard;
   endtask : run_phase
 
   virtual function void check_phase(uvm_phase phase);
-    if(expected_count == actual_count) begin
-      `uvm_info("Scoreboard_Check_Phase", $sformatf("Expected count is equal to actual count | Expected_count = %0d | actual count = %0d | matches = %0d | mismatch = %0d", expected_count, actual_count, match, mismatch), UVM_LOW)
+    if(scoreboard_enable) begin
+      if(expected_count == actual_count) begin
+        `uvm_info("Scoreboard_Check_Phase", $sformatf("Expected count is equal to actual count | Expected_count = %0d | actual count = %0d | matches = %0d | mismatch = %0d", expected_count, actual_count, match, mismatch), UVM_LOW)
 
-    end
-    else begin
-      `uvm_error("Scoreboard_Check_Phase", $sformatf("Expected count is not equal to actual count | Expected_count = %0d | Actual count = %0d", expected_count, actual_count) )
+      end
+      else begin
+        `uvm_error("Scoreboard_Check_Phase", $sformatf("Expected count is not equal to actual count | Expected_count = %0d | Actual count = %0d", expected_count, actual_count) )
+      end
     end
   endfunction : check_phase
 

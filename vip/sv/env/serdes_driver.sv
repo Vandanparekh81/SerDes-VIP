@@ -1,8 +1,11 @@
-//-----------------------------------------------------------------------------------//
-// This is driver class
-// This is responsible to drive transactions from sequencer to interface
-// This driver component is resusable in my testbench architecture there are two active agent and there are two passive agent and so two active agent driver has a different task one is drive serial data and one is drive parallel data  so this both driver task that can be taken by this driver
-//-----------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------//
+// File Name : serdes_driver.sv
+// Author Name : Vandan Parekh
+// Propetier Name : ASICraft Technologies LLP.
+// Decription : This is driver class in my serdes architecture there are 2
+// driver one parallel which drives parallel data on every posedge of parallel 
+// and one serial drives serial data on every posedge of serial clock
+//--------------------------------------------------------------------------------//
 
 // Macro for using interface modport and clocking block of driver 
 `define DRIV_IF vif.driver_cb
@@ -11,7 +14,6 @@ class serdes_driver extends uvm_driver #(serdes_transaction);
 
   // Factory registration of driver class
   `uvm_component_utils(serdes_driver)
-  parameter WIDTH = 10;
 
   //Properties declaration of driver
   virtual serdes_interface.DRIVER vif; //Virtual interface handle 
@@ -26,20 +28,20 @@ class serdes_driver extends uvm_driver #(serdes_transaction);
   //Build phase of driver
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
-    `uvm_info("Driver Build Phase", $sformatf("Inside the build phase of driver class"), UVM_LOW)
+    `uvm_info("Driver Build Phase", $sformatf("Inside the build phase of driver class"), UVM_DEBUG)
 
     //We get interface using config_db which is set from top module using config_db
     if(!uvm_config_db#(virtual serdes_interface.DRIVER)::get(this, "", "drv_vif", vif))
       `uvm_fatal("NO_VIF",{"virtual interface must be set for: ",get_full_name(),".vif"});
     
-    `uvm_info(get_type_name(), $sformatf("BUILD parallel_driver = %b", parallel_driver), UVM_LOW)
+    `uvm_info(get_type_name(), $sformatf("BUILD parallel_driver = %b", parallel_driver), UVM_HIGH)
 
   endfunction : build_phase
   
   //Connect phase of driver
   virtual function void connect_phase(uvm_phase phase);
     super.connect_phase(phase);
-    `uvm_info("Driver Connect Phase", $sformatf("Inside the Connect Phase of driver class"), UVM_LOW)
+    `uvm_info("Driver Connect Phase", $sformatf("Inside the Connect Phase of driver class"), UVM_DEBUG)
   endfunction : connect_phase
   
   //Run phase of driver
@@ -54,8 +56,10 @@ class serdes_driver extends uvm_driver #(serdes_transaction);
           begin
             
             if(!vif.serdes_reset) begin
-              
+             
+              `uvm_info(get_type_name(), $sformatf("Before Get Next item"), UVM_DEBUG)
               seq_item_port.get_next_item(req);// Get the transaction from sequencer
+              `uvm_info(get_type_name(), $sformatf("After Get Next item req.Tx0 = %b req.Rx0_p = %b", req.Tx0, req.Rx0_p), UVM_DEBUG)
               seq_item_done = 1;
               drive(parallel_driver); // Drive task if parallel driver is called this task then it will drive parallel data to interface otherwise it will drive serial data
             end

@@ -1,8 +1,14 @@
-//--------------------------------------------------------------------------------------------------/
-// This is monitor class
-// monitor class basically samples the signal from interface and make packet of all signals and send to scoreboard using uvm_analysis_port.
-// This is reusable monitor class there are 4 agents in my testbench architecture and that has all different task that can be implemented inside this monitor.
-//--------------------------------------------------------------------------------------------------/
+//-------------------------------------------------------------------------------------------------------/
+// File Name : serdes_monitor.sv
+// Author Name : Vandan Parekh
+// Propetier Name : ASICraft Technologies LLP.
+// Decription : This is monitor class
+// monitor class basically samples the signal from interface and make packet of all signals and 
+// send to scoreboard using uvm_analysis_port.
+// This is reusable monitor class there are 4 monitor in serdes tb_architecture and that 4 are 
+// instance of this monitor class and all 4 instance have different characteristics that is handle 
+// by this monitor class.
+//-------------------------------------------------------------------------------------------------------/
 
 class serdes_monitor extends uvm_monitor;
 
@@ -10,14 +16,14 @@ class serdes_monitor extends uvm_monitor;
   `uvm_component_utils(serdes_monitor)
 
   //Declarations 
-  parameter WIDTH = 10;
   virtual serdes_interface.MONITOR vif; // Virtual interface handle
   uvm_analysis_port #(serdes_transaction) packet_collected_port; //Analysis port used to broadcast transaction packet.
   serdes_transaction mon_pkt; // Transaction Packet.
-  serdes_test_config test_cfg;
+  //serdes_test_config test_cfg;
   bit is_parallel; // This bit tells agent is serial parallel according to this and is_active i have to call the task.
   bit is_active; // This bit tells agent is active or passive.
   int sampling_count = 1;
+  int count = 0; 
 
   // Constructor of monitor class
   function new (string name, uvm_component parent);
@@ -194,6 +200,8 @@ class serdes_monitor extends uvm_monitor;
 
                   // Broadcasting this packet through analysis port
                 packet_collected_port.write(mon_pkt);
+                count++;
+                `uvm_info(get_type_name(), $sformatf("Monitoring Count = %0d", count), UVM_DEBUG)
               end
 
               else begin
@@ -233,5 +241,7 @@ class serdes_monitor extends uvm_monitor;
     end
 
   endtask : run_phase
+
+  
 
 endclass : serdes_monitor

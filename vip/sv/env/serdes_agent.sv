@@ -1,9 +1,15 @@
-//----------------------------------------------------------------------------------------------//
-// This is my agent class
-// This class is create sequencer, driver and monitor according to agent state  means if agent state is active then it will create all this three components otherwise it will only create monitor component and this all process happen inside build phase
-// Insidr the connect phase the connection between driver and sequencer is
-// happen it is basically connect driver seq_item_pull_port to sequencer seq_item_pull_imp port
-//----------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------//
+// File Name : serdes_agent.sv
+// Author Name : Vandan Parekh
+// Propetier Name : ASICraft Technologies LLP.
+// Decription : This is agent class in my serdes architecture there are 4
+// agents two parallel and two serial which is instance of one agent class 
+// all 4 agent have different characteristics.
+// Agent class is responsible to create driver, sequencer and monitor if 
+// agent is active otherwise it is create only monitor.
+// The port connection between driver and sequencer is happen inside the 
+// connect phase of agent class
+// ----------------------------------------------------------------------------//
 
 class serdes_agent extends uvm_agent;
 
@@ -31,7 +37,7 @@ class serdes_agent extends uvm_agent;
       drv = serdes_driver::type_id::create("drv", this); // Creation of driver
       drv.parallel_driver = agt_cfg.is_parallel; // In my tb_architecture there are two driver one driver drive parallel data only so it will be called as parallel driver and other driver drive serial data so it will be called as serial driver
       seqr = serdes_sequencer::type_id::create("seqr", this); // Creation of sequencer is happen 
-      `uvm_info(get_type_name(), $sformatf("ALL THE ACTIVE COMPONENTS CREATED"), UVM_LOW)
+      `uvm_info(get_type_name(), $sformatf("ALL THE ACTIVE COMPONENTS CREATED"), UVM_DEBUG)
     end
 
     mon = serdes_monitor::type_id::create("mon", this); // Creation of monitor 

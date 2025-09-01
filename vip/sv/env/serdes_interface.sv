@@ -1,7 +1,11 @@
 //---------------------------------------------------------------------------------------------------//
-// Interface : This is use to communicate testbench to dut.
+// File Name : serdes_interface.sv
+// Author Name : Vandan Parekh
+// Propetier Name : ASICraft Technologies LLP.
+// Decription : Interface : This is use to communicate testbench to dut.
 // Interface is also a container that contain signal that can be use by dut.
-// It is also responsible for synchronization between componentss and tell the directions of the signals to particular component direction means input or output
+// It is also responsible for synchronization between componentss and tell the directions of the 
+// signals to particular component direction means input or output
 //---------------------------------------------------------------------------------------------------//
 
 //Parameterized Interface
@@ -66,7 +70,6 @@ interface serdes_interface #(parameter WIDTH = 10)
     assert_inverse_polarity_rx: assert property(inverse_polarity_rx) $info("Rx0_p is inverse of Rx0_n");
         else `uvm_error("ASSERT_RX_POLARITY", "Rx0_n is not inverse of Rx0_p");
 
-   
     // A2: Serial data valid only after reset deassertion
     property serial_data_after_reset;
         @(posedge serial_clk) disable iff (serdes_reset)
@@ -84,4 +87,3 @@ interface serdes_interface #(parameter WIDTH = 10)
         else `uvm_error("ASSERT_CLOCKS", "Clocks active during reset");
 
 endinterface : serdes_interface
-

@@ -1,7 +1,13 @@
-// -------------------------------------------------------------------------------------------------- //
+// ------------------------------------------------------------------------------ //
+// File Name : serdes_subscriber.sv
+// Author Name : Vandan Parekh
+// Propetier Name : ASICraft Technologies LLP.
 // This is subscriber class.
-// This class is used for taking coverage of data which is sampled by monitor and this class basically tracks particular signals to cover all values of their range and gives results in percentage according to which values of its range are covered
-// -------------------------------------------------------------------------------------------------- //
+// This class is used for taking coverage of data which is sampled by monitor and 
+// this class basically tracks particular signals to cover all values of their 
+// range and gives results in percentage according to which values of its range 
+// are covered
+// ------------------------------------------------------------------------------ //
 
 // Macro for taking multiple ports because each subscriber gets data from two monitor classes
 `uvm_analysis_imp_decl(_subscriber_expected)
