@@ -1,38 +1,29 @@
 //---------------------------------------------------------------------------------------------//
-// This sequence class used to randomize properties of transaction class and responsible for generating different scenarios and this sequence generate basic transactions one for rx and one for tx in serdes tb architecture there are two sequence one generate parallel data and one generate serial data
+// File Name : serdes_opposite_data_for_tx_rx_sequence.sv
+// Author Name : Vandan Parekh
+// Propetier Name : ASICraft Technologies LLP.
+// Decription : This is serdes_opposite_data_for_tx_rx_sequence in this sequence it generates
+// opposite data of Tx side for Rx side for example if parallel sequence generate 0001110001 
+// then on rx side it generate the opposite data which is 1110001110
 //---------------------------------------------------------------------------------------------//
 
-class serdes_opposite_data_for_tx_rx_sequence extends uvm_sequence #(serdes_transaction);
+class serdes_opposite_data_for_tx_rx_sequence extends serdes_base_sequence; 
 
   // Factory registration of sequence class
   `uvm_object_utils(serdes_opposite_data_for_tx_rx_sequence);
 
   // Properties declaration of sequence class
-  parameter WIDTH = 10;
-
-  int serial_transaction_count; // Number of serial transactions
-  int parallel_transaction_count; // Number of parallel transactions 
-
   bit is_parallel; // Indicates if the sequence is for a parallel or serial agent
   event synchro_seq;
 
   // Constructor of sequence class
-  function new(string name = "serdes_opposite_data_for_tx_rx_sequence");
+  function new(string name = "serdes_opposite_data_for_tx_rx");
     super.new(name);
-    
-    // Get serial transaction count from test using config db
-    if(!uvm_config_db#(int)::get(null, "*", "serial_transaction_count", serial_transaction_count))
-      `uvm_fatal("NO_SERIAL_TRANSACTION_COUNT",{"Serial Transaction count must be set for: ",get_full_name()});
-      
-    // Get parallel transaction count from test using config db
-    if(!uvm_config_db#(int)::get(null, "*", "parallel_transaction_count", parallel_transaction_count))
-      `uvm_fatal("NO_PARALLEL_TRANSACTION_COUNT",{"Parallel transaction count must be set for: ",get_full_name()});
-
   endfunction : new
 
   // Pre body task
   virtual task pre_body();
-    `uvm_info("PRE_BODY", $sformatf("serial_transaction_count=%0d, parallel_transaction_count = %0d, is_parallel=%b", serial_transaction_count, parallel_transaction_count, is_parallel), UVM_LOW)
+    super.pre_body();
   endtask : pre_body
 
   // This body task generate transactions and send to arbitration of sequencer and this task also differentiate between generate serial transaction and parallel transaction
@@ -78,10 +69,7 @@ class serdes_opposite_data_for_tx_rx_sequence extends uvm_sequence #(serdes_tran
 
   // Post body task
   virtual task post_body();
-    `uvm_info("POST-BODY", $sformatf("INSIDE POST-BODY TASK"), UVM_LOW)
+    super.post_body();
   endtask : post_body
 
 endclass : serdes_opposite_data_for_tx_rx_sequence
-
-
-

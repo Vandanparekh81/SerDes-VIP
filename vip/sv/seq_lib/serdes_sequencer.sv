@@ -1,7 +1,12 @@
-//-------------------------------------------------------------------//
-//This is sequencer class and inside this class sequence selection of arbitration is happen this component is decide which sequence go to driver.
-// Inside the source code there is one port sequence_item_pull_imp that is use to connenct with driver. 
-//-------------------------------------------------------------------//
+//------------------------------------------------------------------------//
+// File Name : serdes_sequencer.sv
+// Author Name : Vandan Parekh
+// Propetier Name : ASICraft Technologies LLP.
+// Decription : This is serdes_sequencer class this class takes data 
+// from sequence and send it to driver and there are two sequencer in
+// serdes tb architecture one is parallel sequencer(TX) and one is 
+// serial sequencer(RX) 
+//------------------------------------------------------------------------//
 
 class serdes_sequencer extends uvm_sequencer #(serdes_transaction);
 

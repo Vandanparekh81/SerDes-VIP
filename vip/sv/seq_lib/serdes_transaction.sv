@@ -1,14 +1,16 @@
 //-----------------------------------------------------------------------------------//
-//This is transaction class in this class we take all the itmes that can send from one component to another component in a packet form 
-
-//you can consider this class as a container of properties and there are some constraint writteninside this class that can use to ensure data generate with respect to condition that is written inside that
-
+// File Name : serdes_transaction.sv
+// Author Name : Vandan Parekh
+// Propetier Name : ASICraft Technologies LLP.
+// Description : This is transaction class in this class we take all the itmes that 
+// can send from one component to another component in a packet form and there are 
+// some constraint written inside this class that can use to ensure data generate 
+// with respect to condition that is written inside that
 // ----------------------------------------------------------------------------------//
 
 
 class serdes_transaction extends uvm_sequence_item;
   
-  parameter WIDTH = 10;
   rand bit [WIDTH-1:0] Tx0; //Parallel input that can be send to serializer
   bit [WIDTH-1:0] Rx0; // Parallel output that can be received from deserializer
   bit [WIDTH-1:0] mon_parallel_Rx0, mon_parallel_Tx0; // This signals is taken for monitor because i have to send parallel packets to scoreboard so there are two monitors that sample serial data so i have to convert that serial data into parallel data
